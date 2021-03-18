@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/tristanlatr/burpa/blob/master/docs/images/burpa.png" width="90px">
+<img align="left" src="https://github.com/tristanlatr/burpa/blob/main/docs/images/burpa.png" width="90px">
 
 **This is a fork of [0x4D31/burpa](https://github.com/0x4D31/burpa)**. I would be happy to merge back the changes to upstream version!
 
@@ -12,7 +12,7 @@ It provides a high level CLI and Python interfaces to Burp Suite scanner and can
 
 It will use the official REST API to launch the scan, and the `burp-rest-api` to get the pretty HTML report. 
 
-<img align="center" src="https://github.com/tristanlatr/burpa/blob/master/docs/images/diagram.png" width="650px">
+<img align="center" src="https://github.com/tristanlatr/burpa/blob/main/docs/images/diagram.png" width="650px">
 
 ## Requirements
 * Burp Suite Professional v2.0 or greater. 
@@ -35,7 +35,7 @@ It will use the official REST API to launch the scan, and the `burp-rest-api` to
 
 ## Usage
 
-Read the [manpage](https://github.com/tristanlatr/burpa/blob/master/docs/man/burpa.txt) online, or alternatively look at the following command output to get help.
+Read the [manpage](https://github.com/tristanlatr/burpa/blob/main/docs/man/burpa.txt) online, or alternatively look at the following command output to get help.
 
 ```
 $ burpa --help
