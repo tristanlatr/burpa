@@ -32,7 +32,7 @@ mkdir -p "${docs_folder}"
 # Run pydoctor build
 pydoctor \
     --project-name="burpa: Burp Automator ${project_version}" \
-    --project-url="https://github.com/tristanlatr/burpa" \ 
+    --project-url="https://github.com/tristanlatr/burpa" \
     --html-viewsource-base="https://github.com/tristanlatr/burpa/tree/${git_sha}" \
     --make-html \
     --quiet \
