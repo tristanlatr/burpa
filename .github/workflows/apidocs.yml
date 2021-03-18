@@ -1,0 +1,26 @@
+name: apidocs
+on:
+- push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Generate documentation with pydoctor
+      run: |
+        pip install tox
+        tox -e apidocs
+    
+    - name: Publish documentation to the gh-pages branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./apidocs
+        commit_message: "Generate api documentation"

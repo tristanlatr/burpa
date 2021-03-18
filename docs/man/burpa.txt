@@ -1,0 +1,121 @@
+INFO: Showing help with the command 'burpa -- --help'.
+
+NAME
+    burpa - High level interface for the Burp Suite Security Tool.
+
+SYNOPSIS
+    burpa <flags>
+
+DESCRIPTION
+    High level interface for the Burp Suite Security Tool.
+
+FLAGS
+    --api_url=API_URL
+        Type: str
+        Default: ''
+        Burp Suite REST API Extension URL. Environment variable: 'BURP_API_URL'.
+    --api_port=API_PORT
+        Type: str
+        Default: '8090'
+        Burp REST API Extension Port (default: 8090). Environment variable: 'BURP_API_PORT'.
+    --new_api_url=NEW_API_URL
+        Type: str
+        Default: ''
+        Burp Suite Official REST API URL (default: Same as api_url). Environment variable: 'BURP_NEW_API_URL'.
+    --new_api_port=NEW_API_PORT
+        Type: str
+        Default: '1337'
+        Burp Suite Official REST API Port (default: 1337). Environment variable: 'BURP_NEW_API_PORT'.
+    --new_api_key=NEW_API_KEY
+        Type: str
+        Default: ''
+        Burp Suite Official REST API key. Environment variable: 'BURP_NEW_API_KEY'.
+            __                          
+           / /_  __  ___________  ____ _
+          / __ \/ / / / ___/ __ \/ __ `/
+         / /_/ / /_/ / /  / /_/ / /_/ / 
+        /_.___/\__,_/_/  / .___/\__,_/  
+                        /_/             
+         burpa version 0.2 
+
+----------------------------------------------------
+
+INFO: Showing help with the command 'burpa - -- --help'.
+
+NAME
+    burpa - High level interface for the Burp Suite Security Tool.
+
+SYNOPSIS
+    burpa - COMMAND
+
+DESCRIPTION
+    High level interface for the Burp Suite Security Tool.
+
+COMMANDS
+    COMMAND is one of the following:
+
+     proxy_listen_all_interfaces
+       Check the Burp proxy configuration to make sure it's running and listening on all interfaces and update the Burp 
+proxy configuration if necessary.
+
+     report
+       Generate the reports for the specified targets. If targets is 'all', generate a report that contains all issues 
+for all targets.
+
+     scan
+       Launch an active scan, wait until the end and report the results.
+
+     stop
+       Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or NSSM (Windows) to automatically 
+restart the Burp Suite Service when it stopped running. By default do not stop if scans are still running.
+
+     test
+       Test if burpa can connect to Burp Suite REST API(s)
+            __                          
+           / /_  __  ___________  ____ _
+          / __ \/ / / / ___/ __ \/ __ `/
+         / /_/ / /_/ / /  / /_/ / /_/ / 
+        /_.___/\__,_/_/  / .___/\__,_/  
+                        /_/             
+         burpa version 0.2 
+
+----------------------------------------------------
+
+INFO: Showing help with the command 'burpa scan -- --help'.
+
+NAME
+    burpa scan - Launch an active scan, wait until the end and report the results.
+
+SYNOPSIS
+    burpa scan <flags> [TARGETS]...
+
+DESCRIPTION
+    It will use the official REST API to launch the scan, and the `burp-rest-api` to get the pretty HTML report. 
+
+POSITIONAL ARGUMENTS
+    TARGETS
+        Type: str
+        Define spcefic target URL(s) for the scan. Use 'all' keyword to search in the proxy history and load target 
+URLs from there.
+
+FLAGS
+    --report_type=REPORT_TYPE
+        Type: str
+        Burp scan report type (default: HTML)
+    --report_output_dir=REPORT_OUTPUT_DIR
+        Type: str
+        Directory to store the reports.
+    --app_user=APP_USER
+        Type: str
+        Application username for authenticated scans.
+    --app_pass=APP_PASS
+        Type: str
+        Application password for authenticated scans
+            __                          
+           / /_  __  ___________  ____ _
+          / __ \/ / / / ___/ __ \/ __ `/
+         / /_/ / /_/ / /  / /_/ / /_/ / 
+        /_.___/\__,_/_/  / .___/\__,_/  
+                        /_/             
+         burpa version 0.2 
+
