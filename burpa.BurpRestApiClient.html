@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>burpa.BurpRestApiClient</title>
+    <meta name="generator" content="pydoctor 20.12.1"> 
+        </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <transparent></transparent>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            <span>burpa: Burp Automator 0.2</span> <a href="index.html"> API Documentation </a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    <transparent></transparent>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="burpa.html">burpa</a></code><wbr></wbr>.<code><a href="burpa.BurpRestApiClient.html">BurpRestApiClient</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">BurpRestApiClient</span>(<a href="burpa._api_base.ApiBase.html" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L14" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#burpa.BurpRestApiClient">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Interface for the third party extension <a class="rst-reference external" href="https://github.com/vmware/burp-rest-api" target="_top">burp-rest-api</a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy_url</span></td><td class="fieldArgDesc"></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api_port</span></td><td class="fieldArgDesc">Defaults to 8090</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id4">
+  
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#proxy_url">proxy_url</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#api_port">api_port</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#PARAMS">PARAMS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#proxy_uri">proxy_uri</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_proxy_listen_all_interfaces">check_proxy_listen_all_interfaces</a></code></td>
+    <td><span>Check the Burp proxy configuration to make sure it's running and listening on all interfaces</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#enable_proxy_listen_all_interfaces">enable_proxy_listen_all_interfaces</a></code></td>
+    <td><span>Update the Burp proxy configuration to listen on all interfaces</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#proxy_history">proxy_history</a></code></td>
+    <td><span>Retrieve the Burp proxy history</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#include">include</a></code></td>
+    <td><span>Add a target to the scope.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#exclude">exclude</a></code></td>
+    <td><span>Remove a target from the scope.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#is_in_scope">is_in_scope</a></code></td>
+    <td><span>Query whether a URL is within the current scope</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#active_scan">active_scan</a></code></td>
+    <td><span>Send a URL to Burp to perform active scan</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_status">scan_status</a></code></td>
+    <td><span>Get the percentage completed for the scan queue items</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_issues">scan_issues</a></code></td>
+    <td><span>Print all of the current scan issues for URLs matching the specified urlPrefix</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_report">scan_report</a></code></td>
+    <td><span>Downloads the scan report with current Scanner issues for URLs matching the specified urlPrefix (HTML/XML)</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#burp_stop">burp_stop</a></code></td>
+    <td><span>Stop the Burp Suite</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#verify_uri">verify_uri</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_update_scope">_update_scope</a></code></td>
+    <td><span>Include in scope / Exclude from scope</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="burpa._api_base.ApiBase.html">ApiBase</a></code>:
+          </p>
+          <table class="children sortable" id="id5">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="burpa._api_base.ApiBase.html#request">request</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="burpa._api_base.ApiBase.html#_api_request">_api_request</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  
+  <a name="burpa.BurpRestApiClient.proxy_url">
+    
+  </a>
+  <a name="proxy_url">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">proxy_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L20">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="burpa.BurpRestApiClient.api_port">
+    
+  </a>
+  <a name="api_port">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">api_port</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L22">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="burpa.BurpRestApiClient.PARAMS">
+    
+  </a>
+  <a name="PARAMS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">PARAMS</span> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L29">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#PARAMS">burpa._api_base.ApiBase.PARAMS</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="burpa.BurpRestApiClient.proxy_uri">
+    
+  </a>
+  <a name="proxy_uri">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#proxy_uri">burpa._api_base.ApiBase.proxy_uri</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.check_proxy_listen_all_interfaces">
+    
+  </a>
+  <a name="check_proxy_listen_all_interfaces">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_proxy_listen_all_interfaces</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check the Burp proxy configuration to make sure it's running
+and listening on all interfaces<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.enable_proxy_listen_all_interfaces">
+    
+  </a>
+  <a name="enable_proxy_listen_all_interfaces">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">enable_proxy_listen_all_interfaces</span>(self, proxy_port):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Update the Burp proxy configuration to listen on all interfaces<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy_port:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.proxy_history">
+    
+  </a>
+  <a name="proxy_history">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">proxy_history</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Retrieve the Burp proxy history<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.include">
+    
+  </a>
+  <a name="include">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">include</span>(self, *targets):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Add a target to the scope.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.exclude">
+    
+  </a>
+  <a name="exclude">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">exclude</span>(self, *targets):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L196">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Remove a target from the scope.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.BurpRestApiClient._update_scope">
+    
+  </a>
+  <a name="_update_scope">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_update_scope</span>(self, action, scope):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L207">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Include in scope / Exclude from scope<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">action:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">scope:</span><code>Iterable[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.is_in_scope">
+    
+  </a>
+  <a name="is_in_scope">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_in_scope</span>(self, url):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L228">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Query whether a URL is within the current scope<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.active_scan">
+    
+  </a>
+  <a name="active_scan">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">active_scan</span>(self, base_url):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L244">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Send a URL to Burp to perform active scan<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base_url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.scan_status">
+    
+  </a>
+  <a name="scan_status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_status</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L253">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Get the percentage completed for the scan queue items<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#int">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.scan_issues">
+    
+  </a>
+  <a name="scan_issues">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_issues</span>(self, url_prefix):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L266">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Print all of the current scan issues for URLs
+matching the specified urlPrefix<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url_prefix:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.scan_report">
+    
+  </a>
+  <a name="scan_report">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_report</span>(self, report_type, url_prefix, report_output_dir=None):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Downloads the scan report with current Scanner issues for
+URLs matching the specified urlPrefix (HTML/XML)<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url_prefix:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code>Optional[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.burp_stop">
+    
+  </a>
+  <a name="burp_stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">burp_stop</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L327">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Stop the Burp Suite</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpRestApiClient.verify_uri">
+    
+  </a>
+  <a name="verify_uri">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">verify_uri</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/_burp_rest_api_client.py#L350">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.2, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-03-18 03:04:01.
+      </address>
+
+    </div>
+
+    <transparent></transparent>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

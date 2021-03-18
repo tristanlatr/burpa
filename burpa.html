@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>burpa</title>
+    <meta name="generator" content="pydoctor 20.12.1"> 
+        </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <transparent></transparent>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            <span>burpa: Burp Automator 0.2</span> <a href="index.html"> API Documentation </a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    <transparent></transparent>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="package"><code><code><a href="burpa.html">burpa</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        package documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/tristanlatr/burpa/tree/e9127c172dbb5d512bf4ec83dba9ef5986025783/burpa/__init__.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Welcome to the <tt class="rst-docutils literal">burpa</tt> API documentation!</p>
+<div class="rst-admonition rst-admonition-usage">
+<p class="rst-first rst-admonition-title">Usage</p>
+<pre class="py-doctest">
+<span class="py-keyword">from</span> burpa <span class="py-keyword">import</span> Burpa
+burp = Burpa(api_url=<span class="py-string">"localhost"</span>)
+burp.scan(<span class="py-string">'http://mysite.com'</span>, report_output_dir=<span class="py-string">'.'</span>)</pre></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">See Also</td></tr><tr><td colspan="2"><code><a href="burpa.Burpa.html">burpa.Burpa</a></code></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1">
+  
+  
+  <tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="burpa.__version__.html">__version__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="module private">
+    
+    <td>Module</td>
+    <td><code><a href="burpa.__main__.html">__main__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="module private">
+    
+    <td>Module</td>
+    <td><code><a href="burpa._api_base.html">_api_base</a></code></td>
+    <td><span class="undocumented">No module docstring; 1/1 classes documented</span></td>
+  </tr><tr class="module private">
+    
+    <td>Module</td>
+    <td><code><a href="burpa._burp_commander.html">_burp_commander</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="module private">
+    
+    <td>Module</td>
+    <td><code><a href="burpa._burp_rest_api_client.html">_burp_rest_api_client</a></code></td>
+    <td><span class="undocumented">No module docstring; 1/1 functions documented</span></td>
+  </tr><tr class="module private">
+    
+    <td>Module</td>
+    <td><code><a href="burpa._burpa.html">_burpa</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="module private">
+    
+    <td>Module</td>
+    <td><code><a href="burpa._error.html">_error</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          <p class="fromInitPy">From the <code>__init__.py</code> module:</p><table class="children sortable" id="id2">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="burpa.BurpCommander.html">BurpCommander</a></code></td>
+    <td><span>Interface for the Burp Suite Official REST API, based on ruby code <a class="rst-reference external" href="https://github.com/pentestgeek/burpcommander" target="_top">burpcommander</a>.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="burpa.BurpRestApiClient.html">BurpRestApiClient</a></code></td>
+    <td><span>Interface for the third party extension <a class="rst-reference external" href="https://github.com/vmware/burp-rest-api" target="_top">burp-rest-api</a>.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="burpa.Burpa.html">Burpa</a></code></td>
+    <td><span>High level interface for the Burp Suite Security Tool.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="burpa.BurpaError.html">BurpaError</a></code></td>
+    <td><span>Exception raised when there is an error in a burpa command.</span></td>
+  </tr>
+</table>
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.2, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-03-18 03:04:01.
+      </address>
+
+    </div>
+
+    <transparent></transparent>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
