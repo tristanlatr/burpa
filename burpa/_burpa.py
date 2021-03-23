@@ -173,9 +173,8 @@ class Burpa:
             last_status_str = ""
             statuses: List[str] = []
             
-            while not statuses or any(status not in ("paused", "succeeded") for status in statuses):
+            while not statuses or any(status not in ("paused", "succeeded", "failed") for status in statuses):
 
-                time.sleep(5)
                 for url in scanned_urls_map:
                     scanned_urls_map[url]['status'] = self._newapi.scan_status(scanned_urls_map[url]['task_id'])
                 
@@ -185,6 +184,8 @@ class Burpa:
                 if status_str != last_status_str:
                     print(f"[-] Scan status: {status_str}")
                     last_status_str = status_str
+
+                time.sleep(2)
 
             print(f"[+] Scan completed")
 
