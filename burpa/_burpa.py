@@ -21,6 +21,9 @@ import os
 import sys
 import traceback
 import tempfile
+import csv
+import io
+from datetime import timedelta, datetime
 from typing import  Any, Dict, List, Optional
 from urllib.parse import urlparse
 
@@ -94,7 +97,7 @@ class Burpa:
                             api_key=new_api_key or None)
 
     def scan(self, *targets: str, report_type: str = "HTML", 
-             report_output_dir: str = "", 
+             report_output_dir: str = "", excluded: str = "", 
              app_user: str = "", 
              app_pass: str = "", ) -> None:
         """
@@ -112,15 +115,23 @@ class Burpa:
             Burp scan report type (default: HTML)
         report_output_dir:
             Directory to store the reports.
+        excluded:
+            Commas separated value of the URLs to exclude from the scope of the scan.
         app_user: 
             Application username for authenticated scans.
         app_pass: 
             Application password for authenticated scans
         """
 
-        self.test()
+        self._test()
         
         if targets:
+            
+            # Parse excluded str
+            excluded_urls = []
+            if excluded:
+                for row in csv.reader(io.StringIO(excluded)):
+                    excluded_urls.extend(row)
             
             scanned_urls_map: Dict[str, Dict[str, Any]] = {}
             authenticated_scans = app_pass and app_user
@@ -143,10 +154,12 @@ class Burpa:
                         
                         task_id = self._newapi.active_scan(target_url, 
                                                 username=app_user, 
-                                                password=app_pass)
+                                                password=app_pass,
+                                                excluded_urls=excluded_urls)
                         
                     else:
-                        task_id= self._newapi.active_scan(target_url)
+                        task_id= self._newapi.active_scan(target_url, 
+                                                          excluded_urls=excluded_urls)
                     
                     # Store scan infos
                     scanned_urls_map[target_url] = {}
@@ -194,7 +207,16 @@ class Burpa:
     def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,
                 slack_report: bool = False, slack_api_token: Optional[str] = None) -> bool:
         
-        if self._api.scan_issues(target):
+        issues = self._api.scan_issues(target)
+        if issues:
+
+            print(f"[+] Scan issues for {target} :")
+            uniques_issues = {
+                "Issue: {issueName}, Severity: {severity}".format(**issue)
+                for issue in issues
+            }
+            for issue in uniques_issues:
+                print(f"  - {issue}")
             
             if report_output_dir:
                 os.makedirs(report_output_dir, exist_ok=True)
@@ -224,7 +246,7 @@ class Burpa:
         Generate the reports for the specified targets. 
         If targets is 'all', generate a report that contains all issues for all targets.  
         """
-        self.test()
+        self._test()
         for target in targets:
             self._report(target, report_type, report_output_dir, 
                          slack_report, slack_api_token)
@@ -243,40 +265,42 @@ class Burpa:
         proxy_port
             Burp Proxy Port
         """
-        self.test()
+        self._test()
         if not self._api.check_proxy_listen_all_interfaces():
             self._api.enable_proxy_listen_all_interfaces(proxy_port=proxy_port)
 
-    def stop(self, force: bool = False) -> None:
+    def stop(self) -> None:
         """
         Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or 
         NSSM (Windows) to automatically restart the
-        Burp Suite Service when it stopped running. By default do not stop if scans are still running. 
-
-        Args
-        ----
-        force:
-            Stop the Burp even if scans are running. 
+        Burp Suite Service when it stopped running. 
         """
-        self.test()
-        if self._api.scan_status() != 100:
-            if not force:
-                raise BurpaError("Error: Not stopping Burp Suite because scans are still running, use --force to stop Burp anyway. ")
-            
-            print("[!] Shutting down the Burp Suite even if scans are still running ...")
-        
-        else:
-            print("[+] Shutting down the Burp Suite ...")
-        
+        self._test()
+        print("[+] Shutting down Burp Suite ...")
         self._api.burp_stop()
 
-    
-    def test(self) -> None:
-        """Test if burpa can connect to Burp Suite REST API(s)"""
+    def _test(self) -> None:
         self._api.verify_uri()
-        # print(f"[+] Successfuly connected to Burp REST API Extension at: {self._api.proxy_url}:{self._api.api_port}")
         self._newapi.verify_uri()
-        # print(f"[+] Successfuly connected to Burp official REST API at: {self._newapi.proxy_url}:{self._newapi.api_port}")
+    
+    def test(self, wait: str = '0') -> None:
+        """
+        Test if burpa can connect to Burp Suite REST APIs.
+        """
+        start = datetime.now()
+        wait_delta = timedelta(seconds=int(wait))
+
+        while True:
+            try:
+                self._test()
+            except BurpaError:
+                if datetime.now() - start < wait_delta:
+                    time.sleep(2)
+                else:
+                    raise
+            else:
+                print(f"[+] Successfuly connected to Burp REST APIs")
+                return
 
 
 def upload_slack_report(api_token: str, fname: str) -> None:

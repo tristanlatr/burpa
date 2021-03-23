@@ -67,10 +67,10 @@ for all targets.
 
      stop
        Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or NSSM (Windows) to automatically 
-restart the Burp Suite Service when it stopped running. By default do not stop if scans are still running.
+restart the Burp Suite Service when it stopped running.
 
      test
-       Test if burpa can connect to Burp Suite REST API(s)
+       Test if burpa can connect to Burp Suite REST APIs.
             __                          
            / /_  __  ___________  ____ _
           / __ \/ / / / ___/ __ \/ __ `/
@@ -105,6 +105,9 @@ FLAGS
     --report_output_dir=REPORT_OUTPUT_DIR
         Type: str
         Directory to store the reports.
+    --excluded=EXCLUDED
+        Type: str
+        Commas separated value of the URLs to exclude from the scope of the scan.
     --app_user=APP_USER
         Type: str
         Application username for authenticated scans.

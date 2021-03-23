@@ -2,7 +2,7 @@ import os
 import re
 import tempfile
 import time
-from typing import Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional
 import attr
 
 from string import Template
@@ -242,7 +242,9 @@ class BurpRestApiClient(ApiBase):
 
 
     def active_scan(self, base_url: str) -> None:
-        """Send a URL to Burp to perform active scan"""
+        """
+        Send a URL to Burp to perform active scan. 
+        """
         try:
             self.request('active_scan', base_url=base_url)
             print(f"[-] {base_url} Added to the scan queue")
@@ -251,7 +253,9 @@ class BurpRestApiClient(ApiBase):
 
 
     def scan_status(self) -> int:
-        """Get the percentage completed for the scan queue items"""
+        """
+        Get the percentage completed for the scan queue items
+        """
         try:
             r = self.request('scan_status')
         except BurpaError as e:
@@ -263,9 +267,9 @@ class BurpRestApiClient(ApiBase):
             return resp['scanPercentage']
 
 
-    def scan_issues(self, url_prefix: str) -> Optional[bool]:
+    def scan_issues(self, url_prefix: str) -> Optional[List[Dict[str, Any]]]:
         """
-        Print all of the current scan issues for URLs
+        Get list of scan issues for URLs
         matching the specified urlPrefix
         """
         try:
@@ -279,17 +283,12 @@ class BurpRestApiClient(ApiBase):
 
         else:
             resp = r.json()
-            if resp['issues']:
-                print(f"[+] Scan issues for {url_prefix} :")
-                uniques_issues = {
-                    "Issue: {issueName}, Severity: {severity}".format(**issue)
-                    for issue in resp['issues']
-                }
-                for issue in uniques_issues:
-                    print(f"  - {issue}")
-                return True
+            issues = resp['issues']
+            if issues:
+                assert isinstance(issues, list)
+                return issues
             else:
-                return False
+                return None
 
 
     def scan_report(self, report_type: str, url_prefix: str, 
