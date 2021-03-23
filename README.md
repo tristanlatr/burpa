@@ -1,6 +1,8 @@
 <img align="left" src="https://github.com/tristanlatr/burpa/blob/main/docs/images/burpa.png" width="90px">
 
-**This is a fork of [0x4D31/burpa](https://github.com/0x4D31/burpa)**. I would be happy to merge back the changes to upstream version!
+**This is a fork of [0x4D31/burpa](https://github.com/0x4D31/burpa)**. 
+
+The original repo seemed abandonned, but I would be happy to merge back the changes to upstream version!
 
 # burpa: Burp Automator
 
@@ -61,16 +63,24 @@ export BURP_NEW_API_KEY=""
 
 ### Examples:
 
-Scan two URLs
-```
-$ burpa --api_url=localhost scan http://mysite.com http://mysite2.com --report-output-dir ./burp-reports/
-```
+- Scan two URLs
+  ```
+  $ burpa --api_url=localhost scan http://mysite.com http://mysite2.com --report-output-dir ./burp-reports/
+  ```
 
-Scan with username/password authentication:
-```
-$ burpa --api-url=localhost --new-api-url=localhost --new-api-key=xxx scan http://mysite.com --report-output-dir ./burp-reports/ --app-user=user --app-pass=p@assw0rd
-```
+- Scan with username/password authentication
+  ```
+  $ burpa --api-url=localhost --new-api-url=localhost --new-api-key=xxx scan http://mysite.com --report-output-dir ./burp-reports/ --app-user=user --app-pass=p@assw0rd
+  ```
 
+- Shutdown the Burp Suite and wait 60 seconds for the service to restart. 
+  ```
+  $ burpa stop
+  $ burpa test --wait 60
+  ```
+
+  You can use `systemctl` or `supervisord` (Linux) or NSSM (Windows) to automatically restart the `burp-rest-api` when it stopped running. 
+  This seem to be the only way to reset the scanner to a clean state ([ref](https://github.com/vmware/burp-rest-api/issues/82)). 
 ### Python library
 
 [API Reference](https://tristanlatr.github.io/burpa/)
@@ -114,7 +124,7 @@ $ burpa scan http://10.1.1.1:8080/WebGoat --report-output-dir /tmp/burp-reports/
   - Issue: Cross-site request forgery, Severity: Information
   - Issue: Password field with autocomplete enabled, Severity: Low
 [+] Downloading HTML/XML report for http://10.1.1.1:8080/WebGoat
-[-] Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10.163.129.1228080WebGoat.html
+[-] Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10.1.1.18080WebGoat.html
 ```
 
 ## Related
