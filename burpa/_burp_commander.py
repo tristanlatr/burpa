@@ -33,7 +33,8 @@ class BurpCommander(ApiBase):
                             "scope": {
                                     "include": [{"rule": "$base_url", "type":"SimpleScopeDef"}],
                                     "exclude": $exclude_rules
-                                }
+                                },
+                            "scan_configurations": $scan_configurations
                             }
                             """)
                         ),
@@ -50,7 +51,8 @@ class BurpCommander(ApiBase):
                                 "application_logins": [{
                                     "password": "$password",
                                     "username": "$username"
-                                    }]
+                                    }],
+                                "scan_configurations": $scan_configurations
                             }
                             """)
                         ),
@@ -71,10 +73,24 @@ class BurpCommander(ApiBase):
         return f"{self.proxy_url}:{self.api_port}{'/' if self.api_key else ''}{self.api_key if self.api_key else ''}/v0.1"
 
     def active_scan(self, base_url: str, username: Optional[str] = None, 
-                    password: Optional[str] = None, excluded_urls: Optional[Iterable[str]] = None) -> str:
+                    password: Optional[str] = None, excluded_urls: Optional[Iterable[str]] = None, 
+                    config_names: Optional[Iterable[str]] = None) -> str:
         """
         Send a URL to Burp to perform active scan, the difference with 
         `BurpRestApiClient.active_scan` is that this method accepts username/password for authenticated scans.
+
+        Parameters
+        ----------
+        base_url
+            URL to scan. 
+        username
+            Username for authenticated scan.
+        password
+            Password for authenticated scan.
+        excluded_urls
+            List of urls to exclude from the scope. 
+        config_names
+            List of configuration names to apply.
 
         Returns
         -------
@@ -83,6 +99,9 @@ class BurpCommander(ApiBase):
 
         def get_exclude_rules(urls: Iterable[str]) -> str:
             return json.dumps(list({"rule": url, "type": "SimpleScopeDef"} for url in urls))
+        
+        def get_scan_configurations(names: Iterable[str]) -> str:
+            return json.dumps(list({"name": name, "type": "NamedConfiguration"} for name in names))
 
         if username and not password:
             raise BurpaError(f"Error: Missing password for authenticated scan against {base_url}.")
@@ -90,28 +109,29 @@ class BurpCommander(ApiBase):
         elif not username and password:
             raise BurpaError(f"Error: Missing username for authenticated scan against {base_url}.")
         
-        try:    
+        try:
+
+            scan_configurations = '[]'
+            if config_names:
+                print(f"[-] Using scan configuration(s): '{', '.join(config_names)}'")
+                scan_configurations = get_scan_configurations(config_names)
+
+            exclude_rules = '[]'
+            if excluded_urls:
+                print(f"[-] URLs excluded from scope: {', '.join(excluded_urls)}")
+                exclude_rules = get_exclude_rules(excluded_urls)
             
             if username and password:
                 #craft authenticated response
-                print("[+] Initiating authenticated scan...")
-                if excluded_urls:
-                    print(f"[-] URLs excluded from scope: {', '.join(excluded_urls)}")
-                    r = self.request('active_scan_with_auth', base_url=base_url, 
-                                username=username, password=password, 
-                                exclude_rules=get_exclude_rules(excluded_urls))
-                else:
-                    r = self.request('active_scan_with_auth', base_url=base_url, 
-                                username=username, password=password, exclude_rules='[]')
+                r = self.request('active_scan_with_auth', base_url=base_url, 
+                            username=username, password=password, 
+                            exclude_rules=exclude_rules, scan_configurations=scan_configurations)
+
             else:
                 # craft unauthenticated response
                 print("[+] Initiating unauthenticated scan...")
-                if excluded_urls:
-                    print(f"[-] URLs excluded from scope: {', '.join(excluded_urls)}")
-                    r = self.request('active_scan', base_url=base_url,
-                                exclude_rules=get_exclude_rules(excluded_urls))
-                else:
-                    r = self.request('active_scan', base_url=base_url, exclude_rules='[]')
+                r = self.request('active_scan', base_url=base_url,
+                                exclude_rules=exclude_rules, scan_configurations=scan_configurations)
 
             task_id = r.headers.get("location", None)
             
@@ -123,7 +143,7 @@ class BurpCommander(ApiBase):
         
         except BurpaError as e:
             raise BurpaError(f"Error adding {base_url} to the scan queue: {e}") from e
-    
+
 
     def verify_uri(self) -> bool:
         """

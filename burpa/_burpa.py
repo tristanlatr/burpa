@@ -97,7 +97,7 @@ class Burpa:
                             api_key=new_api_key or None)
 
     def scan(self, *targets: str, report_type: str = "HTML", 
-             report_output_dir: str = "", excluded: str = "", 
+             report_output_dir: str = "", excluded: str = "", config: str = "",
              app_user: str = "", 
              app_pass: str = "", ) -> None:
         """
@@ -116,7 +116,9 @@ class Burpa:
         report_output_dir:
             Directory to store the reports.
         excluded:
-            Commas separated value of the URLs to exclude from the scope of the scan.
+            Commas separated values of the URLs to exclude from the scope of the scan.
+        config:
+            Commas separated values of the scan configuration(s) names to apply.
         app_user: 
             Application username for authenticated scans.
         app_pass: 
@@ -132,6 +134,12 @@ class Burpa:
             if excluded:
                 for row in csv.reader(io.StringIO(excluded)):
                     excluded_urls.extend(row)
+
+            # Parse config str
+            config_names = []
+            if config:
+                for row in csv.reader(io.StringIO(config)):
+                    config_names.extend(row)
             
             scanned_urls_map: Dict[str, Dict[str, Any]] = {}
             authenticated_scans = app_pass and app_user
@@ -155,11 +163,13 @@ class Burpa:
                         task_id = self._newapi.active_scan(target_url, 
                                                 username=app_user, 
                                                 password=app_pass,
-                                                excluded_urls=excluded_urls)
+                                                excluded_urls=excluded_urls, 
+                                                config_names=config_names)
                         
                     else:
                         task_id= self._newapi.active_scan(target_url, 
-                                                          excluded_urls=excluded_urls)
+                                                          excluded_urls=excluded_urls, 
+                                                          config_names=config_names)
                     
                     # Store scan infos
                     scanned_urls_map[target_url] = {}
