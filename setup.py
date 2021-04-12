@@ -14,8 +14,8 @@ exec((HERE / "burpa" / "__version__.py").read_text(), ABOUT)
 
 REQUIREMENTS = [
     'requests>=2.4.2',
-    'attr',
-    'python-fire',
+    'attrs',
+    'fire',
     'python-dotenv'
 ]
 
