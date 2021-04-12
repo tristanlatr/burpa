@@ -168,7 +168,7 @@ class Burpa:
             print("[+] Scan started")
 
             # Get the scan status and wait...
-            # An active scan is considered finished when: it's "paused" or "succeeded"
+            # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
 
             last_status_str = ""
             statuses: List[str] = []
@@ -201,6 +201,15 @@ class Burpa:
                 # Print/download the scan issues/reports
                 self.report(*list(scanned_urls_map), report_type=report_type,
                         report_output_dir=report_output_dir)
+
+            for url, scan  in scanned_urls_map.items():
+                
+                # Raise error if a scan failed
+                caption = scan['metrics']['crawl_and_audit_caption']
+                if scan['status'] == "paused":
+                    raise BurpaError(f"Scan aborted ({url}): {caption}")
+                elif scan['status'] == "failed":
+                    raise BurpaError(f"Scan failed ({url}): {caption}")
         
         else:
             raise BurpaError("Error: No target(s) specified. ")
@@ -237,7 +246,7 @@ class Burpa:
             return True
         
         else:
-            print(f"[-] No issue could be found for the target {target}")
+            print(f"[+] No issue could be found for the target {target}")
             return False
     
     def report(self, *targets: str, report_type: str = "HTML", 
