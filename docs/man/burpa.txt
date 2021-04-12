@@ -107,7 +107,10 @@ FLAGS
         Directory to store the reports.
     --excluded=EXCLUDED
         Type: str
-        Commas separated value of the URLs to exclude from the scope of the scan.
+        Commas separated values of the URLs to exclude from the scope of the scan.
+    --config=CONFIG
+        Type: str
+        Commas separated values of the scan configuration(s) names to apply.
     --app_user=APP_USER
         Type: str
         Application username for authenticated scans.

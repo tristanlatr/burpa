@@ -10,9 +10,9 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 export BURP_API_URL=localhost
 esc=$'\e'
-main_help=$(python3 -m burpa --help 2>&1 | sed "s/$esc\[[0-9;]*m//g" | grep -v "Loading .env file" | fold -s -w 120)
-main_burpa_help=$(python3 -m burpa - --help 2>&1 | sed "s/$esc\[[0-9;]*m//g" | grep -v "Loading .env file" | fold -s -w 120)
-scan_help=$(python3 -m burpa scan --help 2>&1 | sed "s/$esc\[[0-9;]*m//g" | grep -v "Loading .env file" | fold -s -w 120)
+main_help=$(burpa --help 2>&1 | sed "s/$esc\[[0-9;]*m//g" | grep -v "Loading .env file" | fold -s -w 120)
+main_burpa_help=$(burpa - --help 2>&1 | sed "s/$esc\[[0-9;]*m//g" | grep -v "Loading .env file" | fold -s -w 120)
+scan_help=$(burpa scan --help 2>&1 | sed "s/$esc\[[0-9;]*m//g" | grep -v "Loading .env file" | fold -s -w 120)
 
 mkdir -p $DIR/man/
 
@@ -31,4 +31,4 @@ echo "" >> $DIR/man/burpa.txt
 echo "$scan_help" >> $DIR/man/burpa.txt
 echo "" >> $DIR/man/burpa.txt
 
-echo "CLI docs generated in $DIR/man/burpa.txt"
+echo "Manpage generated in $DIR/man/burpa.txt"
