@@ -140,12 +140,18 @@ class Burpa:
             if config:
                 for row in csv.reader(io.StringIO(config)):
                     config_names.extend(row)
+
+            # Add targets to the project scope
+            # The targets are included in the BurpCommander.active_scan API call BUT 
+            # in orer to activate the project option "Drop all request outside of the scope", 
+            # we need to add them preventively to the project scope before launching the scan. 
+            for target_url in targets:
+                self._api.include(target_url)
             
             scanned_urls_map: Dict[str, Dict[str, Any]] = {}
             authenticated_scans = app_pass and app_user
 
             # Start the scans
-
             for target_url in targets:
                 
                 if target_url.upper() == "ALL":
@@ -167,7 +173,7 @@ class Burpa:
                                                 config_names=config_names)
                         
                     else:
-                        task_id= self._newapi.active_scan(target_url, 
+                        task_id = self._newapi.active_scan(target_url, 
                                                           excluded_urls=excluded_urls, 
                                                           config_names=config_names)
                     
@@ -177,12 +183,11 @@ class Burpa:
             
             print("[+] Scan started")
 
-            # Get the scan status and wait...
-            # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
-
             last_status_str = ""
             statuses: List[str] = []
-            
+
+            # Get the scan status and wait...
+            # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
             while not statuses or any(status not in ("paused", "succeeded", "failed") for status in statuses):
 
                 for url in scanned_urls_map:

@@ -187,7 +187,6 @@ class BurpRestApiClient(ApiBase):
         Add a target to the scope. 
         """
         # Update the scope (include/exclude)
-        print(f"[+] Updating the scope, including {targets}...")
         self._update_scope(
             action='include',
             scope=targets
@@ -198,7 +197,6 @@ class BurpRestApiClient(ApiBase):
         Remove a target from the scope.
         """
         # Update the scope (include/exclude)
-        print(f"[+] Updating the scope, excluding {targets}...")
         self._update_scope(
             action='exclude',
             scope=targets
