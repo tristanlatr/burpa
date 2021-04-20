@@ -57,31 +57,12 @@ ASCII = r"""            __
          burpa version %s 
 """%(__version__)
 
-TEMP_DIR = pathlib.Path("/tmp/").joinpath("burpa-temp")
+TEMP_DIR = pathlib.Path("/tmp/burpa-temp")
 
 JOIN_TOKEN = '_and_'
 
 BURPA_SCAN_SUFFIX = '.burpa_scan_lock'
 
-def get_temp_filelocks(tempdir: pathlib.Path) -> Iterable[Tuple[pathlib.Path, FileLock]]:
-    """
-    Get the running scans paths and filelocks. 
-    """
-    for item in os.scandir(tempdir):
-        if item.is_file():
-            yield (pathlib.Path(item), FileLock(str(item)))
-
-def get_running_scans(tempdir: pathlib.Path) -> Iterable[str]:
-    """
-    Construct a list of the running scans names from the filelock paths.
-    """
-    for path, filelock in get_temp_filelocks(tempdir):
-        try:
-            filelock.acquire(timeout=0.1)
-        except Timeout:
-            yield path.stem
-        else:
-            filelock.release()
 
 class Burpa:
     """
@@ -178,97 +159,99 @@ class Burpa:
                 config_names.extend(row)
 
         lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{JOIN_TOKEN.join(targets)}") + BURPA_SCAN_SUFFIX)
+        lock_file_path.touch()
         lock_file = FileLock(lock_file_path.as_posix())
         
-        with lock_file:
+        try:
+            with lock_file:
 
-            # Add targets to the project scope
-            # The targets are included in the BurpCommander.active_scan API call BUT 
-            # in orer to activate the project option "Drop all request outside of the scope", 
-            # we need to add them preventively to the project scope before launching the scan. 
-            for target_url in targets:
-                self._api.include(target_url)
-            
-            scanned_urls_map: Dict[str, Dict[str, Any]] = {}
-            authenticated_scans = app_pass and app_user
-
-            # Start the scans
-            for target_url in targets:
+                # Add targets to the project scope
+                # The targets are included in the BurpCommander.active_scan API call BUT 
+                # in orer to activate the project option "Drop all request outside of the scope", 
+                # we need to add them preventively to the project scope before launching the scan. 
+                for target_url in targets:
+                    self._api.include(target_url)
                 
-                if target_url.upper() == "ALL":
-                    history = self._api.proxy_history()
-                    if history:
-                        self.scan(*history, 
-                                report_type=report_type,
-                                report_output_dir=report_output_dir,
-                                app_user=app_user,
-                                app_pass=app_pass)
-                else:
+                scanned_urls_map: Dict[str, Dict[str, Any]] = {}
+                authenticated_scans = app_pass and app_user
+
+                # Start the scans
+                for target_url in targets:
                     
-                    if authenticated_scans:
-                        
-                        task_id = self._newapi.active_scan(target_url, 
-                                                username=app_user, 
-                                                password=app_pass,
-                                                excluded_urls=excluded_urls, 
-                                                config_names=config_names)
-                        
+                    if target_url.upper() == "ALL":
+                        history = self._api.proxy_history()
+                        if history:
+                            self.scan(*history, 
+                                    report_type=report_type,
+                                    report_output_dir=report_output_dir,
+                                    app_user=app_user,
+                                    app_pass=app_pass)
                     else:
-                        task_id = self._newapi.active_scan(target_url, 
-                                                        excluded_urls=excluded_urls, 
-                                                        config_names=config_names)
+                        
+                        if authenticated_scans:
+                            
+                            task_id = self._newapi.active_scan(target_url, 
+                                                    username=app_user, 
+                                                    password=app_pass,
+                                                    excluded_urls=excluded_urls, 
+                                                    config_names=config_names)
+                            
+                        else:
+                            task_id = self._newapi.active_scan(target_url, 
+                                                            excluded_urls=excluded_urls, 
+                                                            config_names=config_names)
+                        
+                        # Store scan infos
+                        scanned_urls_map[target_url] = {}
+                        scanned_urls_map[target_url]['task_id'] = task_id
+                
+                print("[+] Scan started")
+
+                last_status_str = ""
+                statuses: List[str] = []
+
+                # Get the scan status and wait...
+                # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
+                while not statuses or any(status not in ("paused", "succeeded", "failed") for status in statuses):
+
+                    for url in scanned_urls_map:
+                        scanned_urls_map[url]['status'] = self._newapi.scan_status(scanned_urls_map[url]['task_id'])
                     
-                    # Store scan infos
-                    scanned_urls_map[target_url] = {}
-                    scanned_urls_map[target_url]['task_id'] = task_id
-            
-            print("[+] Scan started")
+                    statuses = [scanned_urls_map[url]['status'] for url in scanned_urls_map]
 
-            last_status_str = ""
-            statuses: List[str] = []
+                    status_str = f"{', '.join(statuses)}"
+                    if status_str != last_status_str:
+                        print(f"[-] Scan status: {status_str}")
+                        last_status_str = status_str
 
-            # Get the scan status and wait...
-            # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
-            while not statuses or any(status not in ("paused", "succeeded", "failed") for status in statuses):
+                    time.sleep(2)
 
-                for url in scanned_urls_map:
-                    scanned_urls_map[url]['status'] = self._newapi.scan_status(scanned_urls_map[url]['task_id'])
+                print(f"[+] Scan completed")
+
+                for url  in scanned_urls_map:
+                    
+                    # Print metrics
+                    scanned_urls_map[url]['metrics'] = self._newapi.scan_metrics(scanned_urls_map[url]['task_id'])
+                    print (f'[+] Scan metrics for {url} :')
+                    print('\n'.join(f'  - {k.upper()} = {v}' for k,v in scanned_urls_map[url]['metrics'].items()))
                 
-                statuses = [scanned_urls_map[url]['status'] for url in scanned_urls_map]
+                if scanned_urls_map:
 
-                status_str = f"{', '.join(statuses)}"
-                if status_str != last_status_str:
-                    print(f"[-] Scan status: {status_str}")
-                    last_status_str = status_str
+                    # Print/download the scan issues/reports
+                    self.report(*list(scanned_urls_map), report_type=report_type,
+                            report_output_dir=report_output_dir)
 
-                time.sleep(2)
-
-            print(f"[+] Scan completed")
-
-            for url  in scanned_urls_map:
-                
-                # Print metrics
-                scanned_urls_map[url]['metrics'] = self._newapi.scan_metrics(scanned_urls_map[url]['task_id'])
-                print (f'[+] Scan metrics for {url} :')
-                print('\n'.join(f'  - {k.upper()} = {v}' for k,v in scanned_urls_map[url]['metrics'].items()))
-            
-            if scanned_urls_map:
-
-                # Print/download the scan issues/reports
-                self.report(*list(scanned_urls_map), report_type=report_type,
-                        report_output_dir=report_output_dir)
-
-            for url, scan  in scanned_urls_map.items():
-                
-                # Raise error if a scan failed
-                caption = scan['metrics']['crawl_and_audit_caption']
-                if scan['status'] == "paused":
-                    raise BurpaError(f"Scan aborted - {url} : {caption}")
-                elif scan['status'] == "failed":
-                    raise BurpaError(f"Scan failed - {url} : {caption}")
-        
-        # cleanup lockfile
-        os.remove(lock_file_path)
+                for url, scan  in scanned_urls_map.items():
+                    
+                    # Raise error if a scan failed
+                    caption = scan['metrics']['crawl_and_audit_caption']
+                    if scan['status'] == "paused":
+                        raise BurpaError(f"Scan aborted - {url} : {caption}")
+                    elif scan['status'] == "failed":
+                        raise BurpaError(f"Scan failed - {url} : {caption}")
+        finally:
+            # cleanup lockfile
+            os.remove(lock_file_path)
 
     def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,
                 slack_report: bool = False, slack_api_token: Optional[str] = None) -> bool:
@@ -337,6 +320,32 @@ class Burpa:
         if not self._api.check_proxy_listen_all_interfaces():
             self._api.enable_proxy_listen_all_interfaces(proxy_port=proxy_port)
 
+    def _get_temp_filelocks(self, tempdir: pathlib.Path = TEMP_DIR) -> List[Tuple[pathlib.Path, FileLock]]:
+        """
+        Get the running scans paths and filelocks. 
+        """
+        r: List[Tuple[pathlib.Path, FileLock]] = []
+        for item in os.scandir(tempdir):
+            if item.is_file():
+                path = pathlib.Path(item)
+                r.append((path, FileLock(path.as_posix())))
+        return r
+
+    def _get_running_scans(self, tempdir: pathlib.Path = TEMP_DIR) -> List[str]:
+        """
+        Construct a list of the running scans names from the filelock paths.
+        """
+        r: List[str] = []
+        for path, filelock in self._get_temp_filelocks(tempdir):
+            try:
+                filelock.acquire(timeout=0.1)
+            except Timeout:
+                r.append(path.stem)
+            else:
+                filelock.release()
+                os.remove(path)
+        return r
+                
     def _stop(self) -> None:
         print("[+] Shutting down Burp Suite ...")
 
@@ -371,7 +380,7 @@ class Burpa:
 
         while True:
 
-            running_scans = list(get_running_scans(TEMP_DIR))
+            running_scans = self._get_running_scans()
             
             if len(running_scans)==0:
                 self._stop()
