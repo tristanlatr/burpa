@@ -16,7 +16,8 @@ REQUIREMENTS = [
     'requests>=2.4.2',
     'attrs',
     'fire',
-    'python-dotenv'
+    'python-dotenv',
+    'filelock',
 ]
 
 setup(

@@ -9,6 +9,7 @@ from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
+from ._utils import get_valid_filename
 
 
 @attr.s(auto_attribs=True)
@@ -355,7 +356,4 @@ class BurpRestApiClient(ApiBase):
         else:
             return True
 
-def get_valid_filename(s: str) -> str:
-    '''Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think'''
-    s = str(s).strip().replace(' ', '_')
-    return re.sub(r'(?u)[^-\w.]', '', s)
+

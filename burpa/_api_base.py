@@ -21,6 +21,7 @@ class ApiBase:
                      http_method: str,
                      url: str,
                      data: Optional[Dict[str, Any]]=None,
+                     request_args:  Optional[Dict[str, Any]]=None,
                      ) -> requests.Response:
         r = None
         
@@ -28,9 +29,10 @@ class ApiBase:
             if os.getenv("BURPA_DEBUG"):
                 print(f"DEBUG - Requesting HTTP {http_method.upper()}: {url}, body={data}")
 
-            r = requests.request(
-                method=http_method, url=url, json=data,
-            )
+            _request_args = dict(method=http_method, url=url, json=data)
+            if request_args: _request_args.update(request_args)
+
+            r = requests.request(**_request_args)
             
             if os.getenv("BURPA_DEBUG"):
                 print(f"DEBUG - Got Response: {r.text}")
@@ -43,12 +45,14 @@ class ApiBase:
         else:
             return r
 
-    def request(self, request: str, **kwargs: str) -> requests.Response:
+    def request(self, request: str, timeout: float = 10,  **kwargs: str) -> requests.Response:
         """
         Arguments
         ---------
         request: 
             Name keyword corresponding to the request name in `PARAMS` mapping.
+        **kwargs:
+            Template substitutions. 
         """
 
         request_template = self.PARAMS[request]
@@ -80,6 +84,6 @@ class ApiBase:
         
         response = self._api_request(http_method=http_method, 
                                      url=f"{self.proxy_uri}{built_url_part}", 
-                                     data=built_data)
+                                     data=built_data, request_args=dict(timeout=timeout))
 
         return response

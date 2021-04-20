@@ -23,9 +23,13 @@ import traceback
 import tempfile
 import csv
 import io
+import pathlib
 from datetime import timedelta, datetime
-from typing import  Any, Dict, List, Optional
+from typing import  Any, Dict, Iterable, List, Optional, Tuple
 from urllib.parse import urlparse
+
+
+from filelock import FileLock, Timeout
 
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
@@ -33,6 +37,7 @@ from dotenv import load_dotenv, find_dotenv
 from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
+from ._utils import get_valid_filename
 from .__version__ import __version__, __author__
 
 
@@ -52,6 +57,32 @@ ASCII = r"""            __
          burpa version %s 
 """%(__version__)
 
+TEMP_DIR = pathlib.Path("/tmp/").joinpath("burpa-temp")
+
+JOIN_TOKEN = '_and_'
+
+def get_temp_filelocks(tempdir: pathlib.Path) -> Iterable[Tuple[pathlib.Path, FileLock]]:
+    """
+    Get the running scans paths and filelocks. 
+    """
+    for item in os.scandir(tempdir):
+        if item.is_file():
+            yield (pathlib.Path(item), FileLock(str(item)))
+
+def get_running_scans(tempdir: pathlib.Path) -> Iterable[str]:
+    """
+    Construct a list of the running scans names from the filelock paths.
+    """
+    for path, filelock in get_temp_filelocks(tempdir):
+        try:
+            filelock.acquire(timeout=0.1)
+        except Timeout:
+            for name in path.name.split(JOIN_TOKEN):
+                yield name
+        else:
+            # Clean the filelock
+            filelock.release()
+
 class Burpa:
     """
     High level interface for the Burp Suite Security Tool.
@@ -69,6 +100,7 @@ class Burpa:
     new_api_key
         Burp Suite Official REST API key. Environment variable: 'BURP_NEW_API_KEY'.
     """
+
     def __init__(self, api_url: str = "",
                 api_port: str = "8090",
                 new_api_url: str = "",
@@ -95,6 +127,9 @@ class Burpa:
             self._newapi = BurpCommander(proxy_url=api_url,
                             api_port=new_api_port,
                             api_key=new_api_key or None)
+        
+        # Temp directory in which burpa will store filelocks for each running scans
+        TEMP_DIR.mkdir(exist_ok=True)
 
     def scan(self, *targets: str, report_type: str = "HTML", 
              report_output_dir: str = "", excluded: str = "", config: str = "",
@@ -127,19 +162,25 @@ class Burpa:
 
         self._test()
         
-        if targets:
-            
-            # Parse excluded str
-            excluded_urls = []
-            if excluded:
-                for row in csv.reader(io.StringIO(excluded)):
-                    excluded_urls.extend(row)
+        if not targets:
+            raise BurpaError("Error: No target(s) specified. ")
+        
+        # Parse excluded str
+        excluded_urls = []
+        if excluded:
+            for row in csv.reader(io.StringIO(excluded)):
+                excluded_urls.extend(row)
 
-            # Parse config str
-            config_names = []
-            if config:
-                for row in csv.reader(io.StringIO(config)):
-                    config_names.extend(row)
+        # Parse config str
+        config_names = []
+        if config:
+            for row in csv.reader(io.StringIO(config)):
+                config_names.extend(row)
+
+        lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{JOIN_TOKEN.join(targets)}") + '.burpa_scan.lock')
+        lock_file = FileLock(lock_file_path.as_posix())
+        
+        with lock_file:
 
             # Add targets to the project scope
             # The targets are included in the BurpCommander.active_scan API call BUT 
@@ -174,8 +215,8 @@ class Burpa:
                         
                     else:
                         task_id = self._newapi.active_scan(target_url, 
-                                                          excluded_urls=excluded_urls, 
-                                                          config_names=config_names)
+                                                        excluded_urls=excluded_urls, 
+                                                        config_names=config_names)
                     
                     # Store scan infos
                     scanned_urls_map[target_url] = {}
@@ -222,12 +263,10 @@ class Burpa:
                 # Raise error if a scan failed
                 caption = scan['metrics']['crawl_and_audit_caption']
                 if scan['status'] == "paused":
-                    raise BurpaError(f"Scan aborted ({url}): {caption}")
+                    raise BurpaError(f"Scan aborted - {url} : {caption}")
                 elif scan['status'] == "failed":
-                    raise BurpaError(f"Scan failed ({url}): {caption}")
+                    raise BurpaError(f"Scan failed - {url} : {caption}")
         
-        else:
-            raise BurpaError("Error: No target(s) specified. ")
 
     def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,
                 slack_report: bool = False, slack_api_token: Optional[str] = None) -> bool:
@@ -270,6 +309,8 @@ class Burpa:
         """
         Generate the reports for the specified targets. 
         If targets is 'all', generate a report that contains all issues for all targets.  
+
+        This methos allow to upload the HTML report to the Slack API.
         """
         self._test()
         for target in targets:
@@ -287,22 +328,60 @@ class Burpa:
 
         Args
         ---
-        proxy_port
-            Burp Proxy Port
+        proxy_port:
+            Burp Proxy Port.
         """
         self._test()
         if not self._api.check_proxy_listen_all_interfaces():
             self._api.enable_proxy_listen_all_interfaces(proxy_port=proxy_port)
 
-    def stop(self) -> None:
+    def _stop(self) -> None:
+        print("[+] Shutting down Burp Suite ...")
+
+        self._api.burp_stop()
+        
+        while True:
+            try:
+                self._api.request("docs", timeout=0.1)
+            except BurpaError:
+                break
+            else:
+                time.sleep(0.01)
+
+    def stop(self, wait: str = '0', force: bool = False) -> None:
         """
         Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or 
         NSSM (Windows) to automatically restart the
         Burp Suite Service when it stopped running. 
+
+        Args
+        ----
+        wait:
+            If other burpa processes running, number of seconds to wait 
+            until all the running scans ends.
+        force:
+            Stop Burp even if scans are running. 
         """
         self._test()
-        print("[+] Shutting down Burp Suite ...")
-        self._api.burp_stop()
+
+        start = datetime.now()
+        wait_delta = timedelta(seconds=int(wait))
+
+        while True:
+
+            running_scans = get_running_scans(TEMP_DIR)
+            
+            if not running_scans:
+                self._stop()
+                break
+            elif datetime.now() - start < wait_delta:
+                time.sleep(2)
+            else:
+                if not force:
+                    raise BurpaError(f"Cannot stop Burp because this scans are still running: {', '.join(running_scans)}. Use --force to stop anyway.")
+
+                self._stop()
+                break
 
     def _test(self) -> None:
         self._api.verify_uri()
@@ -311,6 +390,11 @@ class Burpa:
     def test(self, wait: str = '0') -> None:
         """
         Test if burpa can connect to Burp Suite REST APIs.
+        
+        Args
+        ----
+        wait:
+            Number of seconds to wait until the Burp REST APIs are accessible.
         """
         start = datetime.now()
         wait_delta = timedelta(seconds=int(wait))
@@ -325,7 +409,7 @@ class Burpa:
                     raise
             else:
                 print(f"[+] Successfuly connected to Burp REST APIs")
-                return
+                break
 
 
 def upload_slack_report(api_token: str, fname: str) -> None:
