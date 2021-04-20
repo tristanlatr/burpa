@@ -28,7 +28,7 @@
       
       <div class="navlinks">
           <span class="navbar-brand">
-            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.2.2</a> <a href="index.html"> API Documentation </a>
+            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.2.3</a> <a href="index.html"> API Documentation </a>
           </span>
 
           <a href="moduleIndex.html">
@@ -64,7 +64,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L55" class="sourceLink">(source)</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L86" class="sourceLink">(source)</a></code></p>
         <p><a href="classIndex.html#burpa.Burpa">View In Hierarchy</a></p>
       </div>
 
@@ -124,6 +124,11 @@
   </tr><tr class="method private">
     
     <td>Method</td>
+    <td><code><a href="#_stop">_stop</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
     <td><code><a href="#_test">_test</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
@@ -147,7 +152,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, api_url='', api_port='8090', new_api_url='', new_api_port='1337', new_api_key=''):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L72">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L104">
       
       (source)
     </a>
@@ -169,7 +174,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">_api</span>: <code><a href="burpa.BurpRestApiClient.html">BurpRestApiClient</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L87">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L119">
       
       (source)
     </a>
@@ -191,7 +196,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">_newapi</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L89">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L121">
       
       (source)
     </a>
@@ -213,7 +218,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan</span>(self, *targets, report_type='HTML', report_output_dir='', excluded='', config='', app_user='', app_pass=''):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L99">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L134">
       
       (source)
     </a>
@@ -239,7 +244,7 @@ load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span cl
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_report</span>(self, target, report_type, report_output_dir=None, slack_report=False, slack_api_token=None):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L232">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L271">
       
       (source)
     </a>
@@ -261,7 +266,7 @@ load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span cl
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">report</span>(self, *targets, report_type='HTML', report_output_dir='', slack_report=False, slack_api_token=''):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L267">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L306">
       
       (source)
     </a>
@@ -269,8 +274,10 @@ load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span cl
   <div class="docstring functionBody">
     
     
-    <div>Generate the reports for the specified targets.
-If targets is 'all', generate a report that contains all issues for all targets.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">slack_report:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">slack_api_token:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p>Generate the reports for the specified targets.
+If targets is 'all', generate a report that contains all issues for all targets.</p>
+<p>This methos allow to upload the HTML report to the Slack API.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">slack_report:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">slack_api_token:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -284,7 +291,7 @@ If targets is 'all', generate a report that contains all issues for all targets.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">proxy_listen_all_interfaces</span>(self, proxy_port):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L280">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L321">
       
       (source)
     </a>
@@ -296,7 +303,29 @@ If targets is 'all', generate a report that contains all issues for all targets.
 and listening on all interfaces and update the Burp proxy configuration
 if necessary.</p>
 <p>You might need this if you want to send traffic to the Burp proxy.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy_port:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Burp Proxy Port</td></tr></table></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy_port:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Burp Proxy Port.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._stop">
+    
+  </a>
+  <a name="_stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_stop</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L338">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -309,8 +338,8 @@ if necessary.</p>
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L297">
+    <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self, wait='0', force=False):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L351">
       
       (source)
     </a>
@@ -320,7 +349,8 @@ if necessary.</p>
     
     <div>Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or
 NSSM (Windows) to automatically restart the
-Burp Suite Service when it stopped running.</div>
+Burp Suite Service when it stopped running.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">If other burpa processes running, number of seconds to wait
+until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">force:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc">Stop Burp even if scans are running.</td></tr></table></div>
   </div>
 </div><div class="basemethod private">
   
@@ -334,7 +364,7 @@ Burp Suite Service when it stopped running.</div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_test</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L307">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L386">
       
       (source)
     </a>
@@ -356,7 +386,7 @@ Burp Suite Service when it stopped running.</div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">test</span>(self, wait='0'):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/df7002be697e070bd067899b9bfe092a339b386a/burpa/_burpa.py#L311">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/da375bd5b4015264163baae3a29b0e318d4bf77a/burpa/_burpa.py#L390">
       
       (source)
     </a>
@@ -364,13 +394,13 @@ Burp Suite Service when it stopped running.</div>
   <div class="docstring functionBody">
     
     
-    <div>Test if burpa can connect to Burp Suite REST APIs.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Test if burpa can connect to Burp Suite REST APIs.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Number of seconds to wait until the Burp REST APIs are accessible.</td></tr></table></div>
   </div>
 </div>
 
       </div>
       <address>
-        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.2.2, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-04-13 16:05:16.
+        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.2.3, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-04-20 15:28:19.
       </address>
 
     </div>
