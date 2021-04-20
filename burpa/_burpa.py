@@ -81,7 +81,6 @@ def get_running_scans(tempdir: pathlib.Path) -> Iterable[str]:
         except Timeout:
             yield path.stem
         else:
-            # Clean the filelock
             filelock.release()
 
 class Burpa:
@@ -268,6 +267,8 @@ class Burpa:
                 elif scan['status'] == "failed":
                     raise BurpaError(f"Scan failed - {url} : {caption}")
         
+        # cleanup lockfile
+        os.remove(lock_file_path)
 
     def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,
                 slack_report: bool = False, slack_api_token: Optional[str] = None) -> bool:
@@ -370,9 +371,9 @@ class Burpa:
 
         while True:
 
-            running_scans = get_running_scans(TEMP_DIR)
+            running_scans = list(get_running_scans(TEMP_DIR))
             
-            if not running_scans:
+            if len(running_scans)==0:
                 self._stop()
                 break
             elif datetime.now() - start < wait_delta:
