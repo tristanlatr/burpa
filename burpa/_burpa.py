@@ -61,6 +61,8 @@ TEMP_DIR = pathlib.Path("/tmp/").joinpath("burpa-temp")
 
 JOIN_TOKEN = '_and_'
 
+BURPA_SCAN_SUFFIX = '.burpa_scan_lock'
+
 def get_temp_filelocks(tempdir: pathlib.Path) -> Iterable[Tuple[pathlib.Path, FileLock]]:
     """
     Get the running scans paths and filelocks. 
@@ -77,8 +79,7 @@ def get_running_scans(tempdir: pathlib.Path) -> Iterable[str]:
         try:
             filelock.acquire(timeout=0.1)
         except Timeout:
-            for name in path.name.split(JOIN_TOKEN):
-                yield name
+            yield path.stem
         else:
             # Clean the filelock
             filelock.release()
@@ -177,7 +178,7 @@ class Burpa:
             for row in csv.reader(io.StringIO(config)):
                 config_names.extend(row)
 
-        lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{JOIN_TOKEN.join(targets)}") + '.burpa_scan.lock')
+        lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{JOIN_TOKEN.join(targets)}") + BURPA_SCAN_SUFFIX)
         lock_file = FileLock(lock_file_path.as_posix())
         
         with lock_file:
