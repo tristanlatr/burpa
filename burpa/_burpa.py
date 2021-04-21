@@ -61,8 +61,6 @@ TEMP_DIR = pathlib.Path("/tmp/burpa-temp")
 
 JOIN_TOKEN = '_and_'
 
-BURPA_SCAN_SUFFIX = '.burpa_scan_lock'
-
 
 class Burpa:
     """
@@ -158,7 +156,8 @@ class Burpa:
             for row in csv.reader(io.StringIO(config)):
                 config_names.extend(row)
 
-        lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{JOIN_TOKEN.join(targets)}") + BURPA_SCAN_SUFFIX)
+        # Craft a unique lock filename
+        lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{datetime.now().isoformat(timespec='seconds')}_{JOIN_TOKEN.join(targets)}"))
         lock_file_path.touch()
         lock_file = FileLock(lock_file_path.as_posix())
         
