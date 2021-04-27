@@ -123,6 +123,7 @@ class BurpCommander(ApiBase):
             
             if username and password:
                 #craft authenticated response
+                print(f"[+] Initiating authenticated scan with user '{username}'...")
                 r = self.request('active_scan_with_auth', base_url=base_url, 
                             username=username, password=password, 
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)
