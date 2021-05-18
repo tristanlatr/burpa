@@ -122,7 +122,7 @@ class Burpa:
         Args
         ----
         targets: 
-            Define spcefic target URL(s) for the scan.
+            Target URL(s) or filename to load target URL(s) from.
             Use 'all' keyword to search in the proxy history and 
             load target URLs from there. 
         report_type:
@@ -162,47 +162,64 @@ class Burpa:
         lock_file = FileLock(lock_file_path.as_posix())
         
         try:
-            with lock_file:
-
-                # Add targets to the project scope
-                # The targets are included in the BurpCommander.active_scan API call BUT 
-                # in orer to activate the project option "Drop all request outside of the scope", 
-                # we need to add them preventively to the project scope before launching the scan. 
-                for target_url in targets:
-                    self._api.include(target_url)
+            with lock_file:                    
                 
                 scanned_urls_map: Dict[str, Dict[str, Any]] = {}
                 authenticated_scans = app_pass and app_user
 
                 # Start the scans
-                for target_url in targets:
+                for target in targets:
+
+                    target_urls = []
                     
-                    if target_url.upper() == "ALL":
-                        history = self._api.proxy_history()
-                        if history:
-                            self.scan(*history, 
-                                    report_type=report_type,
-                                    report_output_dir=report_output_dir,
-                                    app_user=app_user,
-                                    app_pass=app_pass)
+                    # Check if arg is obviously a URL
+                    if target.startswith('http'):
+                        target_urls = [target]
                     else:
-                        
-                        if authenticated_scans:
-                            
-                            task_id = self._newapi.active_scan(target_url, 
-                                                    username=app_user, 
-                                                    password=app_pass,
-                                                    excluded_urls=excluded_urls, 
-                                                    config_names=config_names)
-                            
+                        path = pathlib.Path(target)
+                        # Try to load the URL from the file contents
+                        if path.is_file():
+                            for line in path.read_text().splitlines():
+                                line = line.strip()
+                                # Ignore lines with comments
+                                if line and not line.startswith(('#', ';')):
+                                    target_urls += line
                         else:
-                            task_id = self._newapi.active_scan(target_url, 
-                                                            excluded_urls=excluded_urls, 
-                                                            config_names=config_names)
+                            target_urls = [target]
+                    
+                    for target_url in target_urls:
+                        # Add targets to the project scope
+                        # The targets are included in the BurpCommander.active_scan API call BUT 
+                        # in orer to activate the project option "Drop all request outside of the scope", 
+                        # we need to add them preventively to the project scope before launching the scan. 
+                        self._api.include(target_url)
                         
-                        # Store scan infos
-                        scanned_urls_map[target_url] = {}
-                        scanned_urls_map[target_url]['task_id'] = task_id
+                        if target_url.upper() == "ALL":
+                            history = self._api.proxy_history()
+                            if history:
+                                self.scan(*history, 
+                                        report_type=report_type,
+                                        report_output_dir=report_output_dir,
+                                        app_user=app_user,
+                                        app_pass=app_pass)
+                        else:
+                            
+                            if authenticated_scans:
+                                
+                                task_id = self._newapi.active_scan(target_url, 
+                                                        username=app_user, 
+                                                        password=app_pass,
+                                                        excluded_urls=excluded_urls, 
+                                                        config_names=config_names)
+                                
+                            else:
+                                task_id = self._newapi.active_scan(target_url, 
+                                                                excluded_urls=excluded_urls, 
+                                                                config_names=config_names)
+                            
+                            # Store scan infos
+                            scanned_urls_map[target_url] = {}
+                            scanned_urls_map[target_url]['task_id'] = task_id
                 
                 print("[+] Scan started")
 
