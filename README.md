@@ -65,18 +65,23 @@ export BURP_NEW_API_KEY=""
 
 - Scan two URLs
   ```
-  $ burpa --api_url=localhost scan http://mysite.com http://mysite2.com --report-output-dir ./burp-reports/
+  $ burpa scan http://mysite.com http://mysite2.com --report-output-dir ./burp-reports/
+  ```
+
+- Scan URLs from a list
+  ```
+  $ burpa scan ./mysites.txt --report-output-dir ./burp-reports/
   ```
 
 - Scan with username/password authentication
   ```
-  $ burpa --api-url=localhost --new-api-url=localhost --new-api-key=xxx scan http://mysite.com --report-output-dir ./burp-reports/ --app-user=user --app-pass=p@assw0rd
+  $ burpa scan http://mysite.com --report-output-dir ./burp-reports/ --app-user=user --app-pass=p@assw0rd
   ```
 
 - Shutdown the Burp Suite and wait 60 seconds for the service to restart. 
   ```
   $ burpa stop
-  $ burpa test --wait 60
+  $ burpa test --wait 120
   ```
 
   You can use `systemctl` or `supervisord` (Linux) or NSSM (Windows) to automatically restart the `burp-rest-api` when it stopped running. 

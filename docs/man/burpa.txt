@@ -95,8 +95,8 @@ DESCRIPTION
 POSITIONAL ARGUMENTS
     TARGETS
         Type: str
-        Define spcefic target URL(s) for the scan. Use 'all' keyword to search in the proxy history and load target 
-URLs from there.
+        Target URL(s) or filename to load target URL(s) from. Use 'all' keyword to search in the proxy history and load 
+target URLs from there.
 
 FLAGS
     --report_type=REPORT_TYPE
