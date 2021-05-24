@@ -32,5 +32,4 @@ setup(
     version=ABOUT['__version__'],
     python_requires='>=3.6',
     install_requires=REQUIREMENTS,
-    extra_requires={'slack': ['slackclient'],},
 )

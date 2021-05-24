@@ -26,7 +26,7 @@ It will use the official REST API to launch the scan, and the `burp-rest-api` to
 ## What changed
 
 - `burpa` is now an actual package that can be installed with `pip install .`.
-- `slackclient` is now an extra dependency that can be installed with `pip install '.[slack]'`.
+- Slack support has been removed.
 - Bring back the help texts.
 - `burpa` is now callable with `python3 -m burpa`.
 - Add static type checking.
