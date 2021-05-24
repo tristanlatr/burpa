@@ -239,7 +239,8 @@ class Burpa:
         for record in records:
             record.metrics = self._newapi.scan_metrics(record.task_id)
             self._logger.info (f"Scan metrics for {record.target_url} :")
-            self._logger.info('\n'.join(f'  - {k.upper()} = {v}' for k,v in record.metrics.items()))
+            for k,v in record.metrics.items():
+                self._logger.info(f'{k.upper()} = {v}')
 
     def scan(self, *targets: str, report_type: str = "HTML", 
              report_output_dir: str = "", excluded: str = "", config: str = "",
@@ -315,7 +316,7 @@ class Burpa:
                 for issue in issues
             }
             for issue in uniques_issues:
-                self._logger.info(f"  - {issue}")
+                self._logger.info(f"{issue}")
             
             if report_output_dir:
                 os.makedirs(report_output_dir, exist_ok=True)
