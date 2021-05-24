@@ -15,29 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import time
 import os
 import sys
 import traceback
 import tempfile
-import csv
-import io
 import pathlib
 from datetime import timedelta, datetime
-from typing import  Any, Dict, Iterable, List, Optional, Tuple
-from urllib.parse import urlparse
-
+from typing import  Any, Dict, Iterator, List, Optional, Sequence, Tuple
 
 from filelock import FileLock, Timeout
-
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
+import attr
 
 from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
-from ._utils import get_valid_filename
+from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, get_logger
 from .__version__ import __version__, __author__
 
 
@@ -57,10 +52,28 @@ ASCII = r"""            __
          burpa version %s 
 """%(__version__)
 
+# TODO: make it compatible with Windows
 TEMP_DIR = pathlib.Path("/tmp/burpa-temp")
 
-JOIN_TOKEN = '_and_'
+@attr.s(auto_attribs=True)
+class ScanRecord:
+    """
+    Temporary record represents a running scan.
+    """
+    task_id: str 
+    target_url: str 
+    date_time: str 
+    status: Optional[str] = None
+    metrics: Dict[str, Any] = attr.ib(factory=dict)
 
+    @property
+    def name(self) -> str:
+        """
+        This name is used as the filename for the file lock.
+        """
+        return get_valid_filename(f'{self.date_time}.{self.target_url}.{self.task_id}')
+
+SCAN_STATUS_FINISHED = ("paused", "succeeded", "failed")
 
 class Burpa:
     """
@@ -84,7 +97,20 @@ class Burpa:
                 api_port: str = "8090",
                 new_api_url: str = "",
                 new_api_port: str = "1337",
-                new_api_key: str = ""):
+                new_api_key: str = "",
+                verbose: bool = False,
+                quiet: bool = False):
+        
+        self._logger = get_logger('Burpa', verbose=verbose, quiet=quiet)
+
+        if not quiet:
+            print(ASCII)
+        
+        file = find_dotenv()
+
+        if file:
+            self._logger.info(f"[+] Loading .env file {file}")
+            load_dotenv(file)
 
         api_url = ensure_scheme(os.getenv('BURP_API_URL') or api_url)
         api_port = os.getenv('BURP_API_PORT') or api_port
@@ -93,22 +119,127 @@ class Burpa:
         new_api_key = os.getenv('BURP_NEW_API_KEY') or new_api_key
 
         if not api_url:
-            raise BurpaError("Error: At least --api_url or 'BURP_API_URL' environment variable must be configured. ")
+            raise BurpaError("Error: You must configure api_url or 'BURP_API_URL' environment variable. ")
 
-        self._api: BurpRestApiClient = BurpRestApiClient(proxy_url=api_url, api_port=api_port)
+        self._api: BurpRestApiClient = BurpRestApiClient(proxy_url=api_url, api_port=api_port, 
+                                        logger=get_logger('BurpRestApiClient', verbose=verbose, quiet=quiet))
         if new_api_url:
             self._newapi = BurpCommander(proxy_url=new_api_url,
                                   api_port=new_api_port,
-                                  api_key=new_api_key or None)
+                                  api_key=new_api_key or None,
+                                    logger=get_logger('BurpCommander', verbose=verbose, quiet=quiet))
             
         else:
-            # Create the BurpCommander with the same URL as BurpRestApiClient...
+            # Create the BurpCommander with the same URL as BurpRestApiClient.
             self._newapi = BurpCommander(proxy_url=api_url,
                             api_port=new_api_port,
-                            api_key=new_api_key or None)
+                            api_key=new_api_key or None,
+                            logger=get_logger('BurpCommander', verbose=verbose, quiet=quiet))
         
         # Temp directory in which burpa will store filelocks for each running scans
         TEMP_DIR.mkdir(exist_ok=True)
+
+    def _start_scan(self, *targets: str, excluded: str = "", config: str = "", 
+            app_user: str = "", app_pass: str = "",) -> List[ScanRecord]:
+        """
+        Start a Burp Suite active scan.
+        """
+        self._test()
+
+        if not targets:
+            raise BurpaError("Error: No target(s) specified. ")
+
+        # Parse targets
+        parsed_targets = parse_targets(targets)
+
+        # Parse excluded str
+        excluded_urls = parse_commas_separated_str(excluded)
+
+        # Parse config str
+        config_names = parse_commas_separated_str(config)
+
+        scan_records = []
+
+        authenticated_scans = app_pass and app_user
+
+        for target_url in parsed_targets:
+            
+            if target_url.upper() == "ALL":
+                history = self._api.proxy_history()
+                if history:
+                    scan_records.extend(self._start_scan(*history, 
+                            app_user=app_user,
+                            app_pass=app_pass))
+
+            else:
+                # Add targets to the project scope
+                # The targets are included in the BurpCommander.active_scan API call BUT 
+                # in orer to activate the project option "Drop all request outside of the scope", 
+                # we need to add them preventively to the project scope before launching the scan. 
+                self._api.include(target_url)
+
+                if authenticated_scans:
+                
+                    task_id = self._newapi.active_scan(target_url, 
+                                                    username=app_user, password=app_pass,
+                                                    excluded_urls=excluded_urls, 
+                                                    config_names=config_names)
+                    
+                else:
+                    task_id = self._newapi.active_scan(target_url, 
+                                                    excluded_urls=excluded_urls,
+                                                    config_names=config_names)
+                
+                # create scan record
+                record = ScanRecord(task_id=task_id, 
+                            target_url=target_url, 
+                            date_time=datetime.now().isoformat(timespec='seconds'))
+
+                # store scan record
+                scan_records.append(record)
+                
+        self._logger.info("[+] Scan started")
+
+        return scan_records
+
+    def _wait_scan(self, *records: ScanRecord) -> None:
+        """
+        Wait until the end of the scan(s) and set the ScanRecord.status attribute.
+        """
+
+        self._test()
+
+        last_status_str = ""
+        status_map = {}
+        statuses: Sequence[str] = []
+
+        # Get the scan status and wait...
+        # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
+        while not statuses or any(status not in SCAN_STATUS_FINISHED for status in statuses):
+
+            for record in records:
+                record.status = self._newapi.scan_status(record.task_id)
+                status_map[record.task_id] = record.status
+            
+            statuses = list(status_map.values())
+
+            status_str = f"{', '.join(statuses)}"
+            if status_str != last_status_str:
+                self._logger.info(f"[-] Scan status: {status_str}")
+                last_status_str = status_str
+
+            time.sleep(2)
+
+        self._logger.info(f"[+] Scan completed")
+
+    def _scan_metrics(self, *records: ScanRecord) -> None:
+        """
+        Print metrics and set the ScanRecord.metrics attribute.
+        """
+        for record in records:
+            record.metrics = self._newapi.scan_metrics(record.task_id)
+            self._logger.info (f"[+] Scan metrics for {record.target_url} :")
+            self._logger.info('\n'.join(f'  - {k.upper()} = {v}' for k,v in record.metrics.items()))
 
     def scan(self, *targets: str, report_type: str = "HTML", 
              report_output_dir: str = "", excluded: str = "", config: str = "",
@@ -126,9 +257,11 @@ class Burpa:
             Use 'all' keyword to search in the proxy history and 
             load target URLs from there. 
         report_type:
-            Burp scan report type (default: HTML)
+            Burp scan report type (default: HTML). 
+            Use 'none' to skip reporting.
         report_output_dir:
-            Directory to store the reports.
+            Directory to store the reports. 
+            Store report in temp directory if empty.
         excluded:
             Commas separated values of the URLs to exclude from the scope of the scan.
         config:
@@ -143,180 +276,68 @@ class Burpa:
         
         if not targets:
             raise BurpaError("Error: No target(s) specified. ")
+
+        records = self._start_scan(*targets, excluded=excluded, config=config, 
+                        app_user=app_user, app_pass=app_pass)
         
-        # Parse excluded str
-        excluded_urls = []
-        if excluded:
-            for row in csv.reader(io.StringIO(excluded)):
-                excluded_urls.extend(row)
-
-        # Parse config str
-        config_names = []
-        if config:
-            for row in csv.reader(io.StringIO(config)):
-                config_names.extend(row)
-
-        # Craft a unique lock filename
-        lock_file_path = TEMP_DIR.joinpath(get_valid_filename(f"{datetime.now().isoformat(timespec='seconds')}_{JOIN_TOKEN.join(targets)}"))
+        # Craft a unique lock filename, use the name of the first scan of the list
+        lock_file_path = TEMP_DIR.joinpath(records[0].name)
         lock_file_path.touch()
-        lock_file = FileLock(lock_file_path.as_posix())
         
-        try:
-            with lock_file:                    
-                
-                scanned_urls_map: Dict[str, Dict[str, Any]] = {}
-                authenticated_scans = app_pass and app_user
+        with FileLock(str(lock_file_path)):
+        
+            self._wait_scan(*records)
 
-                # Start the scans
-                for target in targets:
+            self._scan_metrics(*records)
 
-                    target_urls = []
-                    
-                    # Check if arg is obviously a URL
-                    if target.startswith('http'):
-                        target_urls = [target]
-                    else:
-                        path = pathlib.Path(target)
-                        # Try to load the URL from the file contents
-                        if path.is_file():
-                            for line in path.read_text().splitlines():
-                                line = line.strip()
-                                # Ignore lines with comments
-                                if line and not line.startswith(('#', ';')):
-                                    target_urls += line
-                        else:
-                            target_urls = [target]
-                    
-                    for target_url in target_urls:
-                        # Add targets to the project scope
-                        # The targets are included in the BurpCommander.active_scan API call BUT 
-                        # in orer to activate the project option "Drop all request outside of the scope", 
-                        # we need to add them preventively to the project scope before launching the scan. 
-                        self._api.include(target_url)
-                        
-                        if target_url.upper() == "ALL":
-                            history = self._api.proxy_history()
-                            if history:
-                                self.scan(*history, 
-                                        report_type=report_type,
-                                        report_output_dir=report_output_dir,
-                                        app_user=app_user,
-                                        app_pass=app_pass)
-                        else:
-                            
-                            if authenticated_scans:
-                                
-                                task_id = self._newapi.active_scan(target_url, 
-                                                        username=app_user, 
-                                                        password=app_pass,
-                                                        excluded_urls=excluded_urls, 
-                                                        config_names=config_names)
-                                
-                            else:
-                                task_id = self._newapi.active_scan(target_url, 
-                                                                excluded_urls=excluded_urls, 
-                                                                config_names=config_names)
-                            
-                            # Store scan infos
-                            scanned_urls_map[target_url] = {}
-                            scanned_urls_map[target_url]['task_id'] = task_id
-                
-                print("[+] Scan started")
+            # Download the scan issues/reports
+            if report_type.lower() != 'none':
+                self.report(*(r.target_url for r in records), report_type=report_type,
+                        report_output_dir=report_output_dir)
 
-                last_status_str = ""
-                statuses: List[str] = []
+        for record in records:
+            
+            # Raise error if a scan failed
+            caption = record.metrics['crawl_and_audit_caption']
+            if record.status == "paused":
+                raise BurpaError(f"Scan aborted - {record.target_url} : {caption}")
+            elif record.status == "failed":
+                raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
-                # Get the scan status and wait...
-                # An active scan is considered finished when: it's "paused" or "succeeded" or "failed"
-                while not statuses or any(status not in ("paused", "succeeded", "failed") for status in statuses):
-
-                    for url in scanned_urls_map:
-                        scanned_urls_map[url]['status'] = self._newapi.scan_status(scanned_urls_map[url]['task_id'])
-                    
-                    statuses = [scanned_urls_map[url]['status'] for url in scanned_urls_map]
-
-                    status_str = f"{', '.join(statuses)}"
-                    if status_str != last_status_str:
-                        print(f"[-] Scan status: {status_str}")
-                        last_status_str = status_str
-
-                    time.sleep(2)
-
-                print(f"[+] Scan completed")
-
-                for url  in scanned_urls_map:
-                    
-                    # Print metrics
-                    scanned_urls_map[url]['metrics'] = self._newapi.scan_metrics(scanned_urls_map[url]['task_id'])
-                    print (f'[+] Scan metrics for {url} :')
-                    print('\n'.join(f'  - {k.upper()} = {v}' for k,v in scanned_urls_map[url]['metrics'].items()))
-                
-                if scanned_urls_map:
-
-                    # Print/download the scan issues/reports
-                    self.report(*list(scanned_urls_map), report_type=report_type,
-                            report_output_dir=report_output_dir)
-
-                for url, scan  in scanned_urls_map.items():
-                    
-                    # Raise error if a scan failed
-                    caption = scan['metrics']['crawl_and_audit_caption']
-                    if scan['status'] == "paused":
-                        raise BurpaError(f"Scan aborted - {url} : {caption}")
-                    elif scan['status'] == "failed":
-                        raise BurpaError(f"Scan failed - {url} : {caption}")
-        finally:
-            # cleanup lockfile
-            os.remove(lock_file_path)
-
-    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,
-                slack_report: bool = False, slack_api_token: Optional[str] = None) -> bool:
+    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,) -> None:
         
         issues = self._api.scan_issues(target)
         if issues:
 
-            print(f"[+] Scan issues for {target} :")
+            self._logger.info(f"[+] Scan issues for {target} :")
             uniques_issues = {
                 "Issue: {issueName}, Severity: {severity}".format(**issue)
                 for issue in issues
             }
             for issue in uniques_issues:
-                print(f"  - {issue}")
+                self._logger.info(f"  - {issue}")
             
             if report_output_dir:
                 os.makedirs(report_output_dir, exist_ok=True)
             
-            rfile = self._api.scan_report(
+            self._api.scan_report(
                 report_type=report_type,
                 url_prefix=target,
                 report_output_dir=report_output_dir
             )
-            
-            if slack_report:
-                if not slack_api_token:
-                    raise BurpaError("Error: '--slack_api_token' must be provided to send reports to Slack.")
-                upload_slack_report(api_token=slack_api_token,
-                                fname=rfile)
-            
-            return True
         
         else:
-            print(f"[+] No issue could be found for the target {target}")
-            return False
+            self._logger.info(f"[+] No issue could be found for the target {target}")
     
     def report(self, *targets: str, report_type: str = "HTML", 
-               report_output_dir: str = "", slack_report: bool = False, 
-               slack_api_token: str = "") -> None:
+               report_output_dir: str = "") -> None:
         """
-        Generate the reports for the specified targets. 
+        Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
-
-        This methos allow to upload the HTML report to the Slack API.
         """
         self._test()
         for target in targets:
-            self._report(target, report_type, report_output_dir, 
-                         slack_report, slack_api_token)
+            self._report(target, report_type, report_output_dir)
 
     
     def proxy_listen_all_interfaces(self, proxy_port: str) -> None:
@@ -336,16 +357,14 @@ class Burpa:
         if not self._api.check_proxy_listen_all_interfaces():
             self._api.enable_proxy_listen_all_interfaces(proxy_port=proxy_port)
 
-    def _get_temp_filelocks(self, tempdir: pathlib.Path = TEMP_DIR) -> List[Tuple[pathlib.Path, FileLock]]:
+    def _get_temp_filelocks(self, tempdir: pathlib.Path = TEMP_DIR) -> Iterator[Tuple[pathlib.Path, FileLock]]:
         """
         Get the running scans paths and filelocks. 
         """
-        r: List[Tuple[pathlib.Path, FileLock]] = []
         for item in os.scandir(tempdir):
             if item.is_file():
                 path = pathlib.Path(item)
-                r.append((path, FileLock(path.as_posix())))
-        return r
+                yield ( path, FileLock(str(path)) )
 
     def _get_running_scans(self, tempdir: pathlib.Path = TEMP_DIR) -> List[str]:
         """
@@ -354,7 +373,7 @@ class Burpa:
         r: List[str] = []
         for path, filelock in self._get_temp_filelocks(tempdir):
             try:
-                filelock.acquire(timeout=0.1)
+                filelock.acquire(timeout=0.01)
             except Timeout:
                 r.append(path.stem)
             else:
@@ -363,7 +382,7 @@ class Burpa:
         return r
                 
     def _stop(self) -> None:
-        print("[+] Shutting down Burp Suite ...")
+        self._logger.info("[+] Shutting down Burp Suite ...")
 
         self._api.burp_stop()
         
@@ -405,7 +424,8 @@ class Burpa:
                 time.sleep(2)
             else:
                 if not force:
-                    raise BurpaError(f"Cannot stop Burp because this scans are still running: {', '.join(running_scans)}. Use --force to stop anyway.")
+                    raise BurpaError(f"Cannot stop Burp because {'these scans are' if len(running_scans)>1 else 'this scan is'} "
+                        f"still running: {', '.join(running_scans)}. Use --force to stop anyway.")
 
                 self._stop()
                 break
@@ -435,65 +455,27 @@ class Burpa:
                 else:
                     raise
             else:
-                print(f"[+] Successfuly connected to Burp REST APIs")
+                self._logger.info(f"[+] Successfuly connected to Burp REST APIs")
                 break
 
 
-def upload_slack_report(api_token: str, fname: str) -> None:
-    from slackclient import SlackClient #type: ignore[import]
-    file = os.path.join(tempfile.gettempdir(), fname)
-    sc = SlackClient(api_token)
-    response = sc.api_call(
-        'files.upload',
-        channels=SLACK_CHANNEL,
-        filename=fname,
-        file=open(file, 'rb'),
-        title="Burp Scan Report"
-    )
-    if response['ok']:
-        print("[+] Burp scan report uploaded to Slack")
-    else:
-        print(f"[-] Error sending Slack report: {response['error']}")
-
-
-def ensure_scheme(url: str) -> str:
-
-    if url:
-        # Strip URL string
-        url = url.strip()
-        # Format URL with scheme indication
-        p_url = list(urlparse(url))
-        if p_url[0] == "":
-            url = f"http://{url}"
-    return url
-
 def main() -> None:
-    print(ASCII)
 
     # Make Python Fire not use a pager when it prints a help text
-    # 
     fire.core.Display = lambda lines, out: print(*lines, file=out)
-
-    file = find_dotenv()
-
-    if file:
-        print(f"[+] Loading .env file {file}")
-        load_dotenv(file)
     
     try:
         fire.Fire(Burpa, name='burpa')
     
     except BurpaError as e:
 
+        logger = get_logger('Burpa CLI')
+
         if os.getenv("BURPA_DEBUG"):
-            traceback.print_exc()
+            logger.error(traceback.format_exc())
 
-        print()
-        print('--------------- ERROR ---------------')
-        print()
+        logger.error(e)
 
-        print(e)
-        print()
         sys.exit(1)
 
 if __name__ == '__main__':

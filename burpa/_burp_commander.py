@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Dict, Iterable, Optional
 import attr
 import json
@@ -5,6 +6,7 @@ from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
+from ._utils import get_logger
 
 # Ressource: https://laconicwolf.com/2018/08/27/exploring-the-burp-suite-api/
 
@@ -24,6 +26,7 @@ class BurpCommander(ApiBase):
     proxy_url: str
     api_port: str = "1337"
     api_key: Optional[str] = None
+    _logger: Logger = attr.ib(factory=lambda : get_logger('BurpCommander'))
 
     PARAMS = {
         'active_scan': ("post",
@@ -113,24 +116,24 @@ class BurpCommander(ApiBase):
 
             scan_configurations = '[]'
             if config_names:
-                print(f"[-] Using scan configuration(s): '{', '.join(config_names)}'")
+                self._logger.info(f"[-] Using scan configuration(s): '{', '.join(config_names)}'")
                 scan_configurations = get_scan_configurations(config_names)
 
             exclude_rules = '[]'
             if excluded_urls:
-                print(f"[-] URLs excluded from scope: {', '.join(excluded_urls)}")
+                self._logger.info(f"[-] URLs excluded from scope: {', '.join(excluded_urls)}")
                 exclude_rules = get_exclude_rules(excluded_urls)
             
             if username and password:
                 #craft authenticated response
-                print(f"[+] Initiating authenticated scan with user '{username}'...")
+                self._logger.info(f"[+] Initiating authenticated scan with user '{username}'...")
                 r = self.request('active_scan_with_auth', base_url=base_url, 
                             username=username, password=password, 
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)
 
             else:
                 # craft unauthenticated response
-                print("[+] Initiating unauthenticated scan...")
+                self._logger.info("[+] Initiating unauthenticated scan...")
                 r = self.request('active_scan', base_url=base_url,
                                 exclude_rules=exclude_rules, scan_configurations=scan_configurations)
 
@@ -139,14 +142,14 @@ class BurpCommander(ApiBase):
             if task_id is None:
                 raise BurpaError(f"Error launching scan, cannot retrieve task id, 'location' header is None: {r}")
             
-            print(f"[-] {base_url} Added to the scan queue, ID {task_id}")
+            self._logger.info(f"[-] {base_url} Added to the scan queue, ID {task_id}")
             return task_id
         
         except BurpaError as e:
             raise BurpaError(f"Error adding {base_url} to the scan queue: {e}") from e
 
 
-    def verify_uri(self) -> bool:
+    def verify_uri(self) -> None:
         """
         Raise
         -----
@@ -156,9 +159,7 @@ class BurpCommander(ApiBase):
         try:
             self.request('docs')
         except BurpaError as e:
-            raise BurpaError(f"Error while verifying Burp Official REST API URI: {e}") from e
-        else:
-            return True
+            raise BurpaError(f"Cannot connect to Burp Suite: {e}") from e
     
     def scan_details(self, task_id: str) -> Dict[str, Any]:
         """Get the scan details: Status, Metrics, Issues etc."""
