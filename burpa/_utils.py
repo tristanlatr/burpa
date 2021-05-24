@@ -56,7 +56,8 @@ def get_logger(
     quiet: bool = False,
     ) -> logging.Logger:
 
-    format_string = "%(asctime)s - %(levelname)s (%(name)s) - %(message)s"
+    # format_string = "%(asctime)s - %(levelname)s (%(name)s) - %(message)s"
+    format_string = "%(message)s"
 
     if verbose:
         verb_level = logging.DEBUG
