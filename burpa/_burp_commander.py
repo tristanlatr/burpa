@@ -1,5 +1,5 @@
 from logging import Logger
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, List, Optional
 import attr
 import json
 from string import Template
@@ -76,8 +76,8 @@ class BurpCommander(ApiBase):
         return f"{self.proxy_url}:{self.api_port}{'/' if self.api_key else ''}{self.api_key if self.api_key else ''}/v0.1"
 
     def active_scan(self, base_url: str, username: Optional[str] = None, 
-                    password: Optional[str] = None, excluded_urls: Optional[Iterable[str]] = None, 
-                    config_names: Optional[Iterable[str]] = None) -> str:
+                    password: Optional[str] = None, excluded_urls: Optional[List[str]] = None, 
+                    config_names: Optional[List[str]] = None) -> str:
         """
         Send a URL to Burp to perform active scan, the difference with 
         `BurpRestApiClient.active_scan` is that this method accepts username/password for authenticated scans.
@@ -116,7 +116,7 @@ class BurpCommander(ApiBase):
 
             scan_configurations = '[]'
             if config_names:
-                self._logger.info(f"Using scan configuration(s): '{', '.join(config_names)}'")
+                self._logger.info(f"Using scan configuration(s): {', '.join(config_names)}")
                 scan_configurations = get_scan_configurations(config_names)
 
             exclude_rules = '[]'
@@ -140,7 +140,7 @@ class BurpCommander(ApiBase):
             task_id = r.headers.get("location", None)
             
             if task_id is None:
-                raise BurpaError(f"Error launching scan, cannot retrieve task id, 'location' header is None: {r}")
+                raise BurpaError(f"Error launching scan, cannot retrieve task id, 'location' header is None: {repr(r)}")
             
             self._logger.info(f"{base_url} Added to the scan queue, ID {task_id}")
             return task_id

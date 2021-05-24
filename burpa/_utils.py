@@ -5,17 +5,20 @@ import sys
 import logging
 from urllib.parse import urlparse
 from pathlib import Path
-from typing import Iterable, Iterator
+from typing import Iterable, Iterator, List
 
 def get_valid_filename(s: str) -> str:
     '''Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think'''
     s = str(s).strip().replace(' ', '_')
     return re.sub(r'(?u)[^-\w.]', '', s)[:100] # Let's cap the filename lenght to 100 chars.
 
-def parse_commas_separated_str(string: str) -> Iterator[str]:
+
+def parse_commas_separated_str(string: str) -> List[str]:
+    r = []
     if string:
         for row in csv.reader(io.StringIO(string)):
-            yield from row
+            r.extend(row)
+    return r
 
 def parse_targets(targets: Iterable[str]) -> Iterator[str]:
     for target in targets:
