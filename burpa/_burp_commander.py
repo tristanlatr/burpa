@@ -116,24 +116,24 @@ class BurpCommander(ApiBase):
 
             scan_configurations = '[]'
             if config_names:
-                self._logger.info(f"[-] Using scan configuration(s): '{', '.join(config_names)}'")
+                self._logger.info(f"Using scan configuration(s): '{', '.join(config_names)}'")
                 scan_configurations = get_scan_configurations(config_names)
 
             exclude_rules = '[]'
             if excluded_urls:
-                self._logger.info(f"[-] URLs excluded from scope: {', '.join(excluded_urls)}")
+                self._logger.info(f"URLs excluded from scope: {', '.join(excluded_urls)}")
                 exclude_rules = get_exclude_rules(excluded_urls)
             
             if username and password:
                 #craft authenticated response
-                self._logger.info(f"[+] Initiating authenticated scan with user '{username}'...")
+                self._logger.info(f"Initiating authenticated scan with user '{username}'...")
                 r = self.request('active_scan_with_auth', base_url=base_url, 
                             username=username, password=password, 
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)
 
             else:
                 # craft unauthenticated response
-                self._logger.info("[+] Initiating unauthenticated scan...")
+                self._logger.info("Initiating unauthenticated scan...")
                 r = self.request('active_scan', base_url=base_url,
                                 exclude_rules=exclude_rules, scan_configurations=scan_configurations)
 
@@ -142,7 +142,7 @@ class BurpCommander(ApiBase):
             if task_id is None:
                 raise BurpaError(f"Error launching scan, cannot retrieve task id, 'location' header is None: {r}")
             
-            self._logger.info(f"[-] {base_url} Added to the scan queue, ID {task_id}")
+            self._logger.info(f"{base_url} Added to the scan queue, ID {task_id}")
             return task_id
         
         except BurpaError as e:

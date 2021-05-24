@@ -109,7 +109,7 @@ class Burpa:
         file = find_dotenv()
 
         if file:
-            self._logger.info(f"[+] Loading .env file {file}")
+            self._logger.info(f"Loading .env file {file}")
             load_dotenv(file)
 
         api_url = ensure_scheme(os.getenv('BURP_API_URL') or api_url)
@@ -198,7 +198,7 @@ class Burpa:
                 # store scan record
                 scan_records.append(record)
                 
-        self._logger.info("[+] Scan started")
+        self._logger.info("Scan started")
 
         return scan_records
 
@@ -225,12 +225,12 @@ class Burpa:
 
             status_str = f"{', '.join(statuses)}"
             if status_str != last_status_str:
-                self._logger.info(f"[-] Scan status: {status_str}")
+                self._logger.info(f"Scan status: {status_str}")
                 last_status_str = status_str
 
             time.sleep(2)
 
-        self._logger.info(f"[+] Scan completed")
+        self._logger.info(f"Scan completed")
 
     def _scan_metrics(self, *records: ScanRecord) -> None:
         """
@@ -238,7 +238,7 @@ class Burpa:
         """
         for record in records:
             record.metrics = self._newapi.scan_metrics(record.task_id)
-            self._logger.info (f"[+] Scan metrics for {record.target_url} :")
+            self._logger.info (f"Scan metrics for {record.target_url} :")
             self._logger.info('\n'.join(f'  - {k.upper()} = {v}' for k,v in record.metrics.items()))
 
     def scan(self, *targets: str, report_type: str = "HTML", 
@@ -309,7 +309,7 @@ class Burpa:
         issues = self._api.scan_issues(target)
         if issues:
 
-            self._logger.info(f"[+] Scan issues for {target} :")
+            self._logger.info(f"Scan issues for {target} :")
             uniques_issues = {
                 "Issue: {issueName}, Severity: {severity}".format(**issue)
                 for issue in issues
@@ -327,7 +327,7 @@ class Burpa:
             )
         
         else:
-            self._logger.info(f"[+] No issue could be found for the target {target}")
+            self._logger.info(f"No issue could be found for the target {target}")
     
     def report(self, *targets: str, report_type: str = "HTML", 
                report_output_dir: str = "") -> None:
@@ -382,7 +382,7 @@ class Burpa:
         return r
                 
     def _stop(self) -> None:
-        self._logger.info("[+] Shutting down Burp Suite ...")
+        self._logger.info("Shutting down Burp Suite ...")
 
         self._api.burp_stop()
         
@@ -455,7 +455,7 @@ class Burpa:
                 else:
                     raise
             else:
-                self._logger.info(f"[+] Successfuly connected to Burp REST APIs")
+                self._logger.info(f"Successfuly connected to Burp REST APIs")
                 break
 
 

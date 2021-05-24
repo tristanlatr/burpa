@@ -27,7 +27,7 @@ class BurpRestApiClient(ApiBase):
 
     proxy_url: str
     api_port: str = "8090"
-    logger: Logger = attr.ib(factory=lambda : get_logger('BurpRestApiClient'))
+    _logger: Logger = attr.ib(factory=lambda : get_logger('BurpRestApiClient'))
 
     PARAMS = {
         "get_config": (  "get", 
@@ -137,7 +137,7 @@ class BurpRestApiClient(ApiBase):
         # we can't load our config when running the Burp (the default
         # config getting set). So we need to set the proxy listen_mode
         # using the API
-        self.logger.info("[+] Checking the Burp proxy configuration ...")
+        self._logger.info("Checking the Burp proxy configuration ...")
         try:
             r = self.request('get_config')
         except BurpaError as e:
@@ -147,26 +147,26 @@ class BurpRestApiClient(ApiBase):
             running = config['proxy']['request_listeners'][0]['running']
             listen_mode = config['proxy']['request_listeners'][0]['listen_mode']
             if running and listen_mode == "all_interfaces":
-                self.logger.info("[-] Proxy configuration is OK")
+                self._logger.info("Proxy configuration is OK")
                 return True
             else:
-                self.logger.info("[-] Proxy configuration needs to be updated")
+                self._logger.info("Proxy configuration needs to be updated")
                 return False
 
 
     def enable_proxy_listen_all_interfaces(self, proxy_port: str) -> None:
         """Update the Burp proxy configuration to listen on all interfaces"""
-        self.logger.info("[+] Updating the Burp proxy configuration to listen on all interfaces...")
+        self._logger.info("Updating the Burp proxy configuration to listen on all interfaces...")
         try:
             self.request('enable_proxy_listen_all_interfaces', proxy_port=proxy_port)
-            self.logger.info("[-] Proxy configuration updated")
+            self._logger.info("Proxy configuration updated")
         except BurpaError as e:
             raise BurpaError(f"Error updating the Burp configuration: {e}") from e
 
 
     def proxy_history(self) -> Optional[List[str]]:
         """Retrieve the Burp proxy history"""
-        self.logger.info("[+] Retrieving the Burp proxy history ...")
+        self._logger.info("Retrieving the Burp proxy history ...")
         try:
             r = self.request('get_proxy_history')
         
@@ -179,10 +179,10 @@ class BurpRestApiClient(ApiBase):
                 # Unique list of URLs
                 host_set = {"{protocol}://{host}".format(**i)
                             for i in resp['messages']}
-                self.logger.info(f"[-] Found {len(host_set)} unique targets in proxy history")
+                self._logger.info(f"Found {len(host_set)} unique targets in proxy history")
                 return list(host_set)
             else:
-                self.logger.info("[-] Proxy history is empty")
+                self._logger.info("Proxy history is empty")
                 return None
 
     def include(self, *targets: str) -> None:
@@ -211,7 +211,7 @@ class BurpRestApiClient(ApiBase):
             for i in scope:
                 try:
                     self.request('include_scope', url=i)
-                    self.logger.info(f"[-] {i} has been included to the scope")
+                    self._logger.info(f"{i} has been included to the scope")
                 
                 except BurpaError as e:
                     raise BurpaError(f"Error updating the target scope: {e}")
@@ -220,7 +220,7 @@ class BurpRestApiClient(ApiBase):
             for i in scope:
                 try:
                     self.request('exclude_scope', url=i)
-                    self.logger.info(f"[-] {i} has been excluded from the scope")
+                    self._logger.info(f"{i} has been excluded from the scope")
                 
                 except BurpaError as e:
                     raise BurpaError(f"Error updating the target scope: {e}")
@@ -236,7 +236,7 @@ class BurpRestApiClient(ApiBase):
         else:
             resp = r.json()
             if resp['inScope']:
-                # self.logger.info("[-] {} is in the scope".format(url))
+                self._logger.debug("{} is in the scope".format(url))
                 return True
             else:
                 return False
@@ -248,7 +248,7 @@ class BurpRestApiClient(ApiBase):
         """
         try:
             self.request('active_scan', base_url=base_url)
-            self.logger.info(f"[-] {base_url} Added to the scan queue")
+            self._logger.info(f"{base_url} Added to the scan queue")
         except BurpaError as e:
             raise BurpaError(f"Error adding {base_url} to the scan queue: {e}") from e
 
@@ -310,7 +310,7 @@ class BurpRestApiClient(ApiBase):
             raise BurpaError(f"Error downloading the scan report for target {url_prefix}: {e}") from e
 
         else:
-            self.logger.info(f"[+] Downloading HTML/XML report for {url_prefix}")
+            self._logger.info(f"Downloading HTML/XML report for {url_prefix}")
             # Write the response body (byte array) to file
             file_name = get_valid_filename("burp-report_{}_{}.{}".format(
                 time.strftime("%Y%m%d-%H%M%S", time.localtime()),
@@ -321,7 +321,7 @@ class BurpRestApiClient(ApiBase):
             file = os.path.join(report_output_dir or tempfile.gettempdir(), file_name)
             with open(file, 'w', encoding='utf-8') as f:
                 f.write(r.text)
-            self.logger.info(f"[-] Scan report saved to {file}")
+            self._logger.info(f"Scan report saved to {file}")
             return file
 
 
@@ -344,7 +344,7 @@ class BurpRestApiClient(ApiBase):
 
         try:
             self.request('burp_stop')
-            self.logger.info("[-] Burp is stopped")
+            self._logger.info("Burp is stopped")
         except BurpaError as e:
             raise BurpaError(f"Error stopping the Burp Suite: {e}") from e
     
