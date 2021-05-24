@@ -94,42 +94,46 @@ export BURP_NEW_API_KEY=""
 
 ```
 $ burpa scan http://10.1.1.1:8080/WebGoat --report-output-dir /tmp/burp-reports/
-            __                          
+           __                          
            / /_  __  ___________  ____ _
           / __ \/ / / / ___/ __ \/ __ `/
          / /_/ / /_/ / /  / /_/ / /_/ / 
         /_.___/\__,_/_/  / .___/\__,_/  
                         /_/             
-         burpa version 0.2dev 
+         burpa version 0.3.0.dev 
 
-[+] Loading .env file /home/runner/.env
-[+] Initiating unauthenticated scan...
-[-] http://10.1.1.1:8080/WebGoat Added to the scan queue, ID 4
-[+] Scan started
-[-] Scan status: crawling
-[-] Scan status: auditing
-[-] Scan status: succeeded
-[+] Scan completed
-[+] Scan metrics for http://10.1.1.1:8080/WebGoat : 
-  - CRAWL_REQUESTS_MADE = 65
-  - CRAWL_NETWORK_ERRORS = 0
-  - CRAWL_UNIQUE_LOCATIONS_VISITED = 8
-  - CRAWL_REQUESTS_QUEUED = 0
-  - AUDIT_QUEUE_ITEMS_COMPLETED = 13
-  - AUDIT_QUEUE_ITEMS_WAITING = 0
-  - AUDIT_REQUESTS_MADE = 7492
-  - AUDIT_NETWORK_ERRORS = 12
-  - ISSUE_EVENTS = 20
-  - CRAWL_AND_AUDIT_CAPTION = Audit finished.
-  - CRAWL_AND_AUDIT_PROGRESS = 100
-[+] Scan issues for http://10.1.1.1:8080/WebGoat :
-  - Issue: Input returned in response (reflected), Severity: Information
-  - Issue: Cookie without HttpOnly flag set, Severity: Low
-  - Issue: Cleartext submission of password, Severity: High
-  - Issue: Cross-site request forgery, Severity: Information
-  - Issue: Password field with autocomplete enabled, Severity: Low
-[+] Downloading HTML/XML report for http://10.1.1.1:8080/WebGoat
-[-] Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10.1.1.18080WebGoat.html
+INFO - Loading .env file /home/runner/.env
+INFO - http://10.1.1.1:8080/WebGoat has been included to the scope
+INFO - Initiating unauthenticated scan...
+INFO - http://10.1.1.1:8080/WebGoat Added to the scan queue, ID 3
+INFO - Scan started
+INFO - Scan status: crawling
+INFO - Scan status: auditing
+INFO - Scan status: succeeded
+INFO - Scan completed
+INFO - Scan metrics for http://10.1.1.1:8080/WebGoat :
+INFO - CRAWL_REQUESTS_MADE = 3
+INFO - CRAWL_NETWORK_ERRORS = 0
+INFO - CRAWL_UNIQUE_LOCATIONS_VISITED = 1
+INFO - CRAWL_REQUESTS_QUEUED = 0
+INFO - AUDIT_QUEUE_ITEMS_COMPLETED = 2
+INFO - AUDIT_QUEUE_ITEMS_WAITING = 0
+INFO - AUDIT_REQUESTS_MADE = 644
+INFO - AUDIT_NETWORK_ERRORS = 2
+INFO - ISSUE_EVENTS = 13
+INFO - CRAWL_AND_AUDIT_CAPTION = Audit finished.
+INFO - CRAWL_AND_AUDIT_PROGRESS = 100
+INFO - Scan issues for http://10.1.1.1:8080/WebGoat :
+INFO - Issue: Robots.txt file, Severity: Information
+INFO - Issue: Backup file, Severity: Information
+INFO - Issue: Cookie without HttpOnly flag set, Severity: Information
+INFO - Issue: Strict transport security not enforced, Severity: Low
+INFO - Issue: TLS cookie without secure flag set, Severity: Information
+INFO - Issue: Cacheable HTTPS response, Severity: Information
+INFO - Issue: TLS certificate, Severity: Information
+INFO - Downloading HTML/XML report for http://10.1.1.1:8080/WebGoat
+INFO - Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10.1.1.18080WebGoat.html
+
 ```
 
 ## Related
