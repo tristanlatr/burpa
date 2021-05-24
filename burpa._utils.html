@@ -28,7 +28,7 @@
       
       <div class="navlinks">
           <span class="navbar-brand">
-            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.2.4</a> <a href="index.html"> API Documentation </a>
+            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.3.0.dev0</a> <a href="index.html"> API Documentation </a>
           </span>
 
           <a href="moduleIndex.html">
@@ -64,7 +64,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <a href="https://github.com/tristanlatr/burpa/tree/9a223b9c49ab8d359bb8ff944154d140995b9ef7/burpa/_utils.py" class="sourceLink">(source)</a>
+        <a href="https://github.com/tristanlatr/burpa/tree/49a99683346b1c2d70835461762c54bd68752bad/burpa/_utils.py" class="sourceLink">(source)</a>
         <p></p>
       </div>
 
@@ -73,7 +73,7 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id12">
+        <table class="children sortable" id="id13">
   
   
   <tr class="function">
@@ -81,6 +81,26 @@
     <td>Function</td>
     <td><code><a href="#get_valid_filename">get_valid_filename</a></code></td>
     <td><span>Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#parse_commas_separated_str">parse_commas_separated_str</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#parse_targets">parse_targets</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#ensure_scheme">ensure_scheme</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_logger">get_logger</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
         
@@ -102,7 +122,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">get_valid_filename</span>(s):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/9a223b9c49ab8d359bb8ff944154d140995b9ef7/burpa/_utils.py#L2">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/49a99683346b1c2d70835461762c54bd68752bad/burpa/_utils.py#L10">
       
       (source)
     </a>
@@ -112,11 +132,99 @@
     
     <div>Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">s:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.parse_commas_separated_str">
+    
+  </a>
+  <a name="parse_commas_separated_str">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">parse_commas_separated_str</span>(string):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/49a99683346b1c2d70835461762c54bd68752bad/burpa/_utils.py#L15">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">string:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator">Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.parse_targets">
+    
+  </a>
+  <a name="parse_targets">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">parse_targets</span>(targets):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/49a99683346b1c2d70835461762c54bd68752bad/burpa/_utils.py#L20">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator">Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.ensure_scheme">
+    
+  </a>
+  <a name="ensure_scheme">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">ensure_scheme</span>(url):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/49a99683346b1c2d70835461762c54bd68752bad/burpa/_utils.py#L41">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.get_logger">
+    
+  </a>
+  <a name="get_logger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_logger</span>(name, verbose=False, quiet=False):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/49a99683346b1c2d70835461762c54bd68752bad/burpa/_utils.py#L53">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">verbose:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quiet:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/logging.html#logging.Logger">logging.Logger</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
 </div>
 
       </div>
       <address>
-        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.2.4, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-05-18 20:08:34.
+        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.3.0.dev0, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-05-24 15:53:16.
       </address>
 
     </div>
