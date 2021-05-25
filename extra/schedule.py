@@ -64,10 +64,13 @@ def schedule_iterator(targets: Iterable[str], scan_window_start: str,
         start = dateutil.parser.parse(scan_window_start)
         now = datetime.datetime.now()
         time_now = dateutil.parser.parse(now.strftime('%H:%M:%S'))
-        
-        while time_now - start > duration:
+        if time_now - start > duration:
             print(f"It's not the time to use Burp Suite, it's {time_now.strftime('%H:%M:%S')}. Sleeping...")
-            time.sleep(1800)
+
+        while time_now - start > duration:
+            time.sleep(2)
+
+        print(f"Starting scan on target: '{target}' at {time_now.isoformat()}")
 
         yield target
 
@@ -87,7 +90,7 @@ def schedule(*targets: str,
                 app_pass: str = "",
                 scan_window_start: str = "00:00",
                 scan_window_duration: str = "04:00",
-                workers: int = 5) -> None:
+                workers: int = 1) -> None:
     """
     Wrapper to schedule Burp scans to run at certain times only. 
 
