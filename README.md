@@ -125,14 +125,94 @@ INFO - Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10
 ```
 
 
-## Usage
-
-Look at the following command output to get detailed help.
+## Manual
 
 ```
-$ burpa --help
-$ burpa --api-url=localhost --help
-$ burpa --api-url=localhost scan --help
+burpa [COMMAND]
+
+  --api-url=API_URL
+    Burp Suite REST API Extension URL. Environment variable: 'BURP_API_URL'.
+  --api-port=API_PORT
+      Burp REST API Extension Port (default: 8090). Environment variable: 'BURP_API_PORT'.
+  --new-api-url=NEW_API_URL
+      Burp Suite Official REST API URL (default: Same as api_url). Environment variable: 'BURP_NEW_API_URL'.
+  --new-api-port=NEW_API_PORT
+      Burp Suite Official REST API Port (default: 1337). Environment variable: 'BURP_NEW_API_PORT'.
+  --new-api-key=NEW_API_KEY
+      Burp Suite Official REST API key. Environment variable: 'BURP_NEW_API_KEY'.
+  --verbose
+      Be more verbose, prints complete trace on errors and debug API parameters. 
+  --quiet
+      Be less verose, only print on errors.
+  --no-banner
+      Do not print burpa banner.
+```
+
+```
+burpa report <flags> [TARGETS]...
+
+  Generate the reports for the specified targets URLs. 
+  If targets is 'all', generate a report that contains all issues for all targets.
+
+  --report_type=REPORT_TYPE
+  --report_output_dir=REPORT_OUTPUT_DIR
+```
+
+```
+burpa scan <flags> [TARGETS]...
+
+  Launch an active scan, wait until the end and report the results.
+
+  --report_type=REPORT_TYPE
+      Burp scan report type (default: HTML). Use 'none' to skip reporting.
+  --report_output_dir=REPORT_OUTPUT_DIR
+      Directory to store the reports. Store report in temp directory if empty.
+  --excluded=EXCLUDED
+      Commas separated values of the URLs to exclude from the scope of the scan.
+  --config=CONFIG
+      Commas separated values of the scan configuration(s) names to apply.
+  --app_user=APP_USER
+      Application username for authenticated scans.
+  --app_pass=APP_PASS
+      Application password for authenticated scans
+```
+```
+burpa schedule <flags> [TARGETS]...
+
+  Launch Burp Suite scans between certain times only.
+
+  --begin_time=BEGIN_TIME
+      At what time to start the scans. (Default "22:00")
+  --end_time=END_TIME
+      At what time to end the scans. Running scans will finish after the end time. (Default "05:00")
+  --workers=WORKERS
+      How many asynchronous scans to launch.
+  
+  And other 'burpa scan' arguments.
+```
+```
+burpa stop <flags>
+
+  Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or 
+  NSSM (Windows) to automatically restart the Burp Suite Service when it stopped running.
+
+  --wait=WAIT
+      If other burpa processes running, number of seconds to wait until all the running scans ends.
+  --force
+      Stop Burp even if scans are running.
+```
+```
+burpa test <flags>
+
+  Test if burpa can connect to Burp Suite REST APIs.
+
+  --wait=WAIT
+      Number of seconds to wait until the Burp REST APIs are accessible.
+```
+```
+burpa version
+
+  Print burpa version and exit.
 ```
 
 Look at [python-fire documentation](https://google.github.io/python-fire/guide/) to have a better understanding of how `python-fire` generated CLI works. 
