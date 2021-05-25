@@ -28,7 +28,7 @@
       
       <div class="navlinks">
           <span class="navbar-brand">
-            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.3.0.dev0</a> <a href="index.html"> API Documentation </a>
+            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.3.0</a> <a href="index.html"> API Documentation </a>
           </span>
 
           <a href="moduleIndex.html">
@@ -64,7 +64,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <a href="https://github.com/tristanlatr/burpa/tree/67b52e1e4f2314d0601c8e28ca7015e56fe572b9/burpa/_utils.py" class="sourceLink">(source)</a>
+        <a href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py" class="sourceLink">(source)</a>
         <p></p>
       </div>
 
@@ -99,7 +99,17 @@
   </tr><tr class="function">
     
     <td>Function</td>
-    <td><code><a href="#get_logger">get_logger</a></code></td>
+    <td><code><a href="#setup_logger">setup_logger</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#perform">perform</a></code></td>
+    <td><span>Wrapper arround executable and the data list object. Will execute the callable on each object of the list. Parameters:</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_timenow_between">is_timenow_between</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -122,7 +132,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">get_valid_filename</span>(s):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/67b52e1e4f2314d0601c8e28ca7015e56fe572b9/burpa/_utils.py#L10">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L14">
       
       (source)
     </a>
@@ -144,7 +154,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">parse_commas_separated_str</span>(string):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/67b52e1e4f2314d0601c8e28ca7015e56fe572b9/burpa/_utils.py#L16">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L20">
       
       (source)
     </a>
@@ -166,7 +176,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">parse_targets</span>(targets):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/67b52e1e4f2314d0601c8e28ca7015e56fe572b9/burpa/_utils.py#L23">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L27">
       
       (source)
     </a>
@@ -188,7 +198,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">ensure_scheme</span>(url):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/67b52e1e4f2314d0601c8e28ca7015e56fe572b9/burpa/_utils.py#L44">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L48">
       
       (source)
     </a>
@@ -201,16 +211,16 @@
 </div><div class="basefunction">
   
   
-  <a name="burpa._utils.get_logger">
+  <a name="burpa._utils.setup_logger">
     
   </a>
-  <a name="get_logger">
+  <a name="setup_logger">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">get_logger</span>(name, verbose=False, quiet=False):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/67b52e1e4f2314d0601c8e28ca7015e56fe572b9/burpa/_utils.py#L56">
+    <span class="py-keyword">def</span> <span class="py-defname">setup_logger</span>(name, verbose=False, quiet=False):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L60">
       
       (source)
     </a>
@@ -220,11 +230,66 @@
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">verbose:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quiet:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/logging.html#logging.Logger">logging.Logger</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.perform">
+    
+  </a>
+  <a name="perform">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">perform</span>(func, elements, func_args=None, asynch=False, workers=None):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Wrapper arround executable and the data list object.
+Will execute the callable on each object of the list.
+Parameters:</p>
+<ul class="rst-simple">
+<li><code>func</code>: callable stateless function. func is going to be called like <code>func(item, **func_args)</code> on all items in data.</li>
+<li><code>elements</code>: Perfom the action on the elements in the list.</li>
+<li><code>func_args</code>: dict that will be passed by default to func in all calls.</li>
+<li><code>asynch</code>: execute the task asynchronously</li>
+<li><code>workers</code>: mandatory if asynch is true.</li>
+</ul>
+<p>Returns a list of returned results</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a>[<wbr></wbr>..., <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">elements:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">asynch:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">workers:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.is_timenow_between">
+    
+  </a>
+  <a name="is_timenow_between">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_timenow_between</span>(begin_time, end_time):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/084370d7b137434b7a9c409b90a0a602142a9096/burpa/_utils.py#L122">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">begin_time:</span><code><a href="https://docs.python.org/3/library/datetime.html#datetime.time">time</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">end_time:</span><code><a href="https://docs.python.org/3/library/datetime.html#datetime.time">time</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
 </div>
 
       </div>
       <address>
-        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.3.0.dev0, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-05-25 00:42:43.
+        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.3.0, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-05-25 18:22:17.
       </address>
 
     </div>
