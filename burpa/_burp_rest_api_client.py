@@ -10,7 +10,7 @@ from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
-from ._utils import get_valid_filename, get_logger
+from ._utils import get_valid_filename, setup_logger
 
 
 @attr.s(auto_attribs=True)
@@ -27,7 +27,7 @@ class BurpRestApiClient(ApiBase):
 
     proxy_url: str
     api_port: str = "8090"
-    _logger: Logger = attr.ib(factory=lambda : get_logger('BurpRestApiClient'))
+    _logger: Logger = attr.ib(factory=lambda : setup_logger('BurpRestApiClient'))
 
     PARAMS = {
         "get_config": (  "get", 

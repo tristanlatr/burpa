@@ -5,7 +5,11 @@ import sys
 import logging
 from urllib.parse import urlparse
 from pathlib import Path
-from typing import Iterable, Iterator, List
+import functools
+import sys
+import concurrent.futures
+from datetime import datetime, time
+from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional
 
 def get_valid_filename(s: str) -> str:
     '''Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think'''
@@ -53,7 +57,7 @@ def ensure_scheme(url: str) -> str:
     return url
 
 # Setup stdout logger
-def get_logger(
+def setup_logger(
     name: str,
     verbose: bool = False,
     quiet: bool = False,
@@ -79,3 +83,44 @@ def get_logger(
     log.addHandler(std)
 
     return log
+
+def perform(func: Callable[..., Any], elements: Iterable[Any], 
+            func_args:Optional[Dict[str, Any]]=None, asynch: bool=False,  
+            workers: Optional[int]=None , ) -> List[Any]:
+        """
+        Wrapper arround executable and the data list object.
+        Will execute the callable on each object of the list.
+        Parameters:  
+        
+        - `func`: callable stateless function. func is going to be called like `func(item, **func_args)` on all items in data.
+        - `elements`: Perfom the action on the elements in the list.
+        - `func_args`: dict that will be passed by default to func in all calls.
+        - `asynch`: execute the task asynchronously
+        - `workers`: mandatory if asynch is true.  
+        Returns a list of returned results
+        """
+        if not callable(func) :
+            raise ValueError('func must be callable')
+        #Setting the arguments on the function
+        func = functools.partial(func, **(func_args if func_args is not None else {}))
+        #The data returned by function
+        returned=[]
+        if asynch == True :
+            if isinstance(workers, int) :
+                returned=list(concurrent.futures.ThreadPoolExecutor(
+                    max_workers=workers ).map(
+                        func, elements))
+                    
+            else:
+                raise AttributeError('When asynch == True : You must specify a integer value for workers')
+        else :
+            for index_or_item in elements:
+                returned.append(func(index_or_item))
+        return returned
+
+def is_timenow_between(begin_time: time, end_time: time) -> bool:
+    check_time: time = datetime.now().time()
+    if begin_time < end_time:
+        return check_time >= begin_time and check_time <= end_time
+    else: # crosses midnight
+        return check_time >= begin_time or check_time <= end_time

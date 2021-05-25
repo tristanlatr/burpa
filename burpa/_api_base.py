@@ -1,7 +1,7 @@
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union
 import requests
-import os
 import json
+import logging
 from string import Template
 
 from ._error import BurpaError
@@ -12,6 +12,8 @@ class ApiBase:
     """
 
     PARAMS: Dict[str, Tuple[str, Union[str, Template], Union[str, Template, None]]] = {}
+
+    _logger: logging.Logger
 
     @property
     def proxy_uri(self) -> str:
@@ -26,16 +28,15 @@ class ApiBase:
         r = None
         
         try:
-            if os.getenv("BURPA_DEBUG"):
-                print(f"DEBUG - Requesting HTTP {http_method.upper()}: {url}, body={data}")
+
+            self._logger.debug(f"Requesting HTTP {http_method.upper()}: {url}, body={data}")
 
             _request_args: Dict[str, Any] = dict(method=http_method, url=url, json=data)
             if request_args: _request_args.update(request_args)
 
             r = requests.request(**_request_args)
             
-            if os.getenv("BURPA_DEBUG"):
-                print(f"DEBUG - Got Response: {r.text}")
+            self._logger.debug(f"Got Response: {r.text}")
 
             r.raise_for_status()
         
@@ -66,8 +67,7 @@ class ApiBase:
             
             assert isinstance(data, str)
 
-            if os.getenv("BURPA_DEBUG"):
-                print(f"DEBUG - Constructing API call from template: {http_method}, {url_part}, {data}")
+            self._logger.debug(f"Constructing API call from template: {http_method}, {url_part}, {data}")
 
             built_data = json.loads(data)
         else:

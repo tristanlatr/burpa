@@ -18,6 +18,7 @@ REQUIREMENTS = [
     'fire',
     'python-dotenv',
     'filelock',
+    'python-dateutil',
 ]
 
 setup(
@@ -26,7 +27,8 @@ setup(
     long_description_content_type="text/markdown",
     packages=['burpa',],
     entry_points = {
-        'console_scripts': ['burpa=burpa._burpa:main'],
+        'console_scripts': [
+            'burpa=burpa._burpa:main'
     },
     author=ABOUT['__author__'],
     version=ABOUT['__version__'],

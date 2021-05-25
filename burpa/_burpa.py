@@ -15,24 +15,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import time
+from logging import getLogger
 import os
 import sys
 import traceback
-import tempfile
 import pathlib
-from datetime import timedelta, datetime
-from typing import  Any, Dict, Iterator, List, Optional, Sequence, Tuple
+from time import sleep
+from datetime import datetime, timedelta
+from typing import  Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
 
 from filelock import FileLock, Timeout
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
 import attr
+import dateutil.parser
 
 from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
-from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, get_logger
+from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between
 from .__version__ import __version__, __author__
 
 
@@ -91,6 +92,12 @@ class Burpa:
         Burp Suite Official REST API Port (default: 1337). Environment variable: 'BURP_NEW_API_PORT'.
     new_api_key
         Burp Suite Official REST API key. Environment variable: 'BURP_NEW_API_KEY'.
+    quiet
+        Be less verose, only print on errors.
+    verbose
+        Be more verbose, prints complete trace on errors.
+    no_banner
+        Do not print burpa banner.
     """
 
     def __init__(self, api_url: str = "",
@@ -99,11 +106,12 @@ class Burpa:
                 new_api_port: str = "1337",
                 new_api_key: str = "",
                 verbose: bool = False,
-                quiet: bool = False):
+                quiet: bool = False, 
+                no_banner: bool = False):
         
-        self._logger = get_logger('Burpa', verbose=verbose, quiet=quiet)
+        self._logger = setup_logger('Burpa', verbose=verbose or bool(os.getenv("BURPA_DEBUG")), quiet=quiet)
 
-        if not quiet:
+        if not quiet and not no_banner:
             print(ASCII)
         
         file = find_dotenv()
@@ -119,22 +127,22 @@ class Burpa:
         new_api_key = os.getenv('BURP_NEW_API_KEY') or new_api_key
 
         if not api_url:
-            raise BurpaError("Error: You must configure api_url or 'BURP_API_URL' environment variable. ")
+            self._logger.warning("You must configure api_url or 'BURP_API_URL' environment variable to communicate with Burp Suite. ")
 
         self._api: BurpRestApiClient = BurpRestApiClient(proxy_url=api_url, api_port=api_port, 
-                                        logger=get_logger('BurpRestApiClient', verbose=verbose, quiet=quiet))
+                                        logger=setup_logger('BurpRestApiClient', verbose=verbose, quiet=quiet))
         if new_api_url:
             self._newapi = BurpCommander(proxy_url=new_api_url,
                                   api_port=new_api_port,
                                   api_key=new_api_key or None,
-                                    logger=get_logger('BurpCommander', verbose=verbose, quiet=quiet))
+                                    logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
             
         else:
             # Create the BurpCommander with the same URL as BurpRestApiClient.
             self._newapi = BurpCommander(proxy_url=api_url,
                             api_port=new_api_port,
                             api_key=new_api_key or None,
-                            logger=get_logger('BurpCommander', verbose=verbose, quiet=quiet))
+                            logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
         
         # Temp directory in which burpa will store filelocks for each running scans
         TEMP_DIR.mkdir(exist_ok=True)
@@ -228,7 +236,7 @@ class Burpa:
                 self._logger.info(f"Scan status: {status_str}")
                 last_status_str = status_str
 
-            time.sleep(2)
+            sleep(2)
 
         self._logger.info(f"Scan completed")
 
@@ -393,7 +401,7 @@ class Burpa:
             except BurpaError:
                 break
             else:
-                time.sleep(0.01)
+                sleep(0.01)
 
     def stop(self, wait: str = '0', force: bool = False) -> None:
         """
@@ -422,7 +430,7 @@ class Burpa:
                 self._stop()
                 break
             elif datetime.now() - start < wait_delta:
-                time.sleep(2)
+                sleep(2)
             else:
                 if not force:
                     raise BurpaError(f"Cannot stop Burp because {'these scans are' if len(running_scans)>1 else 'this scan is'} "
@@ -452,13 +460,89 @@ class Burpa:
                 self._test()
             except BurpaError:
                 if datetime.now() - start < wait_delta:
-                    time.sleep(2)
+                    sleep(2)
                 else:
                     raise
             else:
                 self._logger.info(f"Successfuly connected to Burp REST APIs")
                 break
 
+    def schedule(self, *targets: str, 
+                report_type: str = "HTML", 
+                report_output_dir: str = "", 
+                excluded: str = "", 
+                config: str = "",
+                app_user: str = "", 
+                app_pass: str = "",
+                begin_time: str = "22:00",
+                end_time: str = "05:00",
+                workers: int = 1) -> None:
+        """
+        Launch Burp Suite scans between certain times only. 
+
+        Args
+        ----
+        begin_time: str
+            At what time to start the scans.
+            (Default "22:00")
+
+            Formats should be:
+                hh:mm or hh:mm:ss
+
+        end_time: str
+            At what time to end the scans.
+            Running scans will finish after the end time.
+            (Default "05:00")
+
+        workers: int
+            How many asynchronous scans to launch.
+        
+
+        See 'burpa scan --help' for details on other arguments. 
+        """
+        self._test()
+
+        parsed_targets = parse_targets(targets)
+
+        iterator = self._schedule_iterator(parsed_targets, begin_time=begin_time, 
+                    end_time=end_time)
+        
+        lock_file_path = TEMP_DIR.joinpath(f'{datetime.now().isoformat(timespec="seconds")}.scheduled-scans.lock')
+        lock_file_path.touch()
+        
+        with FileLock(str(lock_file_path)):
+
+            perform(self.scan, iterator, 
+                    func_args=dict(report_type=report_type,
+                                report_output_dir=report_output_dir,
+                                excluded=excluded,
+                                config=config,
+                                app_user=app_user,
+                                app_pass=app_pass), asynch=True, workers=workers)
+
+    def _schedule_iterator(self, targets: Iterable[str], begin_time: str,
+                end_time: str) -> Iterator[str]:
+
+        begin_time_parsed = dateutil.parser.parse(begin_time).time()
+        end_time_parsed = dateutil.parser.parse(end_time).time()
+
+        for target in targets:
+
+            if not is_timenow_between(begin_time_parsed, end_time_parsed):
+                self._logger.info(f"It's not the time to use Burp Suite, it's {datetime.now().strftime('%H:%M:%S')}. Sleeping until {begin_time_parsed.strftime('%H:%M:%S')}.")
+
+            while not is_timenow_between(begin_time_parsed, end_time_parsed):
+                sleep(2)
+
+            self._logger.info(f"Starting scan on target: '{target}' at {datetime.now().isoformat(timespec='seconds')}")
+
+            yield target
+    
+    def version(self) -> None:
+        """
+        Print burpa version and exit.
+        """
+        print(f"burpa version {__version__}")
 
 def main() -> None:
 
@@ -470,10 +554,9 @@ def main() -> None:
     
     except BurpaError as e:
 
-        logger = get_logger('Burpa CLI')
+        logger = getLogger('Burpa')
 
-        if os.getenv("BURPA_DEBUG"):
-            logger.error(traceback.format_exc())
+        logger.debug(traceback.format_exc())
 
         logger.error(e)
 

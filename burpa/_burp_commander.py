@@ -6,7 +6,7 @@ from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
-from ._utils import get_logger
+from ._utils import setup_logger
 
 # Ressource: https://laconicwolf.com/2018/08/27/exploring-the-burp-suite-api/
 
@@ -26,7 +26,7 @@ class BurpCommander(ApiBase):
     proxy_url: str
     api_port: str = "1337"
     api_key: Optional[str] = None
-    _logger: Logger = attr.ib(factory=lambda : get_logger('BurpCommander'))
+    _logger: Logger = attr.ib(factory=lambda : setup_logger('BurpCommander'))
 
     PARAMS = {
         'active_scan': ("post",
