@@ -90,13 +90,14 @@ def perform(func: Callable[..., Any], elements: Iterable[Any],
         """
         Wrapper arround executable and the data list object.
         Will execute the callable on each object of the list.
-        Parameters:  
+        Parameters: 
         
         - `func`: callable stateless function. func is going to be called like `func(item, **func_args)` on all items in data.
         - `elements`: Perfom the action on the elements in the list.
         - `func_args`: dict that will be passed by default to func in all calls.
         - `asynch`: execute the task asynchronously
         - `workers`: mandatory if asynch is true.  
+        
         Returns a list of returned results
         """
         if not callable(func) :
