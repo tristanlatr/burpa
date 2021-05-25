@@ -28,7 +28,7 @@ setup(
     packages=['burpa',],
     entry_points = {
         'console_scripts': [
-            'burpa=burpa._burpa:main'
+            'burpa=burpa._burpa:main']
     },
     author=ABOUT['__author__'],
     version=ABOUT['__version__'],
