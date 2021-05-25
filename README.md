@@ -27,25 +27,12 @@ It will use the official REST API to launch the scan, and the `burp-rest-api` to
 
 - `burpa` is now an actual package that can be installed with `pip install .`.
 - Slack support has been removed.
-- Bring back the help texts.
 - `burpa` is now callable with `python3 -m burpa`.
 - Add static type checking.
 - Add support for interfacing with the Burp Official REST API: This allows to run authenticated scans. 
 - Use [python-fire](https://github.com/google/python-fire) to generate the CLI. 
 - Publish the API documentation. 
 - Can load Burp configuration fron environment variables and automatically read `.env` files in the source directory tree with [python-dotenv](https://github.com/theskumar/python-dotenv). 
-
-## Usage
-
-Read the [manpage](https://github.com/tristanlatr/burpa/blob/main/docs/man/burpa.txt) online, or alternatively look at the following command output to get help.
-
-```
-$ burpa --help
-$ burpa --api-url=localhost --help
-$ burpa --api-url=localhost scan --help
-```
-
-Look at [python-fire documentation](https://google.github.io/python-fire/guide/) to have a better understanding of how `python-fire` generated CLI works. 
 
 ### Configuration
 
@@ -86,6 +73,7 @@ export BURP_NEW_API_KEY=""
 
   You can use `systemctl` or `supervisord` (Linux) or NSSM (Windows) to automatically restart the `burp-rest-api` when it stopped running. 
   This seem to be the only way to reset the scanner to a clean state ([ref](https://github.com/vmware/burp-rest-api/issues/82)). 
+
 ### Python library
 
 [API Reference](https://tristanlatr.github.io/burpa/)
@@ -135,6 +123,20 @@ INFO - Downloading HTML/XML report for http://10.1.1.1:8080/WebGoat
 INFO - Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10.1.1.18080WebGoat.html
 
 ```
+
+
+## Usage
+
+Look at the following command output to get detailed help.
+
+```
+$ burpa --help
+$ burpa --api-url=localhost --help
+$ burpa --api-url=localhost scan --help
+```
+
+Look at [python-fire documentation](https://google.github.io/python-fire/guide/) to have a better understanding of how `python-fire` generated CLI works. 
+
 
 ## Related
 
