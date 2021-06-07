@@ -65,7 +65,7 @@ export BURP_NEW_API_KEY=""
   $ burpa scan http://mysite.com --report-output-dir ./burp-reports/ --app-user=user --app-pass=p@assw0rd
   ```
 
-- Shutdown the Burp Suite and wait 60 seconds for the service to restart. 
+- Shutdown the Burp Suite and wait 120 seconds for the service to restart. 
   ```
   $ burpa stop
   $ burpa test --wait 120
@@ -146,9 +146,7 @@ burpa [COMMAND]
       Be less verose, only print on errors.
   --no-banner
       Do not print burpa banner.
-```
 
-```
 burpa report <flags> [TARGETS]...
 
   Generate the reports for the specified targets URLs. 
@@ -156,9 +154,7 @@ burpa report <flags> [TARGETS]...
 
   --report_type=REPORT_TYPE
   --report_output_dir=REPORT_OUTPUT_DIR
-```
 
-```
 burpa scan <flags> [TARGETS]...
 
   Launch an active scan, wait until the end and report the results.
@@ -175,8 +171,7 @@ burpa scan <flags> [TARGETS]...
       Application username for authenticated scans.
   --app_pass=APP_PASS
       Application password for authenticated scans
-```
-```
+
 burpa schedule <flags> [TARGETS]...
 
   Launch Burp Suite scans between certain times only.
@@ -189,8 +184,7 @@ burpa schedule <flags> [TARGETS]...
       How many asynchronous scans to launch.
   
   And other 'burpa scan' arguments.
-```
-```
+
 burpa stop <flags>
 
   Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or 
@@ -200,16 +194,14 @@ burpa stop <flags>
       If other burpa processes running, number of seconds to wait until all the running scans ends.
   --force
       Stop Burp even if scans are running.
-```
-```
+
 burpa test <flags>
 
   Test if burpa can connect to Burp Suite REST APIs.
 
   --wait=WAIT
       Number of seconds to wait until the Burp REST APIs are accessible.
-```
-```
+
 burpa version
 
   Print burpa version and exit.
