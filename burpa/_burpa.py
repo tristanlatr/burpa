@@ -503,40 +503,38 @@ class Burpa:
         self._test()
 
         parsed_targets = parse_targets(targets)
-
-        iterator = self._schedule_iterator(parsed_targets, begin_time=begin_time, 
-                    end_time=end_time)
         
         lock_file_path = TEMP_DIR.joinpath(f'{datetime.now().isoformat(timespec="seconds")}.scheduled-scans.lock')
         lock_file_path.touch()
         
         with FileLock(str(lock_file_path)):
 
-            perform(self.scan, iterator, 
-                    func_args=dict(report_type=report_type,
+            perform(self._scheduled_scan, parsed_targets, 
+                    func_args=dict(begin_time=begin_time, 
+                                end_time=end_time,
+                                report_type=report_type,
                                 report_output_dir=report_output_dir,
                                 excluded=excluded,
                                 config=config,
                                 app_user=app_user,
-                                app_pass=app_pass), asynch=workers>1, workers=workers)
+                                app_pass=app_pass), 
+                    asynch=workers>1, 
+                    workers=workers)
 
-    def _schedule_iterator(self, targets: Iterable[str], begin_time: str,
-                end_time: str) -> Iterator[str]:
+    def _scheduled_scan(self, target: str, begin_time: str,
+                end_time: str, **kwargs: Any) -> None:
 
         begin_time_parsed = dateutil.parser.parse(begin_time).time()
         end_time_parsed = dateutil.parser.parse(end_time).time()
 
-        for target in targets:
+        if not is_timenow_between(begin_time_parsed, end_time_parsed):
+            self._logger.info(f"It's not the time to use Burp Suite, it's {datetime.now().strftime('%H:%M:%S')}. Sleeping until {begin_time_parsed.strftime('%H:%M:%S')}.")
 
-            if not is_timenow_between(begin_time_parsed, end_time_parsed):
-                self._logger.info(f"It's not the time to use Burp Suite, it's {datetime.now().strftime('%H:%M:%S')}. Sleeping until {begin_time_parsed.strftime('%H:%M:%S')}.")
+        while not is_timenow_between(begin_time_parsed, end_time_parsed):
+            sleep(5)
 
-            while not is_timenow_between(begin_time_parsed, end_time_parsed):
-                sleep(2)
-
-            self._logger.info(f"Starting scan on target: '{target}' at {datetime.now().isoformat(timespec='seconds')}")
-
-            yield target
+        self._logger.info(f"Starting scan on target: '{target}' at {datetime.now().isoformat(timespec='seconds')}")
+        self.scan(target, **kwargs)
     
     def version(self) -> None:
         """

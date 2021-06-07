@@ -88,7 +88,7 @@ def perform(func: Callable[..., Any], elements: Iterable[Any],
             func_args:Optional[Dict[str, Any]]=None, asynch: bool=False,  
             workers: Optional[int]=None , ) -> List[Any]:
         """
-        Wrapper arround executable and the data list object.
+        Wrapper arround executable and a list of objects.
         Will execute the callable on each object of the list.
         Parameters: 
         
