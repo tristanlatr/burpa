@@ -518,7 +518,7 @@ class Burpa:
                                 excluded=excluded,
                                 config=config,
                                 app_user=app_user,
-                                app_pass=app_pass), asynch=True, workers=workers)
+                                app_pass=app_pass), asynch=workers>1, workers=workers)
 
     def _schedule_iterator(self, targets: Iterable[str], begin_time: str,
                 end_time: str) -> Iterator[str]:
