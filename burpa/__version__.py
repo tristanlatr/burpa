@@ -1,2 +1,2 @@
 __author__ = 'Adel "0x4d31" Karimi, and other contributors'
-__version__ = '0.3.2'
+__version__ = '0.3.3'
