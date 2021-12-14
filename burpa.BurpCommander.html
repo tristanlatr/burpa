@@ -65,7 +65,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">BurpCommander</span>(<a href="burpa._api_base.ApiBase.html" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L13" class="sourceLink">(source)</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">BurpCommander</span>(<a href="burpa._api_base.ApiBase.html" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L13" class="sourceLink">(source)</a></code></p>
         <p><a href="classIndex.html#burpa.BurpCommander">View In Hierarchy</a></p>
       </div>
 
@@ -173,7 +173,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">active_scan</span>(self, base_url, username=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, password=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, excluded_urls=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, config_names=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, config_json=<a href="https://docs.python.org/3/library/constants.html#None">None</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L78">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L78">
       
       (source)
     </a>
@@ -196,7 +196,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan_details</span>(self, task_id):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L170">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L170">
       
       (source)
     </a>
@@ -218,7 +218,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan_metrics</span>(self, task_id):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L187">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L187">
       
       (source)
     </a>
@@ -240,7 +240,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan_status</span>(self, task_id):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L180">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L180">
       
       (source)
     </a>
@@ -262,7 +262,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">verify_uri</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L158">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L158">
       
       (source)
     </a>
@@ -284,7 +284,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">PARAMS</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L31">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L31">
       
       (source)
     </a>
@@ -300,7 +300,30 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
 <span class="rst-variable-string">                            "scope": {</span>
 <span class="rst-variable-string">                                    "include": [{"rule": "$base_url", "type":"Si</span><span class="rst-variable-linewrap">↵</span>
 <span class="rst-variable-string">mpleScopeDef"}],</span>
-<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+<span class="rst-variable-string">                                    "exclude": $exclude_rules</span>
+<span class="rst-variable-string">                                },</span>
+<span class="rst-variable-string">                            "scan_configurations": $scan_configurations</span>
+<span class="rst-variable-string">                            }</span>
+<span class="rst-variable-string">                            </span><span class="rst-variable-quote">'''</span>)),
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">active_scan_with_auth</span><span class="rst-variable-quote">'</span>: (<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">post</span><span class="rst-variable-quote">'</span>,
+                           <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">/scan</span><span class="rst-variable-quote">'</span>,
+                           <wbr></wbr>Template(<wbr></wbr><span class="rst-variable-quote">'''</span><span class="rst-variable-string"></span>
+<span class="rst-variable-string">                            {</span>
+<span class="rst-variable-string">                                "urls" : ["$base_url"],</span>
+<span class="rst-variable-string">                                "scope": {</span>
+<span class="rst-variable-string">                                    "include": [{"rule": "$base_url", "type":"Si</span><span class="rst-variable-linewrap">↵</span>
+<span class="rst-variable-string">mpleScopeDef"}],</span>
+<span class="rst-variable-string">                                    "exclude": $exclude_rules</span>
+<span class="rst-variable-string">                                },</span>
+<span class="rst-variable-string">                                "application_logins": [{</span>
+<span class="rst-variable-string">                                    "password": "$password",</span>
+<span class="rst-variable-string">                                    "username": "$username"</span>
+<span class="rst-variable-string">                                    }],</span>
+<span class="rst-variable-string">                                "scan_configurations": $scan_configurations</span>
+<span class="rst-variable-string">                            }</span>
+<span class="rst-variable-string">                            </span><span class="rst-variable-quote">'''</span>)),
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">scan_details</span><span class="rst-variable-quote">'</span>: (<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">get</span><span class="rst-variable-quote">'</span>, <wbr></wbr>Template(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">/scan/$task_id</span><span class="rst-variable-quote">'</span>), <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None">None</a>),
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">docs</span><span class="rst-variable-quote">'</span>: (<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">get</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">/</span><span class="rst-variable-quote">'</span>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None">None</a>)}</code></pre></td></tr></table>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -314,7 +337,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">api_key</span>: <code>Optional[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L24">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L24">
       
       (source)
     </a>
@@ -337,7 +360,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">api_port</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L22">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L22">
       
       (source)
     </a>
@@ -360,7 +383,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">proxy_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L20">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L20">
       
       (source)
     </a>
@@ -383,7 +406,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     @<a href="https://docs.python.org/3/library/functions.html#property">property</a><br />
     <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L74">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L74">
       
       (source)
     </a>
@@ -406,7 +429,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">_logger</span>: <code>Logger</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L29">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_burp_commander.py#L29">
       
       (source)
     </a>
@@ -427,7 +450,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="container">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    21.12.0 at 2021-12-14 16:41:26.
+    21.12.0 at 2021-12-14 18:36:33.
   </div>
 </footer>
 
