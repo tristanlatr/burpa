@@ -1,11 +1,11 @@
 """
 Welcome to the ``burpa`` API documentation!
 
-Usage
------
-from burpa import Burpa
-burp = Burpa(api_url="localhost")
-burp.scan('http://mysite.com', report_output_dir='.')
+Example
+-------
+>>> from burpa import Burpa
+>>> burp = Burpa(api_url="localhost")
+>>> burp.scan('http://mysite.com', report_output_dir='.')
 
 
 :see: `burpa.Burpa`
