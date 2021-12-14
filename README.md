@@ -74,6 +74,10 @@ export BURP_NEW_API_KEY=""
   You can use `systemctl` or `supervisord` (Linux) or NSSM (Windows) to automatically restart the `burp-rest-api` when it stopped running. 
   This seem to be the only way to reset the scanner to a clean state ([ref](https://github.com/vmware/burp-rest-api/issues/82)). 
 
+### Note
+
+If your URL points to a filename, `burpa` will automatically add the containing directory to the list of seed URLs for the scan. Scanning `http://mysite.com/subfolder/mypage.html?my=1#123` will result into scanning `http://mysite.com/mypage.html?my=1#123` and `http://mysite.com/subfolder`.
+
 ### Python library
 
 [API Reference](https://tristanlatr.github.io/burpa/)

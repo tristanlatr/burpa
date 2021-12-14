@@ -25,7 +25,7 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse, urlunsplit
 from typing import  Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
 
-from filelock import FileLock, Timeout
+from filelock import FileLock, Timeout, BaseFileLock
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
 import attr
@@ -172,7 +172,8 @@ class Burpa:
         authenticated_scans = app_pass and app_user
 
         for target_url in parsed_targets:
-            
+            base_urls = [target_url]
+
             if target_url.upper() == "ALL":
                 history = self._api.proxy_history()
                 if history:
@@ -193,19 +194,21 @@ class Burpa:
                 # add it's parent path if the URL ends with a filename. This makes sure we're not scanning only one file. 
                 path_parts = parsed_url.path.split('/')
                 if os.path.splitext(path_parts[-1])[-1]:
-                    self._api.include(urlunsplit(
-                        (parsed_url.scheme, parsed_url.netloc, '/'.join(path_parts[:-1]), None, None)))
+                    new_base_url = urlunsplit(
+                            (parsed_url.scheme, parsed_url.netloc, '/'.join(path_parts[:-1]), None, None))
+                    self._api.include(new_base_url)
+                    base_urls.append(new_base_url)
 
                 if authenticated_scans:
                 
-                    task_id = self._newapi.active_scan(target_url, 
+                    task_id = self._newapi.active_scan(*base_urls, 
                                                     username=app_user, password=app_pass,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)
                     
                 else:
-                    task_id = self._newapi.active_scan(target_url, 
+                    task_id = self._newapi.active_scan(*base_urls, 
                                                     excluded_urls=excluded_urls,
                                                     config_names=config_names,
                                                     config_json=config_files_content,)
@@ -381,7 +384,7 @@ class Burpa:
         if not self._api.check_proxy_listen_all_interfaces():
             self._api.enable_proxy_listen_all_interfaces(proxy_port=proxy_port)
 
-    def _get_temp_filelocks(self, tempdir: pathlib.Path = TEMP_DIR) -> Iterator[Tuple[pathlib.Path, FileLock]]:
+    def _get_temp_filelocks(self, tempdir: pathlib.Path = TEMP_DIR) -> Iterator[Tuple[pathlib.Path, BaseFileLock]]:
         """
         Get the running scans paths and filelocks. 
         """

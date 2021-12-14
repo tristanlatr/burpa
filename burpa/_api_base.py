@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union, List
 import requests
 import json
 import logging
@@ -45,25 +45,43 @@ class ApiBase:
         
         else:
             return r
+    
+    def _serialize_request_kwargs(self, kwargs:Dict[str, Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]]) -> Dict[str, str]:
+        serialized = {}
+        for k in kwargs:
+            if isinstance(kwargs[k], (list, dict)):
+                serialized[k] = json.dumps(kwargs[k])
+            elif isinstance(kwargs[k], (tuple)):
+                serialized[k] = json.dumps(list(kwargs[k]))
+            else:
+                v = kwargs[k]
+                assert isinstance(v, str)
+                serialized[k] = v
+            
+        return serialized
 
-    def request(self, request: str, timeout: float = 10,  **kwargs: str) -> requests.Response:
+    def request(self, request: str, timeout: float = 10,  **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
         """
         Arguments
         ---------
         request: 
             Name keyword corresponding to the request name in `PARAMS` mapping.
         **kwargs:
-            Template substitutions. 
+            Template substitutions. This can be a string, a dict or a list. 
+            If it's a dict or a list or tuple, it will be automatically serialed as JSON before getting 
+            interpolated with template place holders.
         """
 
         request_template = self.PARAMS[request]
 
         http_method, url_part, data = request_template
 
+        serialized_request_kwargs = self._serialize_request_kwargs(kwargs)
+
         if data != None:
 
             if isinstance(data, Template):
-                data = data.substitute(**kwargs)
+                data = data.substitute(**serialized_request_kwargs)
             
             assert isinstance(data, str)
 
@@ -74,7 +92,7 @@ class ApiBase:
             built_data = None
         
         if isinstance(url_part, Template):
-            built_url_part = url_part.substitute(**kwargs)
+            built_url_part = url_part.substitute(**serialized_request_kwargs)
         elif isinstance(url_part, str):
             built_url_part = url_part
         else:
