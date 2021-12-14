@@ -36,12 +36,6 @@ from ._error import BurpaError
 from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between
 from .__version__ import __version__, __author__
 
-
-# ################[ configuration ]################
-# Slack Report
-SLACK_REPORT = False
-SLACK_API_TOKEN = ""
-SLACK_CHANNEL = "#burpa"
 ###################################################
 
 ASCII = r"""            __                          
@@ -147,7 +141,7 @@ class Burpa:
         # Temp directory in which burpa will store filelocks for each running scans
         TEMP_DIR.mkdir(exist_ok=True)
 
-    def _start_scan(self, *targets: str, excluded: str = "", config: str = "", 
+    def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
             app_user: str = "", app_pass: str = "",) -> List[ScanRecord]:
         """
         Start a Burp Suite active scan.
@@ -165,6 +159,12 @@ class Burpa:
 
         # Parse config str
         config_names = parse_commas_separated_str(config)
+
+        # Parse config file(s)
+        config_files = parse_commas_separated_str(config_file)
+        config_files_content = []
+        for f in config_files:
+            config_files_content.append(open(f, 'r', encoding='utf-8').read())
 
         scan_records = []
 
@@ -191,12 +191,14 @@ class Burpa:
                     task_id = self._newapi.active_scan(target_url, 
                                                     username=app_user, password=app_pass,
                                                     excluded_urls=excluded_urls, 
-                                                    config_names=config_names)
+                                                    config_names=config_names, 
+                                                    config_json=config_files_content,)
                     
                 else:
                     task_id = self._newapi.active_scan(target_url, 
                                                     excluded_urls=excluded_urls,
-                                                    config_names=config_names)
+                                                    config_names=config_names,
+                                                    config_json=config_files_content,)
                 
                 # create scan record
                 record = ScanRecord(task_id=task_id, 
@@ -251,7 +253,8 @@ class Burpa:
                 self._logger.info(f'{k.upper()} = {v}')
 
     def scan(self, *targets: str, report_type: str = "HTML", 
-             report_output_dir: str = "", excluded: str = "", config: str = "",
+             report_output_dir: str = "", excluded: str = "", 
+             config: str = "", config_file: str = "",
              app_user: str = "", 
              app_pass: str = "", ) -> None:
         """
@@ -275,6 +278,8 @@ class Burpa:
             Commas separated values of the URLs to exclude from the scope of the scan.
         config:
             Commas separated values of the scan configuration(s) names to apply.
+        config_file:
+            Commas separated values of the scan configuration(s) JSON file to read and apply.
         app_user: 
             Application username for authenticated scans.
         app_pass: 

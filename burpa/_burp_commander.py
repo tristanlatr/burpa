@@ -77,7 +77,7 @@ class BurpCommander(ApiBase):
 
     def active_scan(self, base_url: str, username: Optional[str] = None, 
                     password: Optional[str] = None, excluded_urls: Optional[List[str]] = None, 
-                    config_names: Optional[List[str]] = None) -> str:
+                    config_names: Optional[List[str]] = None, config_json: Optional[List[str]] = None) -> str:
         """
         Send a URL to Burp to perform active scan, the difference with 
         `BurpRestApiClient.active_scan` is that this method accepts username/password for authenticated scans.
@@ -93,7 +93,9 @@ class BurpCommander(ApiBase):
         excluded_urls
             List of urls to exclude from the scope. 
         config_names
-            List of configuration names to apply.
+            Apply list of configuration names.
+        config_json
+            Apply list of JSON string of configurations exported from Burp.
 
         Returns
         -------
@@ -103,8 +105,15 @@ class BurpCommander(ApiBase):
         def get_exclude_rules(urls: Iterable[str]) -> str:
             return json.dumps(list({"rule": url, "type": "SimpleScopeDef"} for url in urls))
         
-        def get_scan_configurations(names: Iterable[str]) -> str:
-            return json.dumps(list({"name": name, "type": "NamedConfiguration"} for name in names))
+        def get_scan_configurations(names: Optional[Iterable[str]], json_strings: Optional[Iterable[str]]) -> str:
+            conf = []
+            if names:
+                self._logger.info(f"Using scan configuration name(s): {', '.join(names)}")
+                conf.extend(list({"name": name, "type": "NamedConfiguration"} for name in names))
+            if json_strings:
+                self._logger.info(f"Using scan configuration JSON(s): {', '.join(json_strings)}")
+                conf.extend(list({"config": config, "type": "CustomConfiguration"} for config in json_strings))
+            return json.dumps(conf)
 
         if username and not password:
             raise BurpaError(f"Error: Missing password for authenticated scan against {base_url}.")
@@ -114,10 +123,7 @@ class BurpCommander(ApiBase):
         
         try:
 
-            scan_configurations = '[]'
-            if config_names:
-                self._logger.info(f"Using scan configuration(s): {', '.join(config_names)}")
-                scan_configurations = get_scan_configurations(config_names)
+            scan_configurations = get_scan_configurations(names=config_names, json_strings=config_json)
 
             exclude_rules = '[]'
             if excluded_urls:

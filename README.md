@@ -167,6 +167,8 @@ burpa scan <flags> [TARGETS]...
       Commas separated values of the URLs to exclude from the scope of the scan.
   --config=CONFIG
       Commas separated values of the scan configuration(s) names to apply.
+  --config_file=CONFIG_FILE
+      Commas separated values of the scan configuration(s) JSON file to read and apply.
   --app_user=APP_USER
       Application username for authenticated scans.
   --app_pass=APP_PASS
