@@ -1,10 +1,13 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     overflow-y: scroll;
 }
 
 nav.navbar {
     width:100%;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 nav.navbar > .navbar-header {
@@ -25,11 +28,11 @@ nav.navbar > .navbar-header {
     background-color: #fff;
     margin-bottom: 3px;
     border-bottom: 0;
-    box-shadow: 0px 0px 8px 8px #fff;
+    box-shadow: 0 0 8px 8px #fff;
 }
 
 .navbar-brand {
-    padding: 0px;
+    padding: 0;
 }
 
 .navbar-brand a, .navbar-brand span {
@@ -39,12 +42,12 @@ nav.navbar > .navbar-header {
 }
 
 .navbar-brand *:first-child {
-    padding-right: 0px;
+    padding-right: 0;
 }
 
 .navbar-brand *:last-child {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .navbar-brand a:hover {
@@ -52,7 +55,7 @@ nav.navbar > .navbar-header {
     text-decoration: none;
 }
 
-#projecthome:hover {
+a.projecthome:hover {
     color: #23527c;
 }
 
@@ -82,9 +85,22 @@ nav.navbar > .navbar-header {
     margin-bottom: 1.8em;
 }
 
+/* Footer */
+
+footer.navbar {
+    margin: auto 0 0 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #fff;
+    border-width: 1px 0 0 0;
+    border-radius: 0;
+    text-align: center;
+}
+
 a[name] {
     position: relative;
-    bottom: 62px;
+    bottom: 80px;
+    font-size: 0;
 }
 
 ul {
@@ -187,8 +203,9 @@ ul ul ul ul ul ul ul {
     font-size: 14px;
 }
 
-.fieldTable tr:not(.fieldStart) td:first-child{
-    padding-left: 10px;
+.fieldTable tr:not(.fieldStart) td:first-child,
+.valueTable tr:not(.fieldStart) td:first-child{
+    padding: 3px 4px 3px 10px;
 }
 
 .fieldTable tr td {
@@ -199,9 +216,20 @@ ul ul ul ul ul ul ul {
 /* Argument name + type column table  */
 .fieldTable tr td.fieldArgContainer {
     width: 250px;
-    display: flex;
+    word-break: break-word;
+}
+
+/* parameters names in parameters table */
+.fieldTable tr td.fieldArgContainer > .fieldArg {
+    display: inline;
+}
+
+/* parameters types (in parameters table) */
+.fieldTable tr td.fieldArgContainer > code {
+    /* we don't want word break for the types because we already add <wbr> tags inside the type HTML, and that should suffice. */
+    word-break: normal;
+    display: inline-flex;
     flex-wrap: wrap;
-    align-items: center;
 }
 
 /* Argument description column or return value desc, etc */
@@ -218,6 +246,7 @@ ul ul ul ul ul ul ul {
 /* Attr name column table  */
 #splitTables > table tr td:nth-child(2) {
     width: 200px;
+    word-break: break-word;
 }
 
 /* For smaller displays, i.e. half screen or mobile phone */
@@ -227,7 +256,7 @@ ul ul ul ul ul ul ul {
     #splitTables > table {
         table-layout: fixed;
     }
-    
+
     /* Kind column table  */
     #splitTables > table tr td:first-child {
         border-left: none;
@@ -250,14 +279,14 @@ ul ul ul ul ul ul ul {
     /* Argument name + type column table  */
     .fieldTable tr td.fieldArgContainer {
         width: 175px;
-    } 
+    }
 }
 
 @media only screen and (max-width: 400px) {
     /* Argument name + type column table  */
     .fieldTable tr td.fieldArgContainer {
         width: 125px;
-    } 
+    }
 }
 
 tr.package {
@@ -331,19 +360,21 @@ tr.private {
   but also to links that are present in summary tables.
 - 'functionHeader' is used for lines like `def func():` and `var =`
 */
-code, .pre, #childList > div .functionHeader,
+code, .literal, .pre, #childList > div .functionHeader,
 #splitTables > table tr td:nth-child(2), .fieldArg {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 code, #childList > div .functionHeader, .fieldArg {
-    font-size: 90%;
     color: #222222;
 }
-code > a {
+code > a, #childList > div .functionHeader a {
     color:#c7254e;
     background-color:#f9f2f4;
 }
 /* top navagation bar */
+.page-header > h1 {
+    margin-top: 0;
+}
 .page-header > h1 > code {
     color: #971c3a;
 }
@@ -352,7 +383,7 @@ code > a {
 This defines the code style, it's black on light gray.
 It also overwrite the default values inherited from bootstrap min
 */
-code {
+code, .literal {
     padding:2px 4px;
     background-color: #f4f4f4;
     border-radius:4px
@@ -360,9 +391,9 @@ code {
 
 
 a.sourceLink {
-    color: #337ab7;
+    color: #337ab7!important;
     font-weight: normal;
-    background-color: transparent;
+    background-color: transparent!important;
 }
 
 
@@ -387,7 +418,7 @@ a.sourceLink {
 }
 
 pre {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 /* Private stuff */
@@ -398,7 +429,7 @@ body.private-hidden #summaryTree .private {
     display: none;
 }
 
-/* Show private */ 
+/* Show private */
 
 #showPrivate:hover {
     text-decoration: none;
@@ -491,9 +522,33 @@ div.danger p.rst-admonition-title, div.error p.rst-admonition-title, div.caution
 
 div.tip p.rst-admonition-title, div.hint p.rst-admonition-title, div.important p.rst-admonition-title{
     color: #3a87ad;
-} 
+}
 
 div.tip, div.hint, div.important {
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
+
+/* Version modified style */
+.rst-versionmodified {
+    display: block;
+    font-weight: bold;
+}
+
+/* Constant values repr */
+pre.constant-value              { padding: .5em; }
+.rst-variable-linewrap          { color: #604000; font-weight: bold; }
+.rst-variable-ellipsis          { color: #604000; font-weight: bold; }
+.rst-variable-quote             { color: #604000; font-weight: bold; }
+
+/* Those two are currently not used */
+.rst-variable-group             { color: #000000; }
+.rst-variable-op                { color: #000000; }
+
+.rst-variable-string            { color: #337ab7; }
+.rst-variable-unknown           { color: #a00000; font-weight: bold; }
+.rst-re                         { color: #000000; }
+.rst-re-char                    { color: #337ab7; }
+.rst-re-op                      { color: #fc7844; }
+.rst-re-group                   { color: #309078; }
+.rst-re-ref                     { color: #890000; }

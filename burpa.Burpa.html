@@ -7,8 +7,9 @@
   <head>
     
     <title>burpa.Burpa</title>
-    <meta name="generator" content="pydoctor 20.12.1"> 
-        </meta>
+    <meta name="generator" content="pydoctor 21.12.0"> 
+        
+    </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.75" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
@@ -18,7 +19,7 @@
 
   <body>
 
-    <transparent></transparent>
+    
 
     <nav class="navbar navbar-default">
   
@@ -28,7 +29,7 @@
       
       <div class="navlinks">
           <span class="navbar-brand">
-            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.3.2</a> <a href="index.html"> API Documentation </a>
+            <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a> <a href="index.html">API Documentation</a>
           </span>
 
           <a href="moduleIndex.html">
@@ -48,7 +49,7 @@
   </div>
 </nav>
 
-    <transparent></transparent>
+    
 
     <div class="container">
 
@@ -64,7 +65,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L74" class="sourceLink">(source)</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L74" class="sourceLink">(source)</a></code></p>
         <p><a href="classIndex.html#burpa.Burpa">View In Hierarchy</a></p>
       </div>
 
@@ -73,7 +74,7 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id3">
+        <table class="children sortable" id="id9">
   
   
   <tr class="method">
@@ -84,68 +85,48 @@
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#scan">scan</a></code></td>
-    <td><span>Launch an active scan, wait until the end and report the results.</span></td>
+    <td><code><a href="#proxy_listen_all_interfaces">proxy_listen_all_interfaces</a></code></td>
+    <td>Check the Burp proxy configuration to make sure it's running and listening on all interfaces and update the Burp proxy configuration if necessary.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#report">report</a></code></td>
-    <td><span>Generate the reports for the specified targets URLs. If targets is 'all', generate a report that contains all issues for all targets.</span></td>
+    <td>Generate the reports for the specified targets URLs. If targets is 'all', generate a report that contains all issues for all targets.</td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#proxy_listen_all_interfaces">proxy_listen_all_interfaces</a></code></td>
-    <td><span>Check the Burp proxy configuration to make sure it's running and listening on all interfaces and update the Burp proxy configuration if necessary.</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#stop">stop</a></code></td>
-    <td><span>Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or NSSM (Windows) to automatically restart the Burp Suite Service when it stopped running.</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#test">test</a></code></td>
-    <td><span>Test if burpa can connect to Burp Suite REST APIs.</span></td>
+    <td><code><a href="#scan">scan</a></code></td>
+    <td>Launch an active scan, wait until the end and report the results.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#schedule">schedule</a></code></td>
-    <td><span>Launch Burp Suite scans between certain times only.</span></td>
+    <td>Launch Burp Suite scans between certain times only.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stop">stop</a></code></td>
+    <td>Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or NSSM (Windows) to automatically restart the Burp Suite Service when it stopped running.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test">test</a></code></td>
+    <td>Test if burpa can connect to Burp Suite REST APIs.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#version">version</a></code></td>
-    <td><span>Print burpa version and exit.</span></td>
-  </tr><tr class="instancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="#_logger">_logger</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="instancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="#_api">_api</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="instancevariable private">
-    
-    <td>Instance Variable</td>
-    <td><code><a href="#_newapi">_newapi</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td>Print burpa version and exit.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_start_scan">_start_scan</a></code></td>
-    <td><span>Start a Burp Suite active scan.</span></td>
+    <td><code><a href="#_get_running_scans">_get_running_scans</a></code></td>
+    <td>Construct a list of the running scans names from the filelock paths.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_wait_scan">_wait_scan</a></code></td>
-    <td><span>Wait until the end of the scan(s) and set the ScanRecord.status attribute.</span></td>
-  </tr><tr class="method private">
-    
-    <td>Method</td>
-    <td><code><a href="#_scan_metrics">_scan_metrics</a></code></td>
-    <td><span>Print metrics and set the ScanRecord.metrics attribute.</span></td>
+    <td><code><a href="#_get_temp_filelocks">_get_temp_filelocks</a></code></td>
+    <td>Get the running scans paths and filelocks.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -154,13 +135,18 @@
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_get_temp_filelocks">_get_temp_filelocks</a></code></td>
-    <td><span>Get the running scans paths and filelocks.</span></td>
+    <td><code><a href="#_scan_metrics">_scan_metrics</a></code></td>
+    <td>Print metrics and set the ScanRecord.metrics attribute.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_get_running_scans">_get_running_scans</a></code></td>
-    <td><span>Construct a list of the running scans names from the filelock paths.</span></td>
+    <td><code><a href="#_scheduled_scan">_scheduled_scan</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_start_scan">_start_scan</a></code></td>
+    <td>Start a Burp Suite active scan.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -174,7 +160,22 @@
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_scheduled_scan">_scheduled_scan</a></code></td>
+    <td><code><a href="#_wait_scan">_wait_scan</a></code></td>
+    <td>Wait until the end of the scan(s) and set the ScanRecord.status attribute.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_api">_api</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_logger">_logger</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_newapi">_newapi</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -196,8 +197,8 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, api_url='', api_port='8090', new_api_url='', new_api_port='1337', new_api_key='', verbose=False, quiet=False, no_banner=False):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L98">
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, api_url=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, api_port=<span class="rst-variable-quote">'</span><span class="rst-variable-string">8090</span><span class="rst-variable-quote">'</span>, new_api_url=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, new_api_port=<span class="rst-variable-quote">'</span><span class="rst-variable-string">1337</span><span class="rst-variable-quote">'</span>, new_api_key=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, verbose=<a href="https://docs.python.org/3/library/constants.html#False">False</a>, quiet=<a href="https://docs.python.org/3/library/constants.html#False">False</a>, no_banner=<a href="https://docs.python.org/3/library/constants.html#False">False</a>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L98">
       
       (source)
     </a>
@@ -206,211 +207,6 @@
     
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api_url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api_port:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new_api_url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new_api_port:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new_api_key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">verbose:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quiet:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">no_banner:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="baseinstancevariable private">
-  
-  
-  <a name="burpa.Burpa._logger">
-    
-  </a>
-  <a name="_logger">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">_logger</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L107">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseinstancevariable private">
-  
-  
-  <a name="burpa.Burpa._api">
-    
-  </a>
-  <a name="_api">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">_api</span>: <code><a href="burpa.BurpRestApiClient.html">BurpRestApiClient</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L127">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseinstancevariable private">
-  
-  
-  <a name="burpa.Burpa._newapi">
-    
-  </a>
-  <a name="_newapi">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">_newapi</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L130">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._start_scan">
-    
-  </a>
-  <a name="_start_scan">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_start_scan</span>(self, *targets, excluded='', config='', config_file='', app_user='', app_pass=''):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L145">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Start a Burp Suite active scan.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config_file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>ScanRecord]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._wait_scan">
-    
-  </a>
-  <a name="_wait_scan">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_wait_scan</span>(self, *records):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L225">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Wait until the end of the scan(s) and set the ScanRecord.status attribute.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">records:</span><code>ScanRecord</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._scan_metrics">
-    
-  </a>
-  <a name="_scan_metrics">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_scan_metrics</span>(self, *records):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L255">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Print metrics and set the ScanRecord.metrics attribute.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">records:</span><code>ScanRecord</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="burpa.Burpa.scan">
-    
-  </a>
-  <a name="scan">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">scan</span>(self, *targets, report_type='HTML', report_output_dir='', excluded='', config='', config_file='', app_user='', app_pass=''):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L265">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><p>Launch an active scan, wait until the end and report the results.</p>
-<p>It will use the official REST API to launch the scan, and the <code>burp-rest-api</code> to get the pretty HTML report.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Target URL(s) or filename to load target URL(s) from.
-Use 'all' keyword to search in the proxy history and
-load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Burp scan report type (default: HTML).
-Use 'none' to skip reporting.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Directory to store the reports.
-Store report in temp directory if empty.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Commas separated values of the URLs to exclude from the scope of the scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) names to apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config_file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) JSON file to read and apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Application username for authenticated scans.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Application password for authenticated scans</td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._report">
-    
-  </a>
-  <a name="_report">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_report</span>(self, target, report_type, report_output_dir=None):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L331">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code>Optional[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="burpa.Burpa.report">
-    
-  </a>
-  <a name="report">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">report</span>(self, *targets, report_type='HTML', report_output_dir=''):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L356">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Generate the reports for the specified targets URLs.
-If targets is 'all', generate a report that contains all issues for all targets.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -424,7 +220,7 @@ If targets is 'all', generate a report that contains all issues for all targets.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">proxy_listen_all_interfaces</span>(self, proxy_port):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L367">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L367">
       
       (source)
     </a>
@@ -438,19 +234,19 @@ if necessary.</p>
 <p>You might need this if you want to send traffic to the Burp proxy.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy_port:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Burp Proxy Port.</td></tr></table></div>
   </div>
-</div><div class="basemethod private">
+</div><div class="basemethod">
   
   
-  <a name="burpa.Burpa._get_temp_filelocks">
+  <a name="burpa.Burpa.report">
     
   </a>
-  <a name="_get_temp_filelocks">
+  <a name="report">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_get_temp_filelocks</span>(self, tempdir=TEMP_DIR):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L384">
+    <span class="py-keyword">def</span> <span class="py-defname">report</span>(self, *targets, report_type=<span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L356">
       
       (source)
     </a>
@@ -458,65 +254,22 @@ if necessary.</p>
   <div class="docstring functionBody">
     
     
-    <div>Get the running scans paths and filelocks.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tempdir:</span><code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Iterator[<wbr></wbr>Tuple[<wbr></wbr><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a>, <wbr></wbr>FileLock]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._get_running_scans">
-    
-  </a>
-  <a name="_get_running_scans">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_get_running_scans</span>(self, tempdir=TEMP_DIR):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L393">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Construct a list of the running scans names from the filelock paths.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tempdir:</span><code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._stop">
-    
-  </a>
-  <a name="_stop">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_stop</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L408">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
+    <div>Generate the reports for the specified targets URLs.
+If targets is 'all', generate a report that contains all issues for all targets.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
   
-  <a name="burpa.Burpa.stop">
+  <a name="burpa.Burpa.scan">
     
   </a>
-  <a name="stop">
+  <a name="scan">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self, wait='0', force=False):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L421">
+    <span class="py-keyword">def</span> <span class="py-defname">scan</span>(self, *targets, report_type=<span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, excluded=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config_file=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L265">
       
       (source)
     </a>
@@ -524,54 +277,13 @@ if necessary.</p>
   <div class="docstring functionBody">
     
     
-    <div>Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or
-NSSM (Windows) to automatically restart the
-Burp Suite Service when it stopped running.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">If other burpa processes running, number of seconds to wait
-until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">force:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc">Stop Burp even if scans are running.</td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._test">
-    
-  </a>
-  <a name="_test">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_test</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L457">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="burpa.Burpa.test">
-    
-  </a>
-  <a name="test">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">test</span>(self, wait='0'):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L461">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Test if burpa can connect to Burp Suite REST APIs.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Number of seconds to wait until the Burp REST APIs are accessible.</td></tr></table></div>
+    <div><p>Launch an active scan, wait until the end and report the results.</p>
+<p>It will use the official REST API to launch the scan, and the <code>burp-rest-api</code> to get the pretty HTML report.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Target URL(s) or filename to load target URL(s) from.
+Use 'all' keyword to search in the proxy history and
+load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Burp scan report type (default: HTML).
+Use 'none' to skip reporting.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Directory to store the reports.
+Store report in temp directory if empty.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Commas separated values of the URLs to exclude from the scope of the scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) names to apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config_file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) JSON file to read and apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Application username for authenticated scans.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Application password for authenticated scans</td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -584,8 +296,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">schedule</span>(self, *targets, report_type='HTML', report_output_dir='', excluded='', config='', app_user='', app_pass='', begin_time='22:00', end_time='05:00', workers=1):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L485">
+    <span class="py-keyword">def</span> <span class="py-defname">schedule</span>(self, *targets, report_type=<span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, excluded=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, begin_time=<span class="rst-variable-quote">'</span><span class="rst-variable-string">22:00</span><span class="rst-variable-quote">'</span>, end_time=<span class="rst-variable-quote">'</span><span class="rst-variable-string">05:00</span><span class="rst-variable-quote">'</span>, workers=1):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L485">
       
       (source)
     </a>
@@ -595,7 +307,7 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
     
     <div><p>Launch Burp Suite scans between certain times only.</p>
 <p>See 'burpa scan --help' for details on other arguments.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">begin_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><p>At what time to start the scans.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">begin_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><p>At what time to start the scans.
 (Default "22:00")</p>
 <dl class="rst-docutils">
 <dt>Formats should be:</dt>
@@ -605,19 +317,19 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
 Running scans will finish after the end time.
 (Default "05:00")</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">workers:</span><code><a href="https://docs.python.org/3/library/functions.html#int">int</a></code></td><td class="fieldArgDesc">How many asynchronous scans to launch.</td></tr></table></div>
   </div>
-</div><div class="basemethod private">
+</div><div class="basemethod">
   
   
-  <a name="burpa.Burpa._scheduled_scan">
+  <a name="burpa.Burpa.stop">
     
   </a>
-  <a name="_scheduled_scan">
+  <a name="stop">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_scheduled_scan</span>(self, target, begin_time, end_time, **kwargs):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L539">
+    <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self, wait=<span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>, force=<a href="https://docs.python.org/3/library/constants.html#False">False</a>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L421">
       
       (source)
     </a>
@@ -625,7 +337,32 @@ Running scans will finish after the end time.
   <div class="docstring functionBody">
     
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">begin_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">end_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or
+NSSM (Windows) to automatically restart the
+Burp Suite Service when it stopped running.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">If other burpa processes running, number of seconds to wait
+until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">force:</span><code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code></td><td class="fieldArgDesc">Stop Burp even if scans are running.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.Burpa.test">
+    
+  </a>
+  <a name="test">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test</span>(self, wait=<span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L461">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Test if burpa can connect to Burp Suite REST APIs.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">wait:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Number of seconds to wait until the Burp REST APIs are accessible.</td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -639,7 +376,7 @@ Running scans will finish after the end time.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">version</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burpa.py#L554">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L554">
       
       (source)
     </a>
@@ -649,16 +386,286 @@ Running scans will finish after the end time.
     
     <div>Print burpa version and exit.</div>
   </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._get_running_scans">
+    
+  </a>
+  <a name="_get_running_scans">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_running_scans</span>(self, tempdir=TEMP_DIR):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L393">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Construct a list of the running scans names from the filelock paths.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tempdir:</span><code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._get_temp_filelocks">
+    
+  </a>
+  <a name="_get_temp_filelocks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_temp_filelocks</span>(self, tempdir=TEMP_DIR):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L384">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Get the running scans paths and filelocks.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tempdir:</span><code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Iterator[<wbr></wbr>Tuple[<wbr></wbr><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a>, <wbr></wbr>FileLock]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._report">
+    
+  </a>
+  <a name="_report">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_report</span>(self, target, report_type, report_output_dir=<a href="https://docs.python.org/3/library/constants.html#None">None</a>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L331">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report_output_dir:</span><code>Optional[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._scan_metrics">
+    
+  </a>
+  <a name="_scan_metrics">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_scan_metrics</span>(self, *records):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L255">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Print metrics and set the ScanRecord.metrics attribute.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*records:</span><code>ScanRecord</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._scheduled_scan">
+    
+  </a>
+  <a name="_scheduled_scan">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_scheduled_scan</span>(self, target, begin_time, end_time, **kwargs):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L539">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">begin_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">end_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._start_scan">
+    
+  </a>
+  <a name="_start_scan">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_start_scan</span>(self, *targets, excluded=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config_file=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L145">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Start a Burp Suite active scan.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*targets:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config_file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>ScanRecord]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._stop">
+    
+  </a>
+  <a name="_stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_stop</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L408">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._test">
+    
+  </a>
+  <a name="_test">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_test</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L457">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa.Burpa._wait_scan">
+    
+  </a>
+  <a name="_wait_scan">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_wait_scan</span>(self, *records):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L225">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Wait until the end of the scan(s) and set the ScanRecord.status attribute.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*records:</span><code>ScanRecord</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="burpa.Burpa._api">
+    
+  </a>
+  <a name="_api">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_api</span>: <code><a href="burpa.BurpRestApiClient.html">BurpRestApiClient</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="burpa.Burpa._logger">
+    
+  </a>
+  <a name="_logger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_logger</span> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="burpa.Burpa._newapi">
+    
+  </a>
+  <a name="_newapi">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_newapi</span> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burpa.py#L130">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
 </div>
 
       </div>
-      <address>
-        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.3.2, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-12-14 16:34:07.
-      </address>
-
     </div>
 
-    <transparent></transparent>
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a>,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.12.0 at 2021-12-14 16:41:26.
+  </div>
+</footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>
 

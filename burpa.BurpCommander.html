@@ -7,8 +7,9 @@
   <head>
     
     <title>burpa.BurpCommander</title>
-    <meta name="generator" content="pydoctor 20.12.1"> 
-        </meta>
+    <meta name="generator" content="pydoctor 21.12.0"> 
+        
+    </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.75" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
@@ -18,7 +19,7 @@
 
   <body>
 
-    <transparent></transparent>
+    
 
     <nav class="navbar navbar-default">
   
@@ -28,7 +29,7 @@
       
       <div class="navlinks">
           <span class="navbar-brand">
-            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.3.2</a> <a href="index.html"> API Documentation </a>
+            <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a> <a href="index.html">API Documentation</a>
           </span>
 
           <a href="moduleIndex.html">
@@ -48,7 +49,7 @@
   </div>
 </nav>
 
-    <transparent></transparent>
+    
 
     <div class="container">
 
@@ -64,7 +65,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">BurpCommander</span>(<a href="burpa._api_base.ApiBase.html" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L13" class="sourceLink">(source)</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">BurpCommander</span>(<a href="burpa._api_base.ApiBase.html" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L13" class="sourceLink">(source)</a></code></p>
         <p><a href="classIndex.html#burpa.BurpCommander">View In Hierarchy</a></p>
       </div>
 
@@ -74,13 +75,43 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id6">
+        <table class="children sortable" id="id12">
   
   
-  <tr class="instancevariable">
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#active_scan">active_scan</a></code></td>
+    <td>Send a URL to Burp to perform active scan, the difference with <code><a href="burpa.BurpRestApiClient.html#active_scan">BurpRestApiClient.active_scan</a></code> is that this method accepts username/password for authenticated scans.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_details">scan_details</a></code></td>
+    <td>Get the scan details: Status, Metrics, Issues etc.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_metrics">scan_metrics</a></code></td>
+    <td>Get the metrics of a specific scan ID</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_status">scan_status</a></code></td>
+    <td>Get the status of a specific scan ID</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#verify_uri">verify_uri</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#PARAMS">PARAMS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
-    <td><code><a href="#proxy_url">proxy_url</a></code></td>
+    <td><code><a href="#api_key">api_key</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
@@ -90,43 +121,13 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
-    <td><code><a href="#api_key">api_key</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="classvariable">
-    
-    <td>Class Variable</td>
-    <td><code><a href="#PARAMS">PARAMS</a></code></td>
+    <td><code><a href="#proxy_url">proxy_url</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#proxy_uri">proxy_uri</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#active_scan">active_scan</a></code></td>
-    <td><span>Send a URL to Burp to perform active scan, the difference with <code><a href="burpa.BurpRestApiClient.html#active_scan">BurpRestApiClient.active_scan</a></code> is that this method accepts username/password for authenticated scans.</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#verify_uri">verify_uri</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#scan_details">scan_details</a></code></td>
-    <td><span>Get the scan details: Status, Metrics, Issues etc.</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#scan_status">scan_status</a></code></td>
-    <td><span>Get the status of a specific scan ID</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#scan_metrics">scan_metrics</a></code></td>
-    <td><span>Get the metrics of a specific scan ID</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
@@ -138,7 +139,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
           <p class="inheritedFrom">
             Inherited from <code><a href="burpa._api_base.ApiBase.html">ApiBase</a></code>:
           </p>
-          <table class="children sortable" id="id7">
+          <table class="children sortable" id="id13">
   
   
   <tr class="basemethod">
@@ -160,139 +161,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
 
       <div id="childList">
 
-        <div class="baseinstancevariable">
-  
-  
-  <a name="burpa.BurpCommander.proxy_url">
-    
-  </a>
-  <a name="proxy_url">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">proxy_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L20">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseinstancevariable">
-  
-  
-  <a name="burpa.BurpCommander.api_port">
-    
-  </a>
-  <a name="api_port">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">api_port</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L22">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseinstancevariable">
-  
-  
-  <a name="burpa.BurpCommander.api_key">
-    
-  </a>
-  <a name="api_key">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">api_key</span>: <code>Optional</code>[<code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>] =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L24">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseinstancevariable private">
-  
-  
-  <a name="burpa.BurpCommander._logger">
-    
-  </a>
-  <a name="_logger">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">_logger</span>: <code>Logger</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L29">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#_logger">burpa._api_base.ApiBase._logger</a></code></div>
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseclassvariable">
-  
-  
-  <a name="burpa.BurpCommander.PARAMS">
-    
-  </a>
-  <a name="PARAMS">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">PARAMS</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L31">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#PARAMS">burpa._api_base.ApiBase.PARAMS</a></code></div>
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseproperty">
-  
-  
-  <a name="burpa.BurpCommander.proxy_uri">
-    
-  </a>
-  <a name="proxy_uri">
-    
-  </a>
-  <div class="functionHeader">
-    @property<br />
-    <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L74">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#proxy_uri">burpa._api_base.ApiBase.proxy_uri</a></code></div>
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="basemethod">
+        <div class="basemethod">
   
   
   <a name="burpa.BurpCommander.active_scan">
@@ -303,8 +172,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">active_scan</span>(self, base_url, username=None, password=None, excluded_urls=None, config_names=None, config_json=None):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L78">
+    <span class="py-keyword">def</span> <span class="py-defname">active_scan</span>(self, base_url, username=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, password=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, excluded_urls=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, config_names=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, config_json=<a href="https://docs.python.org/3/library/constants.html#None">None</a>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L78">
       
       (source)
     </a>
@@ -318,28 +187,6 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
 </div><div class="basemethod">
   
   
-  <a name="burpa.BurpCommander.verify_uri">
-    
-  </a>
-  <a name="verify_uri">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">verify_uri</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L158">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="burpa.BurpaError.html">BurpaError</a></code></td><td>If cannot connect to Burp Official REST API.</td></tr></table></div>
-  </div>
-</div><div class="basemethod">
-  
-  
   <a name="burpa.BurpCommander.scan_details">
     
   </a>
@@ -349,7 +196,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan_details</span>(self, task_id):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L170">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L170">
       
       (source)
     </a>
@@ -358,28 +205,6 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
     
     
     <div>Get the scan details: Status, Metrics, Issues etc.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">task_id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Dict[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr>Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="burpa.BurpCommander.scan_status">
-    
-  </a>
-  <a name="scan_status">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">scan_status</span>(self, task_id):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L180">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div>Get the status of a specific scan ID<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">task_id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -393,7 +218,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan_metrics</span>(self, task_id):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_burp_commander.py#L187">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L187">
       
       (source)
     </a>
@@ -403,16 +228,208 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
     
     <div>Get the metrics of a specific scan ID<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">task_id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Dict[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr>Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpCommander.scan_status">
+    
+  </a>
+  <a name="scan_status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_status</span>(self, task_id):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L180">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Get the status of a specific scan ID<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">task_id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="burpa.BurpCommander.verify_uri">
+    
+  </a>
+  <a name="verify_uri">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">verify_uri</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L158">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="burpa.BurpaError.html">BurpaError</a></code></td><td>If cannot connect to Burp Official REST API.</td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="burpa.BurpCommander.PARAMS">
+    
+  </a>
+  <a name="PARAMS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">PARAMS</span> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L31">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#PARAMS">burpa._api_base.ApiBase.PARAMS</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">active_scan</span><span class="rst-variable-quote">'</span>: (<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">post</span><span class="rst-variable-quote">'</span>,
+                 <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">/scan</span><span class="rst-variable-quote">'</span>,
+                 <wbr></wbr>Template(<wbr></wbr><span class="rst-variable-quote">'''</span><span class="rst-variable-string">{ </span>
+<span class="rst-variable-string">                            "urls" : ["$base_url"],</span>
+<span class="rst-variable-string">                            "scope": {</span>
+<span class="rst-variable-string">                                    "include": [{"rule": "$base_url", "type":"Si</span><span class="rst-variable-linewrap">↵</span>
+<span class="rst-variable-string">mpleScopeDef"}],</span>
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="burpa.BurpCommander.api_key">
+    
+  </a>
+  <a name="api_key">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">api_key</span>: <code>Optional[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L24">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="burpa.BurpCommander.api_port">
+    
+  </a>
+  <a name="api_port">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">api_port</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L22">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="burpa.BurpCommander.proxy_url">
+    
+  </a>
+  <a name="proxy_url">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">proxy_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L20">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="burpa.BurpCommander.proxy_uri">
+    
+  </a>
+  <a name="proxy_uri">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property">property</a><br />
+    <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#proxy_uri">burpa._api_base.ApiBase.proxy_uri</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="burpa.BurpCommander._logger">
+    
+  </a>
+  <a name="_logger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_logger</span>: <code>Logger</code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_burp_commander.py#L29">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="burpa._api_base.ApiBase.html#_logger">burpa._api_base.ApiBase._logger</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
 </div>
 
       </div>
-      <address>
-        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.3.2, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-12-14 16:34:07.
-      </address>
-
     </div>
 
-    <transparent></transparent>
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a>,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.12.0 at 2021-12-14 16:41:26.
+  </div>
+</footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>
 

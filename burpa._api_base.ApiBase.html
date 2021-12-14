@@ -7,8 +7,9 @@
   <head>
     
     <title>burpa._api_base.ApiBase</title>
-    <meta name="generator" content="pydoctor 20.12.1"> 
-        </meta>
+    <meta name="generator" content="pydoctor 21.12.0"> 
+        
+    </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.75" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
@@ -18,7 +19,7 @@
 
   <body>
 
-    <transparent></transparent>
+    
 
     <nav class="navbar navbar-default">
   
@@ -28,7 +29,7 @@
       
       <div class="navlinks">
           <span class="navbar-brand">
-            <a href="https://github.com/tristanlatr/burpa" id="projecthome">burpa: Burp Automator 0.3.2</a> <a href="index.html"> API Documentation </a>
+            <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a> <a href="index.html">API Documentation</a>
           </span>
 
           <a href="moduleIndex.html">
@@ -48,7 +49,7 @@
   </div>
 </nav>
 
-    <transparent></transparent>
+    
 
     <div class="container">
 
@@ -64,7 +65,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">ApiBase</span>: <a href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_api_base.py#L9" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ApiBase</span>: <a href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_api_base.py#L9" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></p>
         <p><a href="classIndex.html#burpa._api_base.ApiBase">View In Hierarchy</a></p>
       </div>
 
@@ -73,12 +74,17 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id10">
+        <table class="children sortable" id="id5">
   
   
-  <tr class="classvariable">
+  <tr class="method">
     
-    <td>Class Variable</td>
+    <td>Method</td>
+    <td><code><a href="#request">request</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
     <td><code><a href="#PARAMS">PARAMS</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="property">
@@ -86,20 +92,15 @@
     <td>Property</td>
     <td><code><a href="#proxy_uri">proxy_uri</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="method">
-    
-    <td>Method</td>
-    <td><code><a href="#request">request</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
-  </tr><tr class="classvariable private">
-    
-    <td>Class Variable</td>
-    <td><code><a href="#_logger">_logger</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
     <td><code><a href="#_api_request">_api_request</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_logger">_logger</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -110,7 +111,29 @@
 
       <div id="childList">
 
-        <div class="baseclassvariable">
+        <div class="basemethod">
+  
+  
+  <a name="burpa._api_base.ApiBase.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">request</span>(self, request, timeout=10, **kwargs):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_api_base.py#L49">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Name keyword corresponding to the request name in <code><a href="#PARAMS">PARAMS</a></code> mapping.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span><code><a href="https://docs.python.org/3/library/functions.html#float">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Template substitutions.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
   
   
   <a name="burpa._api_base.ApiBase.PARAMS">
@@ -122,7 +145,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">PARAMS</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/string.html#string.Template">Template</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/string.html#string.Template">Template</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None">None</a>]]]</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_api_base.py#L14">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_api_base.py#L14">
       
       (source)
     </a>
@@ -131,6 +154,52 @@
     <div class="interfaceinfo">overridden in <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></div>
     
     <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{}</code></pre></td></tr></table>
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="burpa._api_base.ApiBase.proxy_uri">
+    
+  </a>
+  <a name="proxy_uri">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property">property</a><br />
+    <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_api_base.py#L18">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa._api_base.ApiBase._api_request">
+    
+  </a>
+  <a name="_api_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_api_request</span>(self, http_method, url, data=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, request_args=<a href="https://docs.python.org/3/library/constants.html#None">None</a>):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_api_base.py#L22">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">http_method:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassvariable private">
   
@@ -144,7 +213,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">_logger</span>: <code><a href="https://docs.python.org/3/library/logging.html#logging.Logger">logging.Logger</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_api_base.py#L16">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/fa48f4865f8f2b62f0d52138c73c67664049dc1b/burpa/_api_base.py#L16">
       
       (source)
     </a>
@@ -153,83 +222,21 @@
     <div class="interfaceinfo">overridden in <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></div>
     
     <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseproperty">
-  
-  
-  <a name="burpa._api_base.ApiBase.proxy_uri">
     
-  </a>
-  <a name="proxy_uri">
-    
-  </a>
-  <div class="functionHeader">
-    @property<br />
-    <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_api_base.py#L18">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    <div class="interfaceinfo">overridden in <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></div>
-    
-    <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa._api_base.ApiBase._api_request">
-    
-  </a>
-  <a name="_api_request">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_api_request</span>(self, http_method, url, data=None, request_args=None):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_api_base.py#L22">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">http_method:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod">
-  
-  
-  <a name="burpa._api_base.ApiBase.request">
-    
-  </a>
-  <a name="request">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">request</span>(self, request, timeout=10, **kwargs):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.2/burpa/_api_base.py#L49">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    
-    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Name keyword corresponding to the request name in <code><a href="#PARAMS">PARAMS</a></code> mapping.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span><code><a href="https://docs.python.org/3/library/functions.html#float">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Template substitutions.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div>
 
       </div>
-      <address>
-        <a href="index.html">API Documentation</a> for burpa: Burp Automator 0.3.2, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-12-14 16:34:07.
-      </address>
-
     </div>
 
-    <transparent></transparent>
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a>,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.12.0 at 2021-12-14 16:41:26.
+  </div>
+</footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>
 
