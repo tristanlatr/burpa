@@ -38,6 +38,7 @@ pydoctor \
     --quiet \
     --project-base-dir="$( dirname "$DIR" )"\
     --docformat=numpy \
+    --pyval-repr-maxlines=0 \
     --intersphinx=https://docs.python.org/3/objects.inv \
     --html-output="${docs_folder}" \
     ./burpa
