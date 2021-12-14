@@ -17,6 +17,6 @@ trap "kill $testserverpid" EXIT
 sleep 0.1
 
 # Figure out the IP address
-IP_address = $(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1 | strings)
+IP_address=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1 | strings)
 
 env BURPA_TESTING_IP=$IP_address $SCRIPT_DIR/tests.bats
