@@ -65,7 +65,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">ApiBase</span>: <a href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_api_base.py#L9" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ApiBase</span>: <a href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L9" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="burpa.BurpCommander.html">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html">burpa.BurpRestApiClient</a></code></p>
         <p><a href="classIndex.html#burpa._api_base.ApiBase">View In Hierarchy</a></p>
       </div>
 
@@ -97,6 +97,11 @@
     <td>Method</td>
     <td><code><a href="#_api_request">_api_request</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_serialize_request_kwargs">_serialize_request_kwargs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="classvariable private">
     
     <td>Class Variable</td>
@@ -123,7 +128,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">request</span>(self, request, timeout=10, **kwargs):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_api_base.py#L49">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L63">
       
       (source)
     </a>
@@ -131,7 +136,9 @@
   <div class="docstring functionBody">
     
     
-    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Name keyword corresponding to the request name in <code><a href="#PARAMS">PARAMS</a></code> mapping.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span><code><a href="https://docs.python.org/3/library/functions.html#float">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Template substitutions.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc">Name keyword corresponding to the request name in <code><a href="#PARAMS">PARAMS</a></code> mapping.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span><code><a href="https://docs.python.org/3/library/functions.html#float">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc">Template substitutions. This can be a string, a dict or a list.
+If it's a dict or a list or tuple, it will be automatically serialed as JSON before getting
+interpolated with template place holders.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseconstant">
   
@@ -145,7 +152,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">PARAMS</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/string.html#string.Template">Template</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/string.html#string.Template">Template</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None">None</a>]]]</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_api_base.py#L14">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L14">
       
       (source)
     </a>
@@ -168,7 +175,7 @@
   <div class="functionHeader">
     @<a href="https://docs.python.org/3/library/functions.html#property">property</a><br />
     <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_api_base.py#L18">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L18">
       
       (source)
     </a>
@@ -191,7 +198,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_api_request</span>(self, http_method, url, data=<a href="https://docs.python.org/3/library/constants.html#None">None</a>, request_args=<a href="https://docs.python.org/3/library/constants.html#None">None</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_api_base.py#L22">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L22">
       
       (source)
     </a>
@@ -200,6 +207,28 @@
     
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">http_method:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="burpa._api_base.ApiBase._serialize_request_kwargs">
+    
+  </a>
+  <a name="_serialize_request_kwargs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_serialize_request_kwargs</span>(self, kwargs):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L49">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassvariable private">
   
@@ -213,7 +242,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">_logger</span>: <code><a href="https://docs.python.org/3/library/logging.html#logging.Logger">logging.Logger</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/2ef1d13351bea39de849ed56acf89b85fd175f28/burpa/_api_base.py#L16">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3464defacfc54cac8cdebbf8ef32b378652d5bc8/burpa/_api_base.py#L16">
       
       (source)
     </a>
@@ -234,7 +263,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.2</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    21.12.0 at 2021-12-14 18:36:33.
+    21.12.0 at 2021-12-14 21:23:37.
   </div>
 </footer>
 
