@@ -16,12 +16,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from logging import getLogger
-import os
+import os.path
 import sys
 import traceback
 import pathlib
 from time import sleep
 from datetime import datetime, timedelta
+from urllib.parse import urlparse, urlunsplit
 from typing import  Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
 
 from filelock import FileLock, Timeout
@@ -184,7 +185,16 @@ class Burpa:
                 # The targets are included in the BurpCommander.active_scan API call BUT 
                 # in orer to activate the project option "Drop all request outside of the scope", 
                 # we need to add them preventively to the project scope before launching the scan. 
-                self._api.include(target_url)
+                parsed_url = urlparse(target_url)
+                self._api.include(urlunsplit(
+                        (parsed_url.scheme, parsed_url.netloc, parsed_url.path, None, None)))
+                
+                # In order to be sure we're correctly scanning the website, we process the URL in order to
+                # add it's parent path if the URL ends with a filename. This makes sure we're not scanning only one file. 
+                path_parts = parsed_url.path.split('/')
+                if os.path.splitext(path_parts[-1])[-1]:
+                    self._api.include(urlunsplit(
+                        (parsed_url.scheme, parsed_url.netloc, '/'.join(path_parts[:-1]), None, None)))
 
                 if authenticated_scans:
                 
