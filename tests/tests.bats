@@ -11,12 +11,6 @@ echo "Running burpa tests on IP: $TEST_IP"
 load "$HERE/bats-support/load.bash"
 load "$HERE/bats-assert/load.bash"
 
-function setup {
-}
-
-function teardown {
-}
-
 @test "Test simple scan" {
 
     run python3 -m burpa scan https://$TEST_IP:4443
