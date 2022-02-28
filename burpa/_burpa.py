@@ -72,6 +72,8 @@ class ScanRecord:
 SCAN_STATUS_FINISHED = ("paused", "succeeded", "failed")
 
 class Burpa:
+    # TODO: api_key
+    #        Burp REST API Extension API Key. Environment variable: 'BURP_API_KEY'.
     """
     High level interface for the Burp Suite Security Tool.
 
@@ -415,7 +417,7 @@ class Burpa:
         
         while True:
             try:
-                self._api.request("docs", timeout=0.1)
+                self._api.request("docs", requestargs=dict(timeout=0.1))
             except BurpaError:
                 break
             else:

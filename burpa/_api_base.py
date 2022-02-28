@@ -23,7 +23,7 @@ class ApiBase:
                      http_method: str,
                      url: str,
                      data: Optional[Dict[str, Any]]=None,
-                     request_args:  Optional[Dict[str, Any]]=None,
+                     requestargs:  Optional[Dict[str, Any]]=None,
                      ) -> requests.Response:
         r = None
         
@@ -32,7 +32,7 @@ class ApiBase:
             self._logger.debug(f"Requesting HTTP {http_method.upper()}: {url}, body={data}")
 
             _request_args: Dict[str, Any] = dict(method=http_method, url=url, json=data)
-            if request_args: _request_args.update(request_args)
+            if requestargs: _request_args.update(requestargs)
 
             r = requests.request(**_request_args)
             
@@ -60,12 +60,15 @@ class ApiBase:
             
         return serialized
 
-    def request(self, request: str, timeout: float = 10,  **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
+    def request(self, request: str, requestargs:  Optional[Dict[str, Any]]=None, 
+                **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
         """
         Arguments
         ---------
         request: 
             Name keyword corresponding to the request name in `PARAMS` mapping.
+        requestargs:
+            Arguments to pass to `requests.request`.
         **kwargs:
             Template substitutions. This can be a string, a dict or a list. 
             If it's a dict or a list or tuple, it will be automatically serialed as JSON before getting 
@@ -102,6 +105,6 @@ class ApiBase:
         
         response = self._api_request(http_method=http_method, 
                                      url=f"{self.proxy_uri}{built_url_part}", 
-                                     data=built_data, request_args=dict(timeout=timeout))
+                                     data=built_data, requestargs=requestargs)
 
         return response
