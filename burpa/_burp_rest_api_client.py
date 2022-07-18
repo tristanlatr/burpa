@@ -1,9 +1,9 @@
 from logging import Logger
 import os
-import re
+import requests
 import tempfile
 import time
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 import attr
 
 from string import Template
@@ -27,6 +27,7 @@ class BurpRestApiClient(ApiBase):
 
     proxy_url: str
     api_port: str = "8090"
+    api_key: Optional[str] = None
     _logger: Logger = attr.ib(factory=lambda : setup_logger('BurpRestApiClient'))
 
     PARAMS = {
@@ -126,6 +127,17 @@ class BurpRestApiClient(ApiBase):
     @property
     def proxy_uri(self) -> str:
         return f"{self.proxy_url}:{self.api_port}"
+
+    def request(self, request: str, requestargs: Optional[Dict[str, Any]] = None, 
+                **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
+        
+        # Set API-KEY header if self.api_key is not None.
+        if self.api_key is not None:
+            requestargs = requestargs or {}
+            headers = requestargs.setdefault('headers', {})
+            headers['API-KEY'] = self.api_key
+
+        return super().request(request, requestargs, **kwargs)
 
     def check_proxy_listen_all_interfaces(self) -> bool:
         """

@@ -72,8 +72,6 @@ class ScanRecord:
 SCAN_STATUS_FINISHED = ("paused", "succeeded", "failed")
 
 class Burpa:
-    # TODO: api_key
-    #        Burp REST API Extension API Key. Environment variable: 'BURP_API_KEY'.
     """
     High level interface for the Burp Suite Security Tool.
 
@@ -83,6 +81,8 @@ class Burpa:
         Burp Suite REST API Extension URL. Environment variable: 'BURP_API_URL'.
     api_port
         Burp REST API Extension Port (default: 8090). Environment variable: 'BURP_API_PORT'.
+    api_key
+        Burp REST API Extension API key authentication. Environment variable: 'BURP_API_KEY'.
     new_api_url
         Burp Suite Official REST API URL (default: Same as api_url). Environment variable: 'BURP_NEW_API_URL'.
     new_api_port
@@ -99,6 +99,7 @@ class Burpa:
 
     def __init__(self, api_url: str = "",
                 api_port: str = "8090",
+                api_key: Optional[str] = "",
                 new_api_url: str = "",
                 new_api_port: str = "1337",
                 new_api_key: str = "",
@@ -119,6 +120,8 @@ class Burpa:
 
         api_url = ensure_scheme(os.getenv('BURP_API_URL') or api_url)
         api_port = os.getenv('BURP_API_PORT') or api_port
+        api_key = os.getenv('BURP_API_KEY') or api_key or None
+
         new_api_url = ensure_scheme(os.getenv('BURP_NEW_API_URL') or new_api_url)
         new_api_port = os.getenv('BURP_NEW_API_PORT') or new_api_port
         new_api_key = os.getenv('BURP_NEW_API_KEY') or new_api_key
@@ -126,7 +129,7 @@ class Burpa:
         if not api_url:
             self._logger.warning("You must configure api_url or 'BURP_API_URL' environment variable to communicate with Burp Suite. ")
 
-        self._api: BurpRestApiClient = BurpRestApiClient(proxy_url=api_url, api_port=api_port, 
+        self._api: BurpRestApiClient = BurpRestApiClient(proxy_url=api_url, api_port=api_port, api_key=api_key,
                                         logger=setup_logger('BurpRestApiClient', verbose=verbose, quiet=quiet))
         if new_api_url:
             self._newapi = BurpCommander(proxy_url=new_api_url,

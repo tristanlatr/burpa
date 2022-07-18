@@ -135,9 +135,11 @@ INFO - Scan report saved to /tmp/burp-reports/burp-report_20210317-163223_http10
 burpa [COMMAND]
 
   --api-url=API_URL
-    Burp Suite REST API Extension URL. Environment variable: 'BURP_API_URL'.
+      Burp Suite REST API Extension URL. Environment variable: 'BURP_API_URL'.
   --api-port=API_PORT
       Burp REST API Extension Port (default: 8090). Environment variable: 'BURP_API_PORT'.
+  --api-key=API_KEY
+      Burp REST API Extension API key authentication. Environment variable: 'BURP_API_KEY'.
   --new-api-url=NEW_API_URL
       Burp Suite Official REST API URL (default: Same as api_url). Environment variable: 'BURP_NEW_API_URL'.
   --new-api-port=NEW_API_PORT
