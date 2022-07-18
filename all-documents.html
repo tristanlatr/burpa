@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+  <head>
+    
+    <title>All Documents</title>
+    <meta name="generator" content="pydoctor 22.7.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+  <body>
+    
+
+    
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.3</a> <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+    
+    
+    <div class="container">
+      <h1>All Documents</h1>
+
+       <ul>
+          <li id="burpa">
+            
+            <div class="fullName">burpa</div>
+            <div class="url">index.html</div>
+            <div class="type">Package</div>
+            <div class="kind">Package</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Welcome to the <tt class="rst-docutils literal">burpa</tt> API documentation!</div>
+          </li><li id="burpa.__main__">
+            
+            <div class="fullName">burpa<wbr></wbr>.__main__</div>
+            <div class="url">burpa.__main__.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.__version__">
+            
+            <div class="fullName">burpa<wbr></wbr>.__version__</div>
+            <div class="url">burpa.__version__.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._api_base">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base</div>
+            <div class="url">burpa._api_base.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">No module docstring; 1/1 class documented</span></div>
+          </li><li id="burpa._burp_commander">
+            
+            <div class="fullName">burpa<wbr></wbr>._burp<wbr></wbr>_commander</div>
+            <div class="url">burpa._burp_commander.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burp_rest_api_client">
+            
+            <div class="fullName">burpa<wbr></wbr>._burp<wbr></wbr>_rest<wbr></wbr>_api<wbr></wbr>_client</div>
+            <div class="url">burpa._burp_rest_api_client.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa</div>
+            <div class="url">burpa._burpa.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">No module docstring; 0/3 constant, 0/1 function, 1/1 class documented</span></div>
+          </li><li id="burpa._error">
+            
+            <div class="fullName">burpa<wbr></wbr>._error</div>
+            <div class="url">burpa._error.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._utils">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils</div>
+            <div class="url">burpa._utils.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">No module docstring; 2/7 functions documented</span></div>
+          </li><li id="burpa._api_base.ApiBase">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base</div>
+            <div class="url">burpa._api_base.ApiBase.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Base class for API wrapper classes that works by storing the API calls in templates.</div>
+          </li><li id="burpa._api_base.ApiBase.PARAMS">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>.PARAMS</div>
+            <div class="url">burpa._api_base.ApiBase.html#PARAMS</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._api_base.ApiBase._logger">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>._logger</div>
+            <div class="url">burpa._api_base.ApiBase.html#_logger</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Class Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._api_base.ApiBase.proxy_uri">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>.proxy<wbr></wbr>_uri</div>
+            <div class="url">burpa._api_base.ApiBase.html#proxy_uri</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._api_base.ApiBase._api_request">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>._api<wbr></wbr>_request</div>
+            <div class="url">burpa._api_base.ApiBase.html#_api_request</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._api_base.ApiBase._serialize_request_kwargs">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>._serialize<wbr></wbr>_request<wbr></wbr>_kwargs</div>
+            <div class="url">burpa._api_base.ApiBase.html#_serialize_request_kwargs</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._api_base.ApiBase.request">
+            
+            <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>.request</div>
+            <div class="url">burpa._api_base.ApiBase.html#request</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No summary</span></div>
+          </li><li id="burpa._utils.get_valid_filename">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.get<wbr></wbr>_valid<wbr></wbr>_filename</div>
+            <div class="url">burpa._utils.html#get_valid_filename</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think</div>
+          </li><li id="burpa._utils.parse_commas_separated_str">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.parse<wbr></wbr>_commas<wbr></wbr>_separated<wbr></wbr>_str</div>
+            <div class="url">burpa._utils.html#parse_commas_separated_str</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._utils.parse_targets">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.parse<wbr></wbr>_targets</div>
+            <div class="url">burpa._utils.html#parse_targets</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._utils.ensure_scheme">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.ensure<wbr></wbr>_scheme</div>
+            <div class="url">burpa._utils.html#ensure_scheme</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._utils.setup_logger">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.setup<wbr></wbr>_logger</div>
+            <div class="url">burpa._utils.html#setup_logger</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._utils.perform">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.perform</div>
+            <div class="url">burpa._utils.html#perform</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Wrapper arround executable and a list of objects. Will execute the callable on each object of the list. Parameters:</div>
+          </li><li id="burpa._utils.is_timenow_between">
+            
+            <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.is<wbr></wbr>_timenow<wbr></wbr>_between</div>
+            <div class="url">burpa._utils.html#is_timenow_between</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.__version__.__author__">
+            
+            <div class="fullName">burpa<wbr></wbr>.__version__<wbr></wbr>.__author__</div>
+            <div class="url">burpa.__version__.html#__author__</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.__version__.__version__">
+            
+            <div class="fullName">burpa<wbr></wbr>.__version__<wbr></wbr>.__version__</div>
+            <div class="url">burpa.__version__.html#__version__</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ASCII">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.ASCII</div>
+            <div class="url">burpa._burpa.html#ASCII</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.TEMP_DIR">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.TEMP<wbr></wbr>_DIR</div>
+            <div class="url">burpa._burpa.html#TEMP_DIR</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record</div>
+            <div class="url">burpa._burpa.ScanRecord.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Temporary record represents a running scan.</div>
+          </li><li id="burpa._burpa.ScanRecord.task_id">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.task<wbr></wbr>_id</div>
+            <div class="url">burpa._burpa.ScanRecord.html#task_id</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord.target_url">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.target<wbr></wbr>_url</div>
+            <div class="url">burpa._burpa.ScanRecord.html#target_url</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord.date_time">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.date<wbr></wbr>_time</div>
+            <div class="url">burpa._burpa.ScanRecord.html#date_time</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord.status">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.status</div>
+            <div class="url">burpa._burpa.ScanRecord.html#status</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord.metrics">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.metrics</div>
+            <div class="url">burpa._burpa.ScanRecord.html#metrics</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord.name">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.name</div>
+            <div class="url">burpa._burpa.ScanRecord.html#name</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">This name is used as the filename for the file lock.</div>
+          </li><li id="burpa._burpa.SCAN_STATUS_FINISHED">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.SCAN<wbr></wbr>_STATUS<wbr></wbr>_FINISHED</div>
+            <div class="url">burpa._burpa.html#SCAN_STATUS_FINISHED</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.main">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.main</div>
+            <div class="url">burpa._burpa.html#main</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa</div>
+            <div class="url">burpa.Burpa.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">High level interface for the Burp Suite Security Tool.</div>
+          </li><li id="burpa.Burpa.__init__">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.__init__</div>
+            <div class="url">burpa.Burpa.html#__init__</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa._logger">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._logger</div>
+            <div class="url">burpa.Burpa.html#_logger</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa._api">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._api</div>
+            <div class="url">burpa.Burpa.html#_api</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa._newapi">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._newapi</div>
+            <div class="url">burpa.Burpa.html#_newapi</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa._start_scan">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._start<wbr></wbr>_scan</div>
+            <div class="url">burpa.Burpa.html#_start_scan</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">Start a Burp Suite active scan.</div>
+          </li><li id="burpa.Burpa._wait_scan">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._wait<wbr></wbr>_scan</div>
+            <div class="url">burpa.Burpa.html#_wait_scan</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">Wait until the end of the scan(s) and set the ScanRecord.status attribute.</div>
+          </li><li id="burpa.Burpa._scan_metrics">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._scan<wbr></wbr>_metrics</div>
+            <div class="url">burpa.Burpa.html#_scan_metrics</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">Print metrics and set the ScanRecord.metrics attribute.</div>
+          </li><li id="burpa.Burpa.scan">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.scan</div>
+            <div class="url">burpa.Burpa.html#scan</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Launch an active scan, wait until the end and report the results.</div>
+          </li><li id="burpa.Burpa._report">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._report</div>
+            <div class="url">burpa.Burpa.html#_report</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa.report">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.report</div>
+            <div class="url">burpa.Burpa.html#report</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Generate the reports for the specified targets URLs. If targets is 'all', generate a report that contains all issues for all targets.</div>
+          </li><li id="burpa.Burpa.proxy_listen_all_interfaces">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.proxy<wbr></wbr>_listen<wbr></wbr>_all<wbr></wbr>_interfaces</div>
+            <div class="url">burpa.Burpa.html#proxy_listen_all_interfaces</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Check the Burp proxy configuration to make sure it's running and listening on all interfaces and update the Burp proxy configuration if necessary.</div>
+          </li><li id="burpa.Burpa._get_temp_filelocks">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._get<wbr></wbr>_temp<wbr></wbr>_filelocks</div>
+            <div class="url">burpa.Burpa.html#_get_temp_filelocks</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">Get the running scans paths and filelocks.</div>
+          </li><li id="burpa.Burpa._get_running_scans">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._get<wbr></wbr>_running<wbr></wbr>_scans</div>
+            <div class="url">burpa.Burpa.html#_get_running_scans</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">Construct a list of the running scans names from the filelock paths.</div>
+          </li><li id="burpa.Burpa._stop">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._stop</div>
+            <div class="url">burpa.Burpa.html#_stop</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa.stop">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.stop</div>
+            <div class="url">burpa.Burpa.html#stop</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Shut down the Burp Suite. You can use systemctl or supervisord (Linux) or NSSM (Windows) to automatically restart the Burp Suite Service when it stopped running.</div>
+          </li><li id="burpa.Burpa._test">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._test</div>
+            <div class="url">burpa.Burpa.html#_test</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa.test">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.test</div>
+            <div class="url">burpa.Burpa.html#test</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Test if burpa can connect to Burp Suite REST APIs.</div>
+          </li><li id="burpa.Burpa.schedule">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.schedule</div>
+            <div class="url">burpa.Burpa.html#schedule</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Launch Burp Suite scans between certain times only.</div>
+          </li><li id="burpa.Burpa._scheduled_scan">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._scheduled<wbr></wbr>_scan</div>
+            <div class="url">burpa.Burpa.html#_scheduled_scan</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.Burpa.version">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.version</div>
+            <div class="url">burpa.Burpa.html#version</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Print burpa version and exit.</div>
+          </li><li id="burpa.BurpaError">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>Error</div>
+            <div class="url">burpa.BurpaError.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Exception raised when there is an error in a burpa command.</div>
+          </li><li id="burpa.BurpRestApiClient">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client</div>
+            <div class="url">burpa.BurpRestApiClient.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Interface for the third party extension <a class="rst-reference external" href="https://github.com/vmware/burp-rest-api" target="_top">burp-rest-api</a>.</div>
+          </li><li id="burpa.BurpRestApiClient.proxy_url">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.proxy<wbr></wbr>_url</div>
+            <div class="url">burpa.BurpRestApiClient.html#proxy_url</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpRestApiClient.api_port">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.api<wbr></wbr>_port</div>
+            <div class="url">burpa.BurpRestApiClient.html#api_port</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpRestApiClient.api_key">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.api<wbr></wbr>_key</div>
+            <div class="url">burpa.BurpRestApiClient.html#api_key</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpRestApiClient._logger">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>._logger</div>
+            <div class="url">burpa.BurpRestApiClient.html#_logger</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpRestApiClient.PARAMS">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.PARAMS</div>
+            <div class="url">burpa.BurpRestApiClient.html#PARAMS</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpRestApiClient.proxy_uri">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.proxy<wbr></wbr>_uri</div>
+            <div class="url">burpa.BurpRestApiClient.html#proxy_uri</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpRestApiClient.request">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.request</div>
+            <div class="url">burpa.BurpRestApiClient.html#request</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No summary</span></div>
+          </li><li id="burpa.BurpRestApiClient.check_proxy_listen_all_interfaces">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.check<wbr></wbr>_proxy<wbr></wbr>_listen<wbr></wbr>_all<wbr></wbr>_interfaces</div>
+            <div class="url">burpa.BurpRestApiClient.html#check_proxy_listen_all_interfaces</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Check the Burp proxy configuration to make sure it's running and listening on all interfaces</div>
+          </li><li id="burpa.BurpRestApiClient.enable_proxy_listen_all_interfaces">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.enable<wbr></wbr>_proxy<wbr></wbr>_listen<wbr></wbr>_all<wbr></wbr>_interfaces</div>
+            <div class="url">burpa.BurpRestApiClient.html#enable_proxy_listen_all_interfaces</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Update the Burp proxy configuration to listen on all interfaces</div>
+          </li><li id="burpa.BurpRestApiClient.proxy_history">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.proxy<wbr></wbr>_history</div>
+            <div class="url">burpa.BurpRestApiClient.html#proxy_history</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Retrieve the Burp proxy history</div>
+          </li><li id="burpa.BurpRestApiClient.include">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.include</div>
+            <div class="url">burpa.BurpRestApiClient.html#include</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Add a target to the scope.</div>
+          </li><li id="burpa.BurpRestApiClient.exclude">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.exclude</div>
+            <div class="url">burpa.BurpRestApiClient.html#exclude</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Remove a target from the scope.</div>
+          </li><li id="burpa.BurpRestApiClient._update_scope">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>._update<wbr></wbr>_scope</div>
+            <div class="url">burpa.BurpRestApiClient.html#_update_scope</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary">Include in scope / Exclude from scope</div>
+          </li><li id="burpa.BurpRestApiClient.is_in_scope">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.is<wbr></wbr>_in<wbr></wbr>_scope</div>
+            <div class="url">burpa.BurpRestApiClient.html#is_in_scope</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Query whether a URL is within the current scope</div>
+          </li><li id="burpa.BurpRestApiClient.active_scan">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.active<wbr></wbr>_scan</div>
+            <div class="url">burpa.BurpRestApiClient.html#active_scan</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Send a URL to Burp to perform active scan.</div>
+          </li><li id="burpa.BurpRestApiClient.scan_status">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.scan<wbr></wbr>_status</div>
+            <div class="url">burpa.BurpRestApiClient.html#scan_status</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Get the percentage completed for the scan queue items</div>
+          </li><li id="burpa.BurpRestApiClient.scan_issues">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.scan<wbr></wbr>_issues</div>
+            <div class="url">burpa.BurpRestApiClient.html#scan_issues</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Get list of scan issues for URLs matching the specified urlPrefix</div>
+          </li><li id="burpa.BurpRestApiClient.scan_report">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.scan<wbr></wbr>_report</div>
+            <div class="url">burpa.BurpRestApiClient.html#scan_report</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Downloads the scan report with current Scanner issues for URLs matching the specified urlPrefix (HTML/XML).</div>
+          </li><li id="burpa.BurpRestApiClient.burp_stop">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.burp<wbr></wbr>_stop</div>
+            <div class="url">burpa.BurpRestApiClient.html#burp_stop</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Stop the Burp Suite</div>
+          </li><li id="burpa.BurpRestApiClient.verify_uri">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.verify<wbr></wbr>_uri</div>
+            <div class="url">burpa.BurpRestApiClient.html#verify_uri</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No summary</span></div>
+          </li><li id="burpa.BurpCommander">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander</div>
+            <div class="url">burpa.BurpCommander.html</div>
+            <div class="type">Class</div>
+            <div class="kind">Class</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Interface for the Burp Suite Official REST API, based on ruby code <a class="rst-reference external" href="https://github.com/pentestgeek/burpcommander" target="_top">burpcommander</a>.</div>
+          </li><li id="burpa.BurpCommander.proxy_url">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.proxy<wbr></wbr>_url</div>
+            <div class="url">burpa.BurpCommander.html#proxy_url</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpCommander.api_port">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.api<wbr></wbr>_port</div>
+            <div class="url">burpa.BurpCommander.html#api_port</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpCommander.api_key">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.api<wbr></wbr>_key</div>
+            <div class="url">burpa.BurpCommander.html#api_key</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpCommander._logger">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>._logger</div>
+            <div class="url">burpa.BurpCommander.html#_logger</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpCommander.PARAMS">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.PARAMS</div>
+            <div class="url">burpa.BurpCommander.html#PARAMS</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpCommander.proxy_uri">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.proxy<wbr></wbr>_uri</div>
+            <div class="url">burpa.BurpCommander.html#proxy_uri</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Property</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpCommander.active_scan">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.active<wbr></wbr>_scan</div>
+            <div class="url">burpa.BurpCommander.html#active_scan</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Send a URL to Burp to perform active scan, the difference with <code><a href="burpa.BurpRestApiClient.html#active_scan" class="internal-link" title="burpa.BurpRestApiClient.active_scan">BurpRestApiClient.active_scan</a></code> is that this method accepts username/password for authenticated scans.</div>
+          </li><li id="burpa.BurpCommander.verify_uri">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.verify<wbr></wbr>_uri</div>
+            <div class="url">burpa.BurpCommander.html#verify_uri</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No summary</span></div>
+          </li><li id="burpa.BurpCommander.scan_details">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.scan<wbr></wbr>_details</div>
+            <div class="url">burpa.BurpCommander.html#scan_details</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Get the scan details: Status, Metrics, Issues etc.</div>
+          </li><li id="burpa.BurpCommander.scan_status">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.scan<wbr></wbr>_status</div>
+            <div class="url">burpa.BurpCommander.html#scan_status</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Get the status of a specific scan ID</div>
+          </li><li id="burpa.BurpCommander.scan_metrics">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.scan<wbr></wbr>_metrics</div>
+            <div class="url">burpa.BurpCommander.html#scan_metrics</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Get the metrics of a specific scan ID</div>
+          </li>
+       </ul>
+    </div>
+  </body>
+</html>
