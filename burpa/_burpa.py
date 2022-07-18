@@ -420,7 +420,7 @@ class Burpa:
         
         while True:
             try:
-                self._api.request("docs", requestargs=dict(timeout=0.1))
+                self._api.request("docs", request_args=dict(timeout=0.1))
             except BurpaError:
                 break
             else:

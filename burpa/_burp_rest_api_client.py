@@ -128,16 +128,16 @@ class BurpRestApiClient(ApiBase):
     def proxy_uri(self) -> str:
         return f"{self.proxy_url}:{self.api_port}"
 
-    def request(self, request: str, requestargs: Optional[Dict[str, Any]] = None, 
+    def request(self, request: str, request_args: Optional[Dict[str, Any]] = None, 
                 **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
         
         # Set API-KEY header if self.api_key is not None.
         if self.api_key is not None:
-            requestargs = requestargs or {}
-            headers = requestargs.setdefault('headers', {})
+            request_args = request_args or {}
+            headers = request_args.setdefault('headers', {})
             headers['API-KEY'] = self.api_key
 
-        return super().request(request, requestargs, **kwargs)
+        return super().request(request, request_args, **kwargs)
 
     def check_proxy_listen_all_interfaces(self) -> bool:
         """
