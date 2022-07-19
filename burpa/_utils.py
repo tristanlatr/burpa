@@ -9,7 +9,7 @@ import functools
 import sys
 import concurrent.futures
 from datetime import datetime, time
-from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional
+from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, Tuple
 
 def get_valid_filename(s: str) -> str:
     '''Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think'''
@@ -125,3 +125,36 @@ def is_timenow_between(begin_time: time, end_time: time) -> bool:
         return check_time >= begin_time and check_time <= end_time
     else: # crosses midnight
         return check_time >= begin_time or check_time <= end_time
+
+def get_version(s:str) -> Tuple[int, int, int]:
+    """
+    Parse a version string like <major>.<minor>.<micro> into a tuple of ints.
+    """
+    parts = s.strip().split('.')
+    intparts = []
+    
+    for p in parts:
+        try:
+            v = int(p)
+        except:
+            v = 0
+        intparts.append(v)
+    
+
+    if 3-len(intparts)>0:
+        for _ in range(3-len(intparts)):
+            intparts.append(0)
+    elif len(intparts)>3:
+        for _ in range(len(intparts)-3):
+            intparts.pop(0)
+    
+    assert len(intparts)==3
+    return tuple(intparts) # type: ignore
+
+if __name__ == "__main__":
+    
+    assert get_version("2.2.0") == (2,2,0)
+    assert get_version("2") == (2,0,0)
+    assert get_version("Burp Suite Professional.2022.6.1") == (2022,6,1)
+    assert get_version("Burp Suite Professional.2022.thing.1") == (2022,0,1)
+    assert get_version("0.2022.6.1") == (2022,6,1)

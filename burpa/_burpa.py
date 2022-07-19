@@ -333,7 +333,8 @@ class Burpa:
             elif record.status == "failed":
                 raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
-    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,) -> None:
+    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None, 
+                issue_severity:str="All", issue_confidence:str="All") -> None:
         
         issues = self._api.scan_issues(target)
         if issues:
@@ -352,21 +353,24 @@ class Burpa:
             self._api.scan_report(
                 report_type=report_type,
                 url_prefix=target,
-                report_output_dir=report_output_dir
+                report_output_dir=report_output_dir,
+                issue_severity=issue_severity, 
+                issue_confidence=issue_confidence,
             )
         
         else:
             self._logger.info(f"No issue could be found for the target {target}")
     
     def report(self, *targets: str, report_type: str = "HTML", 
-               report_output_dir: str = "") -> None:
+               report_output_dir: str = "", issue_severity:str="All", issue_confidence:str="All") -> None:
         """
         Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
         """
         self._test()
         for target in targets:
-            self._report(target, report_type, report_output_dir)
+            self._report(target, report_type, report_output_dir, issue_severity=issue_severity, 
+                issue_confidence=issue_confidence)
 
     
     def proxy_listen_all_interfaces(self, proxy_port: str) -> None:
