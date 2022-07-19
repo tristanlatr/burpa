@@ -183,6 +183,16 @@
         
 
         
+            <div class="itemName"><code><a href="#get_version" class="internal-link" title="burpa._utils.get_version">get<wbr></wbr>_version</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#is_timenow_between" class="internal-link" title="burpa._utils.is_timenow_between">is<wbr></wbr>_timenow<wbr></wbr>_between</a></code>
             </div>
         
@@ -424,7 +434,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -446,6 +456,11 @@
     <td>Function</td>
     <td><code><a href="#get_valid_filename" class="internal-link" title="burpa._utils.get_valid_filename">get<wbr></wbr>_valid<wbr></wbr>_filename</a></code></td>
     <td>Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_version" class="internal-link" title="burpa._utils.get_version">get<wbr></wbr>_version</a></code></td>
+    <td>Parse a version string like &lt;major&gt;.&lt;minor&gt;.&lt;micro&gt; into a tuple of ints.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -491,7 +506,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">ensure_scheme</span>(url):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L48">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L48">
       
       (source)
     </a>
@@ -512,7 +527,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">get_valid_filename</span>(s):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L14">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L14">
       
       (source)
     </a>
@@ -521,6 +536,28 @@
     
     <div><p>Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">s:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="burpa._utils.get_version">
+    
+  </a>
+  <a name="get_version">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_version</span>(s):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L129">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Parse a version string like &lt;major&gt;.&lt;minor&gt;.&lt;micro&gt; into a tuple of ints.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">s:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -534,7 +571,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">is_timenow_between</span>(begin_time, end_time):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L122">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L122">
       
       (source)
     </a>
@@ -555,7 +592,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">parse_commas_separated_str</span>(string):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L20">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L20">
       
       (source)
     </a>
@@ -576,7 +613,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">parse_targets</span>(targets):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L27">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L27">
       
       (source)
     </a>
@@ -597,7 +634,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">perform</span>(func, elements, func_args=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, asynch=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, workers=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L87">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L87">
       
       (source)
     </a>
@@ -629,7 +666,7 @@ Parameters:</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">setup_logger</span>(name, verbose=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, quiet=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/1eafbe955bac9e27b07cbb72723162e5e423a931/burpa/_utils.py#L60">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/e28b073ae8fc536a52e0544f03c0ab2f24c5818e/burpa/_utils.py#L60">
       
       (source)
     </a>
@@ -650,7 +687,7 @@ Parameters:</p>
   <div class="container">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.3</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.7.0 at 2022-07-18 17:22:41.
+    22.7.0 at 2022-07-19 13:33:40.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
