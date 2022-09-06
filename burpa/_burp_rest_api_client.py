@@ -334,10 +334,10 @@ class BurpRestApiClient(ApiBase):
         # Validate the filters values
         _valid_severities = ('All', 'High', 'Medium', 'Low', 'Information')
         _valid_confidences = ('All', 'Certain', 'Firm', 'Tentative')
-        if not all(s not in _valid_severities for s in issue_severity.split(',')):
-            raise BurpaError(f"Invalid severity, should be in {_valid_severities}, comma separated")
-        if not all(s not in _valid_confidences for s in issue_confidence.split(',')):
-            raise BurpaError(f"Invalid confidence, should be in {_valid_confidences}, comma separated")
+        if not all(s in _valid_severities for s in issue_severity.split(',')):
+            raise BurpaError(f"Invalid severity, should be in {_valid_severities}, comma separated, got {issue_severity!r}")
+        if not all(s in _valid_confidences for s in issue_confidence.split(',')):
+            raise BurpaError(f"Invalid confidence, should be in {_valid_confidences}, comma separated, got {issue_severity!r}")
         # Validate the burp-rest-api version
         if self.rest_api_version < (2,2,0):
             if issue_confidence!='All' or issue_severity!='All':
