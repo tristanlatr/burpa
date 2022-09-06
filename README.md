@@ -166,7 +166,7 @@ burpa scan <flags> [TARGETS]...
   Launch an active scan, wait until the end and report the results.
 
   --report_type=REPORT_TYPE
-      Burp scan report type (default: HTML). Use 'none' to skip reporting.
+      Burp scan report type. Valid values are XML or HTML (default: HTML). Use 'none' to skip reporting.
   --report_output_dir=REPORT_OUTPUT_DIR
       Directory to store the reports. Store report in temp directory if empty.
   --excluded=EXCLUDED
