@@ -18,8 +18,10 @@
 from logging import getLogger
 import os.path
 import sys
+import time
 import traceback
 import pathlib
+import csv as csvlib
 from time import sleep
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, urlunsplit
@@ -273,7 +275,7 @@ class Burpa:
              app_user: str = "", 
              app_pass: str = "", 
              issue_severity:str="All", 
-             issue_confidence:str="All") -> None:
+             issue_confidence:str="All", csv:bool=False) -> None:
         """
         Launch an active scan, wait until the end and report the results.
 
@@ -307,6 +309,8 @@ class Burpa:
         issue_confidence:
             Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. 
             Multiple values are also accepted if they are comma-separated.
+        csv:
+            Whether to generate a CSV summary with all issues.
         """
 
         self._test()
@@ -332,7 +336,8 @@ class Burpa:
                 self.report(*(r.target_url for r in records), report_type=report_type,
                         report_output_dir=report_output_dir, 
                         issue_severity=issue_severity, 
-                        issue_confidence=issue_confidence)
+                        issue_confidence=issue_confidence, 
+                        csv=csv, )
 
         for record in records:
             
@@ -344,7 +349,7 @@ class Burpa:
                 raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
     def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None, 
-                issue_severity:str="All", issue_confidence:str="All") -> None:
+                issue_severity:str="All", issue_confidence:str="All", csv:bool=False) -> None:
         
         issues = self._api.scan_issues(target)
         if issues:
@@ -370,9 +375,25 @@ class Burpa:
         
         else:
             self._logger.info(f"No issue could be found for the target {target}")
+            issues = []
+        
+        if csv:
+            # Generate a CSV file with issues
+            file_name = get_valid_filename("burp-report-summary_{}_{}.csv".format(
+                time.strftime("%Y%m%d-%H%M%S", time.localtime()), target))
+
+            with open(os.path.join(report_output_dir, file_name), 'w', encoding='utf8') as output_file:
+                fc = csvlib.DictWriter(output_file, 
+                                    fieldnames=issues[0].keys())
+                fc.writeheader()
+                fc.writerows(issues)
+
     
     def report(self, *targets: str, report_type: str = "HTML", 
-               report_output_dir: str = "", issue_severity:str="All", issue_confidence:str="All") -> None:
+               report_output_dir: str = "", 
+               issue_severity:str="All", 
+               issue_confidence:str="All", 
+               csv:bool=False) -> None:
         """
         Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
@@ -380,7 +401,7 @@ class Burpa:
         self._test()
         for target in targets:
             self._report(target, report_type, report_output_dir, issue_severity=issue_severity, 
-                issue_confidence=issue_confidence)
+                issue_confidence=issue_confidence, csv=csv)
 
     
     def proxy_listen_all_interfaces(self, proxy_port: str) -> None:
@@ -512,7 +533,8 @@ class Burpa:
                 end_time: str = "05:00",
                 workers: int = 1,
                 issue_severity:str="All", 
-                issue_confidence:str="All") -> None:
+                issue_confidence:str="All", 
+                csv:bool=False) -> None:
         """
         Launch Burp Suite scans between certain times only. 
 
@@ -555,7 +577,8 @@ class Burpa:
                                 app_user=app_user,
                                 app_pass=app_pass,
                                 issue_severity=issue_severity,
-                                issue_confidence=issue_confidence), 
+                                issue_confidence=issue_confidence, 
+                                csv=csv), 
                     asynch=workers>1, 
                     workers=workers)
 
