@@ -158,6 +158,8 @@ burpa report <flags> [TARGETS]...
 
   --report_type=REPORT_TYPE
   --report_output_dir=REPORT_OUTPUT_DIR
+  --issue_severity=ISSUE_SEVERITY[,ISSUE_SEVERITY,...]
+  --issue_confidence=ISSUE_CONFIDENCE[,ISSUE_CONFIDENCE,...]
 
 burpa scan <flags> [TARGETS]...
 
@@ -177,6 +179,10 @@ burpa scan <flags> [TARGETS]...
       Application username for authenticated scans.
   --app_pass=APP_PASS
       Application password for authenticated scans
+  --issue_severity=ISSUE_SEVERITY[,ISSUE_SEVERITY,...]
+      Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. Multiple values are also accepted if they are comma-separated.
+  --issue_confidence=ISSUE_CONFIDENCE[,ISSUE_CONFIDENCE,...]
+      Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. Multiple values are also accepted if they are comma-separated.
 
 burpa schedule <flags> [TARGETS]...
 
