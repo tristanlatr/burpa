@@ -271,7 +271,9 @@ class Burpa:
              report_output_dir: str = "", excluded: str = "", 
              config: str = "", config_file: str = "",
              app_user: str = "", 
-             app_pass: str = "", ) -> None:
+             app_pass: str = "", 
+             issue_severity:str="All", 
+             issue_confidence:str="All") -> None:
         """
         Launch an active scan, wait until the end and report the results.
 
@@ -299,6 +301,12 @@ class Burpa:
             Application username for authenticated scans.
         app_pass: 
             Application password for authenticated scans
+        issue_severity:
+            Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. 
+            Multiple values are also accepted if they are comma-separated.
+        issue_confidence:
+            Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. 
+            Multiple values are also accepted if they are comma-separated.
         """
 
         self._test()
@@ -322,7 +330,9 @@ class Burpa:
             # Download the scan issues/reports
             if report_type.lower() != 'none':
                 self.report(*(r.target_url for r in records), report_type=report_type,
-                        report_output_dir=report_output_dir)
+                        report_output_dir=report_output_dir, 
+                        issue_severity=issue_severity, 
+                        issue_confidence=issue_confidence)
 
         for record in records:
             
@@ -500,7 +510,9 @@ class Burpa:
                 app_pass: str = "",
                 begin_time: str = "22:00",
                 end_time: str = "05:00",
-                workers: int = 1) -> None:
+                workers: int = 1,
+                issue_severity:str="All", 
+                issue_confidence:str="All") -> None:
         """
         Launch Burp Suite scans between certain times only. 
 
@@ -541,7 +553,9 @@ class Burpa:
                                 excluded=excluded,
                                 config=config,
                                 app_user=app_user,
-                                app_pass=app_pass), 
+                                app_pass=app_pass,
+                                issue_severity=issue_severity,
+                                issue_confidence=issue_confidence), 
                     asynch=workers>1, 
                     workers=workers)
 
