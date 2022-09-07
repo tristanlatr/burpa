@@ -18,6 +18,7 @@
 from logging import getLogger
 import os.path
 import sys
+import tempfile
 import time
 import traceback
 import json
@@ -26,9 +27,9 @@ import csv as csvlib
 from time import sleep
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, urlunsplit
-from typing import  Any, Dict, Iterator, List, Optional, Sequence, TextIO, Tuple
+from typing import  Any, Dict, Iterator, List, Optional, Sequence, TextIO, Tuple, Union
 
-import importlib_resources
+import importlib_resources # type: ignore[import]
 from filelock import FileLock, Timeout, BaseFileLock
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
@@ -276,8 +277,8 @@ class Burpa:
              config: str = "", config_file: str = "",
              app_user: str = "", 
              app_pass: str = "", 
-             issue_severity:str="All", 
-             issue_confidence:str="All", csv:bool=False) -> None:
+             issue_severity:Union[str, Tuple[str, ...]]="All", 
+             issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> None:
         """
         Launch an active scan, wait until the end and report the results.
 
@@ -351,7 +352,9 @@ class Burpa:
                 raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
     def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None, 
-                issue_severity:str="All", issue_confidence:str="All", csv:bool=False) -> None:
+                issue_severity:Union[str, Tuple[str, ...]]="All", 
+                issue_confidence:Union[str, Tuple[str, ...]]="All", 
+                csv:bool=False) -> None:
         
         issues = self._api.scan_issues(target)
         if issues:
@@ -379,20 +382,22 @@ class Burpa:
             self._logger.info(f"No issue could be found for the target {target}")
             issues = []
         
-        if csv:
+        if csv: 
             # Generate a CSV file with issues
             file_name = get_valid_filename("burp-report-summary_{}_{}.csv".format(
                 time.strftime("%Y%m%d-%H%M%S", time.localtime()), target))
 
-            with open(os.path.join(report_output_dir, file_name), 'w', encoding='utf8') as output_file:
+            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), file_name)
+            with open(csv_file, 'w', encoding='utf8') as output_file:
                 generate_csv(output_file, issues)
+                self._logger.info(f'Generated CSV file at {csv_file}')
 
     
     def report(self, *targets: str, report_type: str = "HTML", 
                report_output_dir: str = "", 
-               issue_severity:str="All", 
-               issue_confidence:str="All", 
-               csv:bool=False) -> None:
+               issue_severity: Union[str, Tuple[str, ...]]="All", 
+               issue_confidence: Union[str, Tuple[str, ...]]="All", 
+               csv: bool=False) -> None:
         """
         Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
@@ -531,8 +536,8 @@ class Burpa:
                 begin_time: str = "22:00",
                 end_time: str = "05:00",
                 workers: int = 1,
-                issue_severity:str="All", 
-                issue_confidence:str="All", 
+                issue_severity:Union[str, Tuple[str, ...]]="All", 
+                issue_confidence:Union[str, Tuple[str, ...]]="All", 
                 csv:bool=False) -> None:
         """
         Launch Burp Suite scans between certain times only. 

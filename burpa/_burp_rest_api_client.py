@@ -3,7 +3,7 @@ import os
 import re
 import tempfile
 import time
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 import attr
 
 from string import Template
@@ -325,8 +325,8 @@ class BurpRestApiClient(ApiBase):
 
     def scan_report(self, report_type: str, url_prefix: str, 
                     report_output_dir: Optional[str] = None,
-                    issue_severity:str="All", 
-                    issue_confidence:str="All") -> str:
+                    issue_severity:Union[str, Tuple[str, ...]]="All", 
+                    issue_confidence:Union[str, Tuple[str, ...]]="All") -> str:
         """
         Downloads the scan report with current Scanner issues for
         URLs matching the specified urlPrefix (HTML/XML). 
@@ -334,9 +334,9 @@ class BurpRestApiClient(ApiBase):
         # Validate the filters values
         _valid_severities = ('All', 'High', 'Medium', 'Low', 'Information')
         _valid_confidences = ('All', 'Certain', 'Firm', 'Tentative')
-        if not all(s in _valid_severities for s in issue_severity.split(',')):
+        if not all(s in _valid_severities for s in (issue_severity.split(',') if isinstance(issue_severity, str) else issue_severity)):
             raise BurpaError(f"Invalid severity, should be in {_valid_severities}, comma separated, got {issue_severity!r}")
-        if not all(s in _valid_confidences for s in issue_confidence.split(',')):
+        if not all(s in _valid_confidences for s in (issue_confidence.split(',') if isinstance(issue_confidence, str) else issue_confidence)):
             raise BurpaError(f"Invalid confidence, should be in {_valid_confidences}, comma separated, got {issue_severity!r}")
         # Validate the burp-rest-api version
         if self.rest_api_version < (2,2,0):
