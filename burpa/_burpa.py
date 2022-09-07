@@ -20,13 +20,15 @@ import os.path
 import sys
 import time
 import traceback
+import json
 import pathlib
 import csv as csvlib
 from time import sleep
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, urlunsplit
-from typing import  Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
+from typing import  Any, Dict, Iterator, List, Optional, Sequence, TextIO, Tuple
 
+import importlib_resources
 from filelock import FileLock, Timeout, BaseFileLock
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
@@ -383,10 +385,7 @@ class Burpa:
                 time.strftime("%Y%m%d-%H%M%S", time.localtime()), target))
 
             with open(os.path.join(report_output_dir, file_name), 'w', encoding='utf8') as output_file:
-                fc = csvlib.DictWriter(output_file, 
-                                    fieldnames=issues[0].keys())
-                fc.writeheader()
-                fc.writerows(issues)
+                generate_csv(output_file, issues)
 
     
     def report(self, *targets: str, report_type: str = "HTML", 
@@ -602,6 +601,28 @@ class Burpa:
         Print burpa version and exit.
         """
         print(f"burpa version {__version__}")
+
+def generate_csv(io: TextIO, issues: List[Dict[str, Any]]) -> None:
+    if not issues:
+        return
+    
+    # Add CWE informaions
+    jsondata = json.loads(importlib_resources.read_text('burpa', 'issue_defs.json'))
+
+    for i in issues:
+        # Discard request/response data.
+        i.pop('httpMessages')
+
+        try:
+            classifications = jsondata[str(i['issueType'])]
+        except KeyError:
+            i['references'] = ''
+        else:
+            i['references'] = classifications
+    
+    fc = csvlib.DictWriter(io, fieldnames=issues[0].keys())
+    fc.writeheader()
+    fc.writerows(issues)
 
 def main() -> None:
 
