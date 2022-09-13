@@ -3,7 +3,7 @@ import os
 import re
 import tempfile
 import time
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 import attr
 
 from string import Template
@@ -325,8 +325,8 @@ class BurpRestApiClient(ApiBase):
 
     def scan_report(self, report_type: str, url_prefix: str, 
                     report_output_dir: Optional[str] = None,
-                    issue_severity:str="All", 
-                    issue_confidence:str="All") -> str:
+                    issue_severity:Union[str, Tuple[str, ...]]="All", 
+                    issue_confidence:Union[str, Tuple[str, ...]]="All") -> str:
         """
         Downloads the scan report with current Scanner issues for
         URLs matching the specified urlPrefix (HTML/XML). 
@@ -334,6 +334,13 @@ class BurpRestApiClient(ApiBase):
         # Validate the filters values
         _valid_severities = ('All', 'High', 'Medium', 'Low', 'Information')
         _valid_confidences = ('All', 'Certain', 'Firm', 'Tentative')
+
+        # python-fire parses the CLI args into tuples, so we take care to convert if to string here.
+        if not isinstance(issue_severity, str):
+            issue_severity = ','.join(issue_severity)
+        if not isinstance(issue_confidence, str):
+            issue_confidence = ','.join(issue_confidence)
+
         if not all(s in _valid_severities for s in issue_severity.split(',')):
             raise BurpaError(f"Invalid severity, should be in {_valid_severities}, comma separated, got {issue_severity!r}")
         if not all(s in _valid_confidences for s in issue_confidence.split(',')):
