@@ -76,7 +76,7 @@ export BURP_NEW_API_KEY=""
 
 ### Note
 
-If your URL points to a filename, `burpa` will automatically add the containing directory to the list of seed URLs for the scan. Scanning `http://mysite.com/subfolder/mypage.html?my=1#123` will result into scanning `http://mysite.com/mypage.html?my=1#123` and `http://mysite.com/subfolder`.
+If your URL points to a filename, `burpa` will automatically add the containing directory to the list of seed URLs for the scan. Scanning `http://mysite.com/subfolder/mypage.html?my=1#123` will result into scanning `http://mysite.com/subfolder/mypage.html?my=1#123` and `http://mysite.com/subfolder`.
 
 ### Python library
 
@@ -160,13 +160,15 @@ burpa report <flags> [TARGETS]...
 
   --report_type=REPORT_TYPE
   --report_output_dir=REPORT_OUTPUT_DIR
+  --issue_severity=ISSUE_SEVERITY[,ISSUE_SEVERITY,...]
+  --issue_confidence=ISSUE_CONFIDENCE[,ISSUE_CONFIDENCE,...]
 
 burpa scan <flags> [TARGETS]...
 
   Launch an active scan, wait until the end and report the results.
 
   --report_type=REPORT_TYPE
-      Burp scan report type (default: HTML). Use 'none' to skip reporting.
+      Burp scan report type. Valid values are XML or HTML (default: HTML). Use 'none' to skip reporting.
   --report_output_dir=REPORT_OUTPUT_DIR
       Directory to store the reports. Store report in temp directory if empty.
   --excluded=EXCLUDED
@@ -179,6 +181,10 @@ burpa scan <flags> [TARGETS]...
       Application username for authenticated scans.
   --app_pass=APP_PASS
       Application password for authenticated scans
+  --issue_severity=ISSUE_SEVERITY[,ISSUE_SEVERITY,...]
+      Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. Multiple values are also accepted if they are comma-separated.
+  --issue_confidence=ISSUE_CONFIDENCE[,ISSUE_CONFIDENCE,...]
+      Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. Multiple values are also accepted if they are comma-separated.
 
 burpa schedule <flags> [TARGETS]...
 

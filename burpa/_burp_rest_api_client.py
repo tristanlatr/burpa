@@ -10,7 +10,7 @@ from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
-from ._utils import get_valid_filename, setup_logger
+from ._utils import get_valid_filename, setup_logger, get_version
 
 
 @attr.s(auto_attribs=True)
@@ -108,6 +108,16 @@ class BurpRestApiClient(ApiBase):
                             None
                          ),
 
+        "scan_report_2_2": (  "get", 
+                            Template("/burp/report?urlPrefix=$url_prefix&reportType=$report_type&issueSeverity=$issue_severity&issueConfidence=$issue_confidence"),
+                            None
+                         ),
+        
+        "all_scans_report_2_2": (  "get", 
+                            Template("/burp/report?reportType=$report_type&issueSeverity=$issue_severity&issueConfidence=$issue_confidence"),
+                            None
+                         ),
+
         "burp_stop": (  "get", 
                          "/burp/stop",
                          None
@@ -118,6 +128,7 @@ class BurpRestApiClient(ApiBase):
                          None
                          ),
         
+        # try me with 'python3 -m burpa _api request versions - json'
         "versions": (  "get", 
                          "/burp/versions",
                          None
@@ -127,6 +138,7 @@ class BurpRestApiClient(ApiBase):
     @property
     def proxy_uri(self) -> str:
         return f"{self.proxy_url}:{self.api_port}"
+
 
     def request(self, request: str, request_args: Optional[Dict[str, Any]] = None, 
                 **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
@@ -138,6 +150,27 @@ class BurpRestApiClient(ApiBase):
             headers['API-KEY'] = self.api_key
 
         return super().request(request, request_args, **kwargs)
+
+    @property
+    def rest_api_version(self) -> Tuple[int,int,int]:
+        """The version of the burp-rest-api Extension"""
+        try:
+            r = self.request('versions')
+        except BurpaError as e:
+            raise BurpaError(f"Error retrieving the versions: {e}") from e
+        else:
+            return get_version(r.json()['extensionVersion'])
+    
+    @property
+    def burp_version(self) -> Tuple[int,int,int]:
+        """The version of Burp"""
+        try:
+            r = self.request('versions')
+        except BurpaError as e:
+            raise BurpaError(f"Error retrieving the versions: {e}") from e
+        else:
+            return get_version(r.json()['burpVersion'])
+
 
     def check_proxy_listen_all_interfaces(self) -> bool:
         """
@@ -305,26 +338,61 @@ class BurpRestApiClient(ApiBase):
 
 
     def scan_report(self, report_type: str, url_prefix: str, 
-                    report_output_dir: Optional[str] = None) -> str:
+                    report_output_dir: Optional[str] = None,
+                    issue_severity:Union[str, Tuple[str, ...]]="All", 
+                    issue_confidence:Union[str, Tuple[str, ...]]="All") -> str:
         """
         Downloads the scan report with current Scanner issues for
         URLs matching the specified urlPrefix (HTML/XML). 
-
         """
+        # Validate the filters values
+        _valid_severities = ('All', 'High', 'Medium', 'Low', 'Information')
+        _valid_confidences = ('All', 'Certain', 'Firm', 'Tentative')
+
+        # python-fire parses the CLI args into tuples, so we take care to convert if to string here.
+        if not isinstance(issue_severity, str):
+            issue_severity = ','.join(issue_severity)
+        if not isinstance(issue_confidence, str):
+            issue_confidence = ','.join(issue_confidence)
+
+        if not all(s in _valid_severities for s in issue_severity.split(',')):
+            raise BurpaError(f"Invalid severity, should be in {_valid_severities}, comma separated, got {issue_severity!r}")
+        if not all(s in _valid_confidences for s in issue_confidence.split(',')):
+            raise BurpaError(f"Invalid confidence, should be in {_valid_confidences}, comma separated, got {issue_severity!r}")
+        # Validate the burp-rest-api version
+        if self.rest_api_version < (2,2,0):
+            if issue_confidence!='All' or issue_severity!='All':
+                self._logger.warning(
+                    'Filtering report issues by severity/confidence is not available in your Burp Rest API Extension, '
+                    'please upgrade to the version 2.2.0 or greater.')
 
         try:
             if url_prefix.upper() == "ALL":
-                r = self.request('all_scans_report', report_type=report_type.upper())
+                if self.rest_api_version >= (2,2,0):
+                    r = self.request('all_scans_report_2_2', report_type=report_type.upper(), 
+                            issue_severity=issue_severity, issue_confidence=issue_confidence)
+                else:
+                    r = self.request('all_scans_report', report_type=report_type.upper())
+                    
             else:
-                r = self.request('scan_report', url_prefix=url_prefix, report_type=report_type.upper())
+                if self.rest_api_version >= (2,2,0):
+                    r = self.request('scan_report_2_2', url_prefix=url_prefix, report_type=report_type.upper(), 
+                            issue_severity=issue_severity, issue_confidence=issue_confidence)
+                else:
+                    r = self.request('scan_report', url_prefix=url_prefix, report_type=report_type.upper())
 
         except BurpaError as e:
             raise BurpaError(f"Error downloading the scan report for target {url_prefix}: {e}") from e
 
         else:
             self._logger.info(f"Downloading HTML/XML report for {url_prefix}")
+            if (issue_confidence!='All' or issue_severity!='All') and self.rest_api_version >= (2,2,0):
+                filename_template = "burp-report-filtered_{}_{}.{}"
+            else:
+                filename_template = "burp-report_{}_{}.{}"
+            
             # Write the response body (byte array) to file
-            file_name = get_valid_filename("burp-report_{}_{}.{}".format(
+            file_name = get_valid_filename(filename_template.format(
                 time.strftime("%Y%m%d-%H%M%S", time.localtime()),
                 url_prefix,
                 report_type.lower()

@@ -18,13 +18,18 @@
 from logging import getLogger
 import os.path
 import sys
+import tempfile
+import time
 import traceback
+import json
 import pathlib
+import csv as csvlib
 from time import sleep
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, urlunsplit
-from typing import  Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
+from typing import  Any, Dict, Iterator, List, Optional, Sequence, TextIO, Tuple, Union
 
+import importlib_resources # type: ignore[import]
 from filelock import FileLock, Timeout, BaseFileLock
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
@@ -274,7 +279,9 @@ class Burpa:
              report_output_dir: str = "", excluded: str = "", 
              config: str = "", config_file: str = "",
              app_user: str = "", 
-             app_pass: str = "", ) -> None:
+             app_pass: str = "", 
+             issue_severity:Union[str, Tuple[str, ...]]="All", 
+             issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> None:
         """
         Launch an active scan, wait until the end and report the results.
 
@@ -302,6 +309,14 @@ class Burpa:
             Application username for authenticated scans.
         app_pass: 
             Application password for authenticated scans
+        issue_severity:
+            Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. 
+            Multiple values are also accepted if they are comma-separated.
+        issue_confidence:
+            Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. 
+            Multiple values are also accepted if they are comma-separated.
+        csv:
+            Whether to generate a CSV summary with all issues.
         """
 
         self._test()
@@ -325,7 +340,10 @@ class Burpa:
             # Download the scan issues/reports
             if report_type.lower() != 'none':
                 self.report(*(r.target_url for r in records), report_type=report_type,
-                        report_output_dir=report_output_dir)
+                        report_output_dir=report_output_dir, 
+                        issue_severity=issue_severity, 
+                        issue_confidence=issue_confidence, 
+                        csv=csv, )
 
         for record in records:
             
@@ -336,7 +354,10 @@ class Burpa:
             elif record.status == "failed":
                 raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
-    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None,) -> None:
+    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None, 
+                issue_severity:Union[str, Tuple[str, ...]]="All", 
+                issue_confidence:Union[str, Tuple[str, ...]]="All", 
+                csv:bool=False) -> None:
         
         issues = self._api.scan_issues(target)
         if issues:
@@ -355,21 +376,39 @@ class Burpa:
             self._api.scan_report(
                 report_type=report_type,
                 url_prefix=target,
-                report_output_dir=report_output_dir
+                report_output_dir=report_output_dir,
+                issue_severity=issue_severity, 
+                issue_confidence=issue_confidence,
             )
         
         else:
             self._logger.info(f"No issue could be found for the target {target}")
+            issues = []
+        
+        if csv: 
+            # Generate a CSV file with issues
+            file_name = get_valid_filename("burp-report-summary_{}_{}.csv".format(
+                time.strftime("%Y%m%d-%H%M%S", time.localtime()), target))
+
+            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), file_name)
+            with open(csv_file, 'w', encoding='utf8') as output_file:
+                generate_csv(output_file, issues)
+                self._logger.info(f'Generated CSV file at {csv_file}')
+
     
     def report(self, *targets: str, report_type: str = "HTML", 
-               report_output_dir: str = "") -> None:
+               report_output_dir: str = "", 
+               issue_severity: Union[str, Tuple[str, ...]]="All", 
+               issue_confidence: Union[str, Tuple[str, ...]]="All", 
+               csv: bool=False) -> None:
         """
         Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
         """
         self._test()
         for target in targets:
-            self._report(target, report_type, report_output_dir)
+            self._report(target, report_type, report_output_dir, issue_severity=issue_severity, 
+                issue_confidence=issue_confidence, csv=csv)
 
     
     def proxy_listen_all_interfaces(self, proxy_port: str) -> None:
@@ -499,7 +538,10 @@ class Burpa:
                 app_pass: str = "",
                 begin_time: str = "22:00",
                 end_time: str = "05:00",
-                workers: int = 1) -> None:
+                workers: int = 1,
+                issue_severity:Union[str, Tuple[str, ...]]="All", 
+                issue_confidence:Union[str, Tuple[str, ...]]="All", 
+                csv:bool=False) -> None:
         """
         Launch Burp Suite scans between certain times only. 
 
@@ -540,7 +582,10 @@ class Burpa:
                                 excluded=excluded,
                                 config=config,
                                 app_user=app_user,
-                                app_pass=app_pass), 
+                                app_pass=app_pass,
+                                issue_severity=issue_severity,
+                                issue_confidence=issue_confidence, 
+                                csv=csv), 
                     asynch=workers>1, 
                     workers=workers)
 
@@ -564,6 +609,28 @@ class Burpa:
         Print burpa version and exit.
         """
         print(f"burpa version {__version__}")
+
+def generate_csv(io: TextIO, issues: List[Dict[str, Any]]) -> None:
+    if not issues:
+        return
+    
+    # Add CWE informaions
+    jsondata = json.loads(importlib_resources.read_text('burpa', 'issue_defs.json'))
+
+    for i in issues:
+        # Discard request/response data.
+        i.pop('httpMessages')
+
+        try:
+            classifications = jsondata[str(i['issueType'])]
+        except KeyError:
+            i['references'] = ''
+        else:
+            i['references'] = classifications
+    
+    fc = csvlib.DictWriter(io, fieldnames=issues[0].keys())
+    fc.writeheader()
+    fc.writerows(issues)
 
 def main() -> None:
 

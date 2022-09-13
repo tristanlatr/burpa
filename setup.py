@@ -19,6 +19,7 @@ REQUIREMENTS = [
     'python-dotenv',
     'filelock',
     'python-dateutil',
+    'importlib_resources',
 ]
 
 setup(
@@ -26,6 +27,7 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     packages=['burpa',],
+    package_data={'burpa': ['issue_defs.json']},
     entry_points = {
         'console_scripts': [
             'burpa=burpa._burpa:main']
