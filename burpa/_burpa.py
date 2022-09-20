@@ -27,10 +27,9 @@ import csv as csvlib
 from time import sleep
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, urlunsplit
-from typing import  Any, Dict, Iterator, List, Optional, Sequence, TextIO, Tuple, Union
+from typing import  Any, Dict, List, Optional, Sequence, TextIO, Tuple, Union
 
 import importlib_resources # type: ignore[import]
-from filelock import FileLock, Timeout, BaseFileLock
 import fire # type: ignore[import]
 from dotenv import load_dotenv, find_dotenv
 import attr
@@ -52,9 +51,6 @@ ASCII = r"""            __
                         /_/             
          burpa version %s 
 """%(__version__)
-
-# TODO: make it compatible with Windows
-TEMP_DIR = pathlib.Path("/tmp/burpa-temp")
 
 @attr.s(auto_attribs=True)
 class ScanRecord:
@@ -145,9 +141,6 @@ class Burpa:
                             api_port=new_api_port,
                             api_key=new_api_key or None,
                             logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
-        
-        # Temp directory in which burpa will store filelocks for each running scans
-        TEMP_DIR.mkdir(exist_ok=True)
 
     def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
             app_user: str = "", app_pass: str = "",) -> List[ScanRecord]:
@@ -186,7 +179,10 @@ class Burpa:
                 if history:
                     scan_records.extend(self._start_scan(*history, 
                             app_user=app_user,
-                            app_pass=app_pass))
+                            app_pass=app_pass,
+                            excluded=excluded, 
+                            config=config,
+                            config_file=config_file))
 
             else:
                 # Add targets to the project scope
@@ -324,23 +320,17 @@ class Burpa:
         records = self._start_scan(*targets, excluded=excluded, config=config, 
                         app_user=app_user, app_pass=app_pass)
         
-        # Craft a unique lock filename, use the name of the first scan of the list
-        lock_file_path = TEMP_DIR.joinpath(records[0].name)
-        lock_file_path.touch()
-        
-        with FileLock(str(lock_file_path)):
-        
-            self._wait_scan(*records)
+        self._wait_scan(*records)
 
-            self._scan_metrics(*records)
+        self._scan_metrics(*records)
 
-            # Download the scan issues/reports
-            if report_type.lower() != 'none':
-                self.report(*(r.target_url for r in records), report_type=report_type,
-                        report_output_dir=report_output_dir, 
-                        issue_severity=issue_severity, 
-                        issue_confidence=issue_confidence, 
-                        csv=csv, )
+        # Download the scan issues/reports
+        if report_type.lower() != 'none':
+            self.report(*(r.target_url for r in records), report_type=report_type,
+                    report_output_dir=report_output_dir, 
+                    issue_severity=issue_severity, 
+                    issue_confidence=issue_confidence, 
+                    csv=csv, )
 
         for record in records:
             
@@ -361,7 +351,7 @@ class Burpa:
 
             self._logger.info(f"Scan issues for {target} :")
             uniques_issues = {
-                "Issue: {issueName}, Severity: {severity}".format(**issue)
+                "Issue: {issueName}, Severity: {severity} ({confidence})".format(**issue)
                 for issue in issues
             }
             for issue in uniques_issues:
@@ -425,29 +415,37 @@ class Burpa:
         if not self._api.check_proxy_listen_all_interfaces():
             self._api.enable_proxy_listen_all_interfaces(proxy_port=proxy_port)
 
-    def _get_temp_filelocks(self, tempdir: pathlib.Path = TEMP_DIR) -> Iterator[Tuple[pathlib.Path, BaseFileLock]]:
+    def _get_running_scans(self) -> List[str]:
         """
-        Get the running scans paths and filelocks. 
+        Construct a list of the running scans names from the existing Task IDs in the Burp server.
         """
-        for item in os.scandir(tempdir):
-            if item.is_file():
-                path = pathlib.Path(item)
-                yield ( path, FileLock(str(path)) )
+        
+        # start at ID 3 and load all scan statuses until we get a BurpaError. 
+        # If the the error.response.status_code == 400 it means we reached the end of the scan list.
+        # If it's something else, then raise the execption. 
 
-    def _get_running_scans(self, tempdir: pathlib.Path = TEMP_DIR) -> List[str]:
-        """
-        Construct a list of the running scans names from the filelock paths.
-        """
-        r: List[str] = []
-        for path, filelock in self._get_temp_filelocks(tempdir):
+        tasks: Dict[str, str] = {}
+        current_task_id = 3
+        while True:
             try:
-                filelock.acquire(timeout=0.01)
-            except Timeout:
-                r.append(path.stem)
+                task_status = self._newapi.scan_status(str(current_task_id))
+            except BurpaError as e:
+                if e.response is not None and e.response.status_code==400:
+                    break
+                else:
+                    raise
             else:
-                filelock.release()
-                os.remove(path)
-        return r
+                tasks[str(current_task_id)] = task_status
+                current_task_id += 1
+        
+        # Then filter finished scans
+        running_tasks = []
+        for taskid,status in tasks.items():
+            if status in SCAN_STATUS_FINISHED:
+                continue
+            running_tasks.append(taskid)
+        
+        return running_tasks
                 
     def _stop(self) -> None:
         self._logger.info("Shutting down Burp Suite ...")
@@ -566,25 +564,21 @@ class Burpa:
 
         parsed_targets = parse_targets(targets)
         
-        lock_file_path = TEMP_DIR.joinpath(f'{datetime.now().isoformat(timespec="seconds")}.scheduled-scans.lock')
-        lock_file_path.touch()
-        
-        with FileLock(str(lock_file_path)):
 
-            perform(self._scheduled_scan, parsed_targets, 
-                    func_args=dict(begin_time=begin_time, 
-                                end_time=end_time,
-                                report_type=report_type,
-                                report_output_dir=report_output_dir,
-                                excluded=excluded,
-                                config=config,
-                                app_user=app_user,
-                                app_pass=app_pass,
-                                issue_severity=issue_severity,
-                                issue_confidence=issue_confidence, 
-                                csv=csv), 
-                    asynch=workers>1, 
-                    workers=workers)
+        perform(self._scheduled_scan, parsed_targets, 
+                func_args=dict(begin_time=begin_time, 
+                            end_time=end_time,
+                            report_type=report_type,
+                            report_output_dir=report_output_dir,
+                            excluded=excluded,
+                            config=config,
+                            app_user=app_user,
+                            app_pass=app_pass,
+                            issue_severity=issue_severity,
+                            issue_confidence=issue_confidence, 
+                            csv=csv), 
+                asynch=workers>1, 
+                workers=workers)
 
     def _scheduled_scan(self, target: str, begin_time: str,
                 end_time: str, **kwargs: Any) -> None:
