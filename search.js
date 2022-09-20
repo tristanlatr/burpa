@@ -126,6 +126,8 @@ function toggleSearchHelpText() {
 function resetResultList(){
   resetLongSearchTimerInfo();
   results_list.innerHTML = '';
+  setWarning('');
+  setStatus('');
 }
 
 function clearSearch(){
@@ -139,8 +141,6 @@ function stopSearching(){
   // UI
   hideResultContainer();
   resetResultList();
-  setWarning('');
-  setStatus('');
 
   // NOT UI
   _stopSearchingProcess();
@@ -273,7 +273,6 @@ function launchSearch(noDelay){
     return;
   }
   
-  setWarning('');
   resetResultList();
   showResultContainer();
   setStatus("...");
@@ -368,9 +367,6 @@ function displaySearchResults(_query, documentResults, lunrResults){
     if (lunrResults.length > 500){
       setWarning("Your search yielded a lot of results! Maybe try with other terms?");
     }
-    else{
-      setWarning('');
-    }
   }
 
   let publicResults = documentResults.filter(function(value){
@@ -420,16 +416,24 @@ input.onkeyup = (event) => {
   }
 };
 input.onfocus = (event) => {
+  // Ensure the search bar is set-up.
   // Load fullsearchindex.json, searchindex.json and all-documents.html to have them in the cache asap.
   isSearchReadyPromise = _getIsSearchReadyPromise();
 }
+document.onload = (event) => { 
+  // Set-up search bar.
+  setTimeout(() =>{
+    isSearchReadyPromise = _getIsSearchReadyPromise(); 
+  }, 500);
+}
+
 // Close the dropdown if the user clicks on echap key
-document.onkeyup = function(evt) {
+document.addEventListener('keyup', (evt) => {
   evt = evt || window.event;
   if (evt.key === "Escape" || evt.key === "Esc") {
       hideResultContainer();
   }
-};
+});
 
 // Init search and help text. 
 // search box is not visible by default because
@@ -440,19 +444,44 @@ window.addEventListener('load', (event) => {
   hideResultContainer();
 });
 
-// Hide the dropdown if the user clicks outside of it
-window.addEventListener("click", function(event) {
+// This listener does 3 things.
+window.addEventListener("click", (event) => {
   if (event){
+      // 1. Hide the dropdown if the user clicks outside of it  
       if (!event.target.closest('#search-results-container') 
           && !event.target.closest('#search-box')
           && !event.target.closest('#search-help-button')){
             hideResultContainer();
             return;
       }
+      
+      // 2. Show the dropdown if the user clicks inside the search box
       if (event.target.closest('#search-box')){
         if (input.value.length>0){
           showResultContainer();
+          return;
         }
+      }
+      
+      // 3.Hide the dropdown if the user clicks on a link that brings them to the same page.
+      // This includes links in summaries.
+      link = event.target.closest('#search-results a')
+      if (link){
+        page_parts = document.location.pathname.split('/')
+        current_page = page_parts[page_parts.length-1]
+        href = link.getAttribute("href");
+        
+        if (!href.startsWith(current_page)){
+          // The link points to something not in the same page, so don't hide the dropdown.
+          // The page will be reloaded anyway, but this ensure that if we go back, the dropdown will
+          // still be expanded.
+          return;
+        }
+        if (event.ctrlKey || event.shiftKey || event.metaKey){ 
+          // The link is openned in a new window/tab so don't hide the dropdown.
+          return;
+        }
+        hideResultContainer();
       }
   }
 });

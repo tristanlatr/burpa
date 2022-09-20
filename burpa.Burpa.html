@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa.Burpa</title>
-    <meta name="generator" content="pydoctor 22.7.0"> 
+    <meta name="generator" content="pydoctor 22.9.1"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -31,7 +31,7 @@
       
       <div class="navlinks">
         <span class="navbar-brand">
-          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.5</a> <a href="index.html">API Documentation</a>
+          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.4</a> <a href="index.html">API Documentation</a>
         </span>
 
         <a href="moduleIndex.html">
@@ -244,16 +244,6 @@
 
         
             <div class="itemName"><code><a href="#_get_running_scans" class="internal-link" title="burpa.Burpa._get_running_scans">_get<wbr></wbr>_running<wbr></wbr>_scans</a></code>
-            </div>
-        
-
-    </li><li class="private">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="#_get_temp_filelocks" class="internal-link" title="burpa.Burpa._get_temp_filelocks">_get<wbr></wbr>_temp<wbr></wbr>_filelocks</a></code>
             </div>
         
 
@@ -488,16 +478,6 @@
         
 
         
-            <div class="itemName"><code><a href="burpa.BurpaError.html" class="internal-link" title="burpa.BurpaError"><wbr></wbr>Burpa<wbr></wbr>Error</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
             <div class="itemName"><code><a href="burpa.BurpCommander.html" class="internal-link" title="burpa.BurpCommander"><wbr></wbr>Burp<wbr></wbr>Commander</a></code>
             </div>
         
@@ -509,6 +489,16 @@
 
         
             <div class="itemName"><code><a href="burpa.BurpRestApiClient.html" class="internal-link" title="burpa.BurpRestApiClient"><wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="burpa.BurpaError.html" class="internal-link" title="burpa.BurpaError"><wbr></wbr>Burpa<wbr></wbr>Error</a></code>
             </div>
         
 
@@ -557,7 +547,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <p><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L79" class="sourceLink">(source)</a></code></p>
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L75" class="sourceLink">(source)</a></code></p>
           <p><a href="classIndex.html#burpa.Burpa">View In Hierarchy</a></p>
         </div>
 
@@ -614,12 +604,7 @@
     
     <td>Method</td>
     <td><code><a href="#_get_running_scans" class="internal-link" title="burpa.Burpa._get_running_scans">_get<wbr></wbr>_running<wbr></wbr>_scans</a></code></td>
-    <td>Construct a list of the running scans names from the filelock paths.</td>
-  </tr><tr class="method private">
-    
-    <td>Method</td>
-    <td><code><a href="#_get_temp_filelocks" class="internal-link" title="burpa.Burpa._get_temp_filelocks">_get<wbr></wbr>_temp<wbr></wbr>_filelocks</a></code></td>
-    <td>Get the running scans paths and filelocks.</td>
+    <td>Construct a list of the running scans names from the existing Task IDs in the Burp server.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -690,9 +675,14 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, api_url=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, api_port=<span class="rst-variable-quote">'</span><span class="rst-variable-string">8090</span><span class="rst-variable-quote">'</span>, new_api_url=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, new_api_port=<span class="rst-variable-quote">'</span><span class="rst-variable-string">1337</span><span class="rst-variable-quote">'</span>, new_api_key=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, verbose=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, quiet=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, no_banner=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L105">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L101">
       
       (source)
+    </a>
+    <a class="headerLink" href="#__init__" title="burpa.Burpa.__init__">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -711,9 +701,14 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">proxy_listen_all_interfaces</span>(self, proxy_port):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L411">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L401">
       
       (source)
+    </a>
+    <a class="headerLink" href="#proxy_listen_all_interfaces" title="burpa.Burpa.proxy_listen_all_interfaces">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -736,9 +731,14 @@ if necessary.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">report</span>(self, *targets, report_type=<span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, issue_severity=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L396">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L386">
       
       (source)
+    </a>
+    <a class="headerLink" href="#report" title="burpa.Burpa.report">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -759,9 +759,14 @@ If targets is 'all', generate a report that contains all issues for all targets.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">scan</span>(self, *targets, report_type=<span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, excluded=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config_file=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, issue_severity=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L275">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L271">
       
       (source)
+    </a>
+    <a class="headerLink" href="#scan" title="burpa.Burpa.scan">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -788,9 +793,14 @@ Multiple values are also accepted if they are comma-separated.</td></tr><tr><td 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">schedule</span>(self, *targets, report_type=<span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, excluded=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, begin_time=<span class="rst-variable-quote">'</span><span class="rst-variable-string">22:00</span><span class="rst-variable-quote">'</span>, end_time=<span class="rst-variable-quote">'</span><span class="rst-variable-string">05:00</span><span class="rst-variable-quote">'</span>, workers=1, issue_severity=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L529">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L527">
       
       (source)
+    </a>
+    <a class="headerLink" href="#schedule" title="burpa.Burpa.schedule">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -819,9 +829,14 @@ Running scans will finish after the end time.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self, wait=<span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>, force=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L465">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L463">
       
       (source)
+    </a>
+    <a class="headerLink" href="#stop" title="burpa.Burpa.stop">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -844,9 +859,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">test</span>(self, wait=<span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L505">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L503">
       
       (source)
+    </a>
+    <a class="headerLink" href="#test" title="burpa.Burpa.test">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -866,9 +886,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">version</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L604">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L598">
       
       (source)
+    </a>
+    <a class="headerLink" href="#version" title="burpa.Burpa.version">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -887,38 +912,21 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_get_running_scans</span>(self, tempdir=TEMP_DIR):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L437">
+    <span class="py-keyword">def</span> <span class="py-defname">_get_running_scans</span>(self):
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L418">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_get_running_scans" title="burpa.Burpa._get_running_scans">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
     
-    <div><p>Construct a list of the running scans names from the filelock paths.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tempdir:</span><code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" class="intersphinx-link">pathlib.Path</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
-  </div>
-</div><div class="basemethod private">
-  
-  
-  <a name="burpa.Burpa._get_temp_filelocks">
-    
-  </a>
-  <a name="_get_temp_filelocks">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_get_temp_filelocks</span>(self, tempdir=TEMP_DIR):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L428">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    <div><p>Get the running scans paths and filelocks.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tempdir:</span><code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" class="intersphinx-link">pathlib.Path</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Iterator[<wbr></wbr>Tuple[<wbr></wbr><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" class="intersphinx-link">pathlib.Path</a>, <wbr></wbr>BaseFileLock]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p>Construct a list of the running scans names from the existing Task IDs in the Burp server.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod private">
   
@@ -932,9 +940,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_report</span>(self, target, report_type, report_output_dir=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, issue_severity=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence=<span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L354">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L344">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_report" title="burpa.Burpa._report">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -953,9 +966,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_scan_metrics</span>(self, *records):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L265">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L261">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_scan_metrics" title="burpa.Burpa._scan_metrics">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -975,9 +993,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_scheduled_scan</span>(self, target, begin_time, end_time, **kwargs):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L589">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L583">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_scheduled_scan" title="burpa.Burpa._scheduled_scan">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -996,9 +1019,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_start_scan</span>(self, *targets, excluded=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config_file=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L152">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L145">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_start_scan" title="burpa.Burpa._start_scan">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -1018,9 +1046,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_stop</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L452">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L450">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_stop" title="burpa.Burpa._stop">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -1039,9 +1072,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_test</span>(self):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L501">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L499">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_test" title="burpa.Burpa._test">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -1060,9 +1098,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_wait_scan</span>(self, *records):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L235">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L231">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_wait_scan" title="burpa.Burpa._wait_scan">
+      
+      
+      ¶
     </a>
   </div>
   <div class="docstring functionBody">
@@ -1082,9 +1125,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-defname">_api</span>: <code><a href="burpa.BurpRestApiClient.html" class="internal-link" title="burpa.BurpRestApiClient">BurpRestApiClient</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L134">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L130">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_api" title="burpa.Burpa._api">
+      
+      
+      ¶
     </a>
   </div>
   <div class="functionBody">
@@ -1104,9 +1152,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-defname">_logger</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L114">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L110">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_logger" title="burpa.Burpa._logger">
+      
+      
+      ¶
     </a>
   </div>
   <div class="functionBody">
@@ -1126,9 +1179,14 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-defname">_newapi</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/bca79fcd4cecade9681b8876a6cc997bb2c39868/burpa/_burpa.py#L137">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/3ac734a74ec256ed52f7e5c8f674ba4ed4e7cb69/burpa/_burpa.py#L133">
       
       (source)
+    </a>
+    <a class="headerLink" href="#_newapi" title="burpa.Burpa._newapi">
+      
+      
+      ¶
     </a>
   </div>
   <div class="functionBody">
@@ -1146,9 +1204,9 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
 
   
   <div class="container">
-    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.5</a>,
+    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.4</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.7.0 at 2022-09-13 20:12:59.
+    22.9.1 at 2022-09-20 18:48:28.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
