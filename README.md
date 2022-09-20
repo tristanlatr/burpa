@@ -160,6 +160,7 @@ burpa report <flags> [TARGETS]...
   --report_output_dir=REPORT_OUTPUT_DIR
   --issue_severity=ISSUE_SEVERITY[,ISSUE_SEVERITY,...]
   --issue_confidence=ISSUE_CONFIDENCE[,ISSUE_CONFIDENCE,...]
+  --csv
 
 burpa scan <flags> [TARGETS]...
 
@@ -183,6 +184,8 @@ burpa scan <flags> [TARGETS]...
       Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. Multiple values are also accepted if they are comma-separated.
   --issue_confidence=ISSUE_CONFIDENCE[,ISSUE_CONFIDENCE,...]
       Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. Multiple values are also accepted if they are comma-separated.
+  --csv
+      Whether to generate a CSV summary with all issues.
 
 burpa schedule <flags> [TARGETS]...
 
