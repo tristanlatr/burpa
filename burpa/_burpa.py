@@ -421,8 +421,6 @@ class Burpa:
         """
         
         # start at ID 3 and load all scan statuses until we get a BurpaError. 
-        # If the the error.response.status_code == 400 it means we reached the end of the scan list.
-        # If it's something else, then raise the execption. 
 
         tasks: Dict[str, str] = {}
         current_task_id = 3
@@ -430,10 +428,7 @@ class Burpa:
             try:
                 task_status = self._newapi.scan_status(str(current_task_id))
             except BurpaError as e:
-                if e.response is not None and e.response.status_code==400:
-                    break
-                else:
-                    raise
+                break
             else:
                 tasks[str(current_task_id)] = task_status
                 current_task_id += 1
