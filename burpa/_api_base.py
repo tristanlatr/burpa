@@ -41,7 +41,7 @@ class ApiBase:
             r.raise_for_status()
         
         except requests.exceptions.RequestException as e:
-            raise BurpaError(f"HTTP Error: {e}. Response: {r.text if r is not None else 'None'}", response=r) from e
+            raise BurpaError(f"HTTP Error: {e}. Response: {getattr(e.response, 'text', 'None')}", response=e.response) from e
         
         else:
             return r
