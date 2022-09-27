@@ -1,6 +1,6 @@
 from logging import Logger
 import os
-import re
+import requests
 import tempfile
 import time
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
@@ -27,6 +27,7 @@ class BurpRestApiClient(ApiBase):
 
     proxy_url: str
     api_port: str = "8090"
+    api_key: Optional[str] = None
     _logger: Logger = attr.ib(factory=lambda : setup_logger('BurpRestApiClient'))
 
     PARAMS = {
@@ -138,6 +139,18 @@ class BurpRestApiClient(ApiBase):
     def proxy_uri(self) -> str:
         return f"{self.proxy_url}:{self.api_port}"
 
+
+    def request(self, request: str, request_args: Optional[Dict[str, Any]] = None, 
+                **kwargs: Union[str, List[Any], Tuple[Any, ...], Dict[str, Any]]) -> requests.Response:
+        
+        # Set API-KEY header if self.api_key is not None.
+        if self.api_key is not None:
+            request_args = request_args or {}
+            headers = request_args.setdefault('headers', {})
+            headers['API-KEY'] = self.api_key
+
+        return super().request(request, request_args, **kwargs)
+
     @property
     def rest_api_version(self) -> Tuple[int,int,int]:
         """The version of the burp-rest-api Extension"""
@@ -157,6 +170,7 @@ class BurpRestApiClient(ApiBase):
             raise BurpaError(f"Error retrieving the versions: {e}") from e
         else:
             return get_version(r.json()['burpVersion'])
+
 
     def check_proxy_listen_all_interfaces(self) -> bool:
         """
