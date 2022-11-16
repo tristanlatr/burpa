@@ -115,10 +115,10 @@ class BurpCommander(ApiBase):
                 conf.extend(list({"config": config, "type": "CustomConfiguration"} for config in json_strings))
             return conf
 
-        # if username and not password:
+        # if label and not script:
             # raise BurpaError(f"Error: Missing password for authenticated scan against {base_urls[0]}.")
         
-        # elif not username and password:
+        # elif not label and script:
             # raise BurpaError(f"Error: Missing username for authenticated scan against {base_urls[0]}.")
         
         try:
