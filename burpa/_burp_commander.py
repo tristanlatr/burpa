@@ -52,7 +52,7 @@ class BurpCommander(ApiBase):
                                     "exclude": $exclude_rules
                                 },
                                 "application_logins": [{"username": "$username","password": "$password","type": "UsernameAndPasswordLogin"},
-							                           {"label": "$label","script": "$script","type": "RecordedLogin"}],                                 
+						       {"label": "$label","script": "$script","type": "RecordedLogin"}],                                 
                                 "scan_configurations": $scan_configurations
                             }
                             """)
@@ -135,7 +135,7 @@ class BurpCommander(ApiBase):
                 self._logger.info(f"URLs excluded from scope: {', '.join(excluded_urls)}")
                 exclude_rules = get_exclude_rules(excluded_urls)
 				
-			if username and password:
+           if username and password:
                 #craft authenticated response
                 self._logger.info(f"Initiating authenticated scan with user '{username}'...")
                 r = self.request('active_scan_with_auth', base_urls=base_urls, include_url=base_urls[-1],
@@ -144,7 +144,7 @@ class BurpCommander(ApiBase):
                    
             if label and script:
                 #craft authenticated response with recorded login script
-                self._logger.info(f"Initiating authenticated scan with recorded script '{label}'...")
+                self._logger.info(f"Initiating authenticated scan with recorded label name '{label}'...")
                 r = self.request('active_scan_with_auth', base_urls=base_urls, include_url=base_urls[-1],
                             label=label, script=script,
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)                
