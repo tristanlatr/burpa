@@ -143,7 +143,7 @@ class Burpa:
                             logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
 
     def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
-            app_user: str = "", app_pass: str = "",) -> List[ScanRecord]:
+             recorded_login_label: str = "", recorded_login_script: str = "",) -> List[ScanRecord]:
         """
         Start a Burp Suite active scan.
         """
@@ -166,7 +166,7 @@ class Burpa:
         config_files_content = []
         for f in config_files:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
-
+                
         scan_records = []
 
         authenticated_scans = app_pass and app_user
@@ -177,9 +177,11 @@ class Burpa:
             if target_url.upper() == "ALL":
                 history = self._api.proxy_history()
                 if history:
-                    scan_records.extend(self._start_scan(*history, 
+                    scan_records.extend(self._start_scan(*history,
                             app_user=app_user,
                             app_pass=app_pass,
+                            recorded_login_label=recorded_login_label,
+                            recorded_login_script=recorded_login_script,
                             excluded=excluded, 
                             config=config,
                             config_file=config_file))
@@ -205,7 +207,8 @@ class Burpa:
                 if authenticated_scans:
                 
                     task_id = self._newapi.active_scan(*base_urls, 
-                                                    username=app_user, password=app_pass,
+                                                    username=app_user, password=app_pass
+                                                    label=recorded_login_label, script=recorded_login_script,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)
@@ -272,7 +275,9 @@ class Burpa:
              report_output_dir: str = "", excluded: str = "", 
              config: str = "", config_file: str = "",
              app_user: str = "", 
-             app_pass: str = "", 
+             app_pass: str = "",
+             recorded_login_label: str = "",
+             recorded_login_script: str = "",             
              issue_severity:Union[str, Tuple[str, ...]]="All", 
              issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> None:
         """
@@ -302,6 +307,10 @@ class Burpa:
             Application username for authenticated scans.
         app_pass: 
             Application password for authenticated scans
+        recorded_login_label:
+            Application recorded login label for authenticated scans.
+        recorded_login_script:
+            Application recorded login script for authenticated scans.
         issue_severity:
             Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. 
             Multiple values are also accepted if they are comma-separated.
@@ -317,8 +326,9 @@ class Burpa:
         if not targets:
             raise BurpaError("Error: No target(s) specified. ")
 
-        records = self._start_scan(*targets, excluded=excluded, config=config, 
-                        app_user=app_user, app_pass=app_pass)
+        records = self._start_scan(*targets, excluded=excluded, config=config,
+                        app_user=app_user, app_pass=app_pass,
+                        recorded_login_label=recorded_login_label, recorded_login_script=recorded_login_script)
         
         self._wait_scan(*records)
 
@@ -526,6 +536,8 @@ class Burpa:
                 config: str = "",
                 app_user: str = "", 
                 app_pass: str = "",
+                recorded_login_label: str = "",
+                recorded_login_script: str = "",
                 begin_time: str = "22:00",
                 end_time: str = "05:00",
                 workers: int = 1,
@@ -569,6 +581,8 @@ class Burpa:
                             config=config,
                             app_user=app_user,
                             app_pass=app_pass,
+                            recorded_login_label=recorded_login_label,
+                            recorded_login_script=recorded_login_script,
                             issue_severity=issue_severity,
                             issue_confidence=issue_confidence, 
                             csv=csv), 
