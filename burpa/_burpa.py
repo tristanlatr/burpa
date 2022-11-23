@@ -143,7 +143,8 @@ class Burpa:
                             logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
 
     def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
-             recorded_login_label: str = "", recorded_login_script: str = "",) -> List[ScanRecord]:
+                    app_user: str = "", app_pass: str = "",
+                    recorded_login_label: str = "", recorded_login_script: str = "",) -> List[ScanRecord]:
         """
         Start a Burp Suite active scan.
         """
@@ -169,7 +170,7 @@ class Burpa:
                 
         scan_records = []
 
-        authenticated_scans = app_pass and app_user
+        authenticated_scans = app_pass and app_user or recorded_login_label and recorded_login_script
 
         for target_url in parsed_targets:
             base_urls = [target_url]
@@ -207,7 +208,7 @@ class Burpa:
                 if authenticated_scans:
                 
                     task_id = self._newapi.active_scan(*base_urls, 
-                                                    username=app_user, password=app_pass
+                                                    username=app_user, password=app_pass,
                                                     label=recorded_login_label, script=recorded_login_script,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
