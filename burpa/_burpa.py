@@ -167,7 +167,13 @@ class Burpa:
         config_files_content = []
         for f in config_files:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
-                
+           
+       # Parse recorded login script file(s)
+       script_files = parse_commas_separated_str(recorded_login_script)
+       script_files_content = []
+       for f in script_files:
+           script_files_content.append(open(f, 'r', encoding='utf-8').read())
+
         scan_records = []
 
         authenticated_scans = app_pass and app_user or recorded_login_label and recorded_login_script
@@ -209,7 +215,7 @@ class Burpa:
                 
                     task_id = self._newapi.active_scan(*base_urls, 
                                                     username=app_user, password=app_pass,
-                                                    label=recorded_login_label, script=recorded_login_script,
+                                                    label=recorded_login_label, script=script_files_content,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)
