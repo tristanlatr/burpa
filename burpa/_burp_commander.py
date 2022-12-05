@@ -156,7 +156,7 @@ class BurpCommander(ApiBase):
                             username=username, password=password,
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)	
                    
-            if label and script:
+            elif label and script:
                 #craft authenticated response with recorded login script
                 self._logger.info(f"Initiating authenticated scan with recorded script '{label}'...")
                 r = self.request('active_scan_with_auth_script', base_urls=base_urls, include_url=base_urls[-1],
