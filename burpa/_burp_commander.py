@@ -13,7 +13,7 @@ from ._utils import setup_logger
 @attr.s(auto_attribs=True)
 class BurpCommander(ApiBase):
     """
-    Interface for the Burp Suite Official RES
+    Interface for the Burp Suite Official REST API
     based on ruby code `burpcommander <https://github.com/pentestgeek/burpcommander>`_. 
 
     Args
