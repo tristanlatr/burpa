@@ -66,7 +66,7 @@ class BurpCommander(ApiBase):
                                     "include": [{"rule": "$include_url", "type":"SimpleScopeDef"}],
                                     "exclude": $exclude_rules
                                 },
-                                "application_logins": [{"label": "$label","script": "$script","type": "RecordedLogin"}],                               
+                                "application_logins": [{"label": "$label","script": $script,"type": "RecordedLogin"}],                               
                                 "scan_configurations": $scan_configurations
                             }
                             """)
