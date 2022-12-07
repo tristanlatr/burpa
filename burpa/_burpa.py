@@ -169,10 +169,7 @@ class Burpa:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
            
        # Parse recorded login script file(s)
-       script_files = parse_commas_separated_str(recorded_login_script)
-       script_files_content = []
-       for f in script_files:
-           script_files_content.append(open(f, 'r', encoding='utf-8').read())
+       script_files = read_json_file(recorded_login_script)
 
         scan_records = []
 
@@ -215,7 +212,7 @@ class Burpa:
                 
                     task_id = self._newapi.active_scan(*base_urls, 
                                                     username=app_user, password=app_pass,
-                                                    label=recorded_login_label, script=script_files_content,
+                                                    label=recorded_login_label, script=script_files,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)
@@ -317,7 +314,7 @@ class Burpa:
         recorded_login_label:
             Application recorded login label for authenticated scans.
         recorded_login_script:
-            Application recorded login script for authenticated scans.
+            Application recorded login script JSON file for authenticated scans.
         issue_severity:
             Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. 
             Multiple values are also accepted if they are comma-separated.
