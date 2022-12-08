@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 from pathlib import Path
 import functools
 import sys
+import json
 import concurrent.futures
 from datetime import datetime, time
 from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, Tuple
@@ -24,6 +25,27 @@ def parse_commas_separated_str(string: str) -> List[str]:
             r.extend(row)
     return r
 
+def read_json_file(file_path: str) -> Dict[str, Any]:
+    """
+    This function take a file path as input and reads the JSON data from the file.
+    It returns the data as a python dictionary.
+    """  
+    # Open the file in read mode
+    with open(file_path, 'r') as file:
+      # Read the JSON data from the file
+      json_data = file.read()
+      
+      # Parse the JSON data
+      try:
+         data = json.dumps(json_data)
+      except json.decoder.JSONDecodeError:
+          print('The JSON data in the file is not valid!')
+          data = {}
+      print(data)
+      
+     # Return the data as a dictionary
+     return data
+          
 def parse_targets(targets: Iterable[str]) -> Iterator[str]:
     for target in targets:
         
