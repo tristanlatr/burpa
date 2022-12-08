@@ -38,7 +38,7 @@ import dateutil.parser
 from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
-from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between
+from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between, read_json_file
 from .__version__ import __version__, __author__
 
 ###################################################
@@ -169,7 +169,7 @@ class Burpa:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
            
        # Parse recorded login script file(s)
-       script_files = read_json_file(recorded_login_script)
+        script_files = read_json_file(recorded_login_script)
 
         scan_records = []
 
