@@ -169,7 +169,11 @@ class Burpa:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
            
        # Parse recorded login script file(s)
-        script_files = read_json_file(recorded_login_script)
+       script_files=""
+       try:
+         script_files = read_json_file(recorded_login_script)
+       except FileNotFoundError:
+           print(f"Error: JSON file not found at {recorded_login_script}")           
 
         scan_records = []
 
