@@ -38,7 +38,7 @@ import dateutil.parser
 from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
-from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between
+from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between, read_json_file
 from .__version__ import __version__, __author__
 
 ###################################################
@@ -143,7 +143,8 @@ class Burpa:
                             logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
 
     def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
-            app_user: str = "", app_pass: str = "",) -> List[ScanRecord]:
+                    app_user: str = "", app_pass: str = "",
+                    recorded_login_label: str = "", recorded_login_script: str = "",) -> List[ScanRecord]:
         """
         Start a Burp Suite active scan.
         """
@@ -166,10 +167,17 @@ class Burpa:
         config_files_content = []
         for f in config_files:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
+           
+       # Parse recorded login script file(s)
+       script_files=""
+       try:
+         script_files = read_json_file(recorded_login_script)
+       except FileNotFoundError:
+           print(f"Error: JSON file not found at {recorded_login_script}")           
 
         scan_records = []
 
-        authenticated_scans = app_pass and app_user
+        authenticated_scans = app_pass and app_user or recorded_login_label and recorded_login_script
 
         for target_url in parsed_targets:
             base_urls = [target_url]
@@ -177,9 +185,11 @@ class Burpa:
             if target_url.upper() == "ALL":
                 history = self._api.proxy_history()
                 if history:
-                    scan_records.extend(self._start_scan(*history, 
+                    scan_records.extend(self._start_scan(*history,
                             app_user=app_user,
                             app_pass=app_pass,
+                            recorded_login_label=recorded_login_label,
+                            recorded_login_script=recorded_login_script,
                             excluded=excluded, 
                             config=config,
                             config_file=config_file))
@@ -206,6 +216,7 @@ class Burpa:
                 
                     task_id = self._newapi.active_scan(*base_urls, 
                                                     username=app_user, password=app_pass,
+                                                    label=recorded_login_label, script=script_files,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)
@@ -272,7 +283,9 @@ class Burpa:
              report_output_dir: str = "", excluded: str = "", 
              config: str = "", config_file: str = "",
              app_user: str = "", 
-             app_pass: str = "", 
+             app_pass: str = "",
+             recorded_login_label: str = "",
+             recorded_login_script: str = "",             
              issue_severity:Union[str, Tuple[str, ...]]="All", 
              issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> None:
         """
@@ -302,6 +315,10 @@ class Burpa:
             Application username for authenticated scans.
         app_pass: 
             Application password for authenticated scans
+        recorded_login_label:
+            Application recorded login label for authenticated scans.
+        recorded_login_script:
+            Application recorded login script JSON file for authenticated scans.
         issue_severity:
             Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. 
             Multiple values are also accepted if they are comma-separated.
@@ -317,8 +334,9 @@ class Burpa:
         if not targets:
             raise BurpaError("Error: No target(s) specified. ")
 
-        records = self._start_scan(*targets, excluded=excluded, config=config, 
-                        app_user=app_user, app_pass=app_pass)
+        records = self._start_scan(*targets, excluded=excluded, config=config,
+                        app_user=app_user, app_pass=app_pass,
+                        recorded_login_label=recorded_login_label, recorded_login_script=recorded_login_script)
         
         self._wait_scan(*records)
 
@@ -526,6 +544,8 @@ class Burpa:
                 config: str = "",
                 app_user: str = "", 
                 app_pass: str = "",
+                recorded_login_label: str = "",
+                recorded_login_script: str = "",
                 begin_time: str = "22:00",
                 end_time: str = "05:00",
                 workers: int = 1,
@@ -569,6 +589,8 @@ class Burpa:
                             config=config,
                             app_user=app_user,
                             app_pass=app_pass,
+                            recorded_login_label=recorded_login_label,
+                            recorded_login_script=recorded_login_script,
                             issue_severity=issue_severity,
                             issue_confidence=issue_confidence, 
                             csv=csv), 

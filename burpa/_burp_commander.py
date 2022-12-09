@@ -13,7 +13,7 @@ from ._utils import setup_logger
 @attr.s(auto_attribs=True)
 class BurpCommander(ApiBase):
     """
-    Interface for the Burp Suite Official REST API, 
+    Interface for the Burp Suite Official REST API
     based on ruby code `burpcommander <https://github.com/pentestgeek/burpcommander>`_. 
 
     Args
@@ -51,14 +51,26 @@ class BurpCommander(ApiBase):
                                     "include": [{"rule": "$include_url", "type":"SimpleScopeDef"}],
                                     "exclude": $exclude_rules
                                 },
-                                "application_logins": [{
-                                    "password": "$password",
-                                    "username": "$username"
-                                    }],
+                                "application_logins": [{"username": "$username","password": "$password","type": "UsernameAndPasswordLogin"}],                             
                                 "scan_configurations": $scan_configurations
                             }
                             """)
-                        ),
+                        ), 
+
+        'active_scan_with_auth_script': ("post",
+                        "/scan",
+                        Template("""
+                            {
+                                "urls" : $base_urls,
+                                "scope": {
+                                    "include": [{"rule": "$include_url", "type":"SimpleScopeDef"}],
+                                    "exclude": $exclude_rules
+                                },
+                                "application_logins": [{"label": "$label","script": $script,"type": "RecordedLogin"}],                               
+                                "scan_configurations": $scan_configurations
+                            }
+                            """)
+                        ),                        
         
         'scan_details': ("get",
                         Template("/scan/$task_id"),
@@ -76,7 +88,8 @@ class BurpCommander(ApiBase):
         return f"{self.proxy_url}:{self.api_port}{'/' if self.api_key else ''}{self.api_key if self.api_key else ''}/v0.1"
 
     def active_scan(self, *base_urls: str, username: Optional[str] = None, 
-                    password: Optional[str] = None, excluded_urls: Optional[List[str]] = None, 
+                    password: Optional[str] = None, label: Optional[str] = None, script: Optional[str] = None, 
+                    excluded_urls: Optional[List[str]] = None, 
                     config_names: Optional[List[str]] = None, config_json: Optional[List[str]] = None) -> str:
         """
         Send a URL to Burp to perform active scan, the difference with 
@@ -85,11 +98,15 @@ class BurpCommander(ApiBase):
         Parameters
         ----------
         base_url
-            URLs to scan. 
-        username
+            URLs to scan.
+	username
             Username for authenticated scan.
         password
             Password for authenticated scan.
+        label
+            Recorded Login Label for authenticated scan.
+        script
+            Recorded Login Script for authenticated scan.        
         excluded_urls
             List of urls to exclude from the scope. 
         config_names
@@ -104,7 +121,8 @@ class BurpCommander(ApiBase):
 
         def get_exclude_rules(urls: Iterable[str]) -> List[Dict[str, str]]:
             return list({"rule": url, "type": "SimpleScopeDef"} for url in urls)
-        
+            
+                          
         def get_scan_configurations(names: Optional[Iterable[str]], json_strings: Optional[Iterable[str]]) -> List[Dict[str, str]]:
             conf = []
             if names:
@@ -120,22 +138,31 @@ class BurpCommander(ApiBase):
         
         elif not username and password:
             raise BurpaError(f"Error: Missing username for authenticated scan against {base_urls[0]}.")
-        
+             
+          
         try:
 
             scan_configurations = get_scan_configurations(names=config_names, json_strings=config_json)
-
+            
             exclude_rules = []
             if excluded_urls:
                 self._logger.info(f"URLs excluded from scope: {', '.join(excluded_urls)}")
                 exclude_rules = get_exclude_rules(excluded_urls)
-            
+
             if username and password:
                 #craft authenticated response
                 self._logger.info(f"Initiating authenticated scan with user '{username}'...")
                 r = self.request('active_scan_with_auth', base_urls=base_urls, include_url=base_urls[-1],
-                            username=username, password=password, 
-                            exclude_rules=exclude_rules, scan_configurations=scan_configurations)
+                            username=username, password=password,
+                            exclude_rules=exclude_rules, scan_configurations=scan_configurations)	
+                   
+            elif label and script:
+                #craft authenticated response with recorded login script
+                self._logger.info(f"Initiating authenticated scan with recorded script '{label}'...")
+                r = self.request('active_scan_with_auth_script', base_urls=base_urls, include_url=base_urls[-1],
+                            label=label, script=script,
+                            exclude_rules=exclude_rules, scan_configurations=scan_configurations)                
+                           
 
             else:
                 # craft unauthenticated response
