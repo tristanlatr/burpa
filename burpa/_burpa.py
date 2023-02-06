@@ -168,16 +168,18 @@ class Burpa:
         for f in config_files:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
            
-       # Parse recorded login script file(s)
-       script_files=""
-       try:
-         script_files = read_json_file(recorded_login_script)
-       except FileNotFoundError:
-           print(f"Error: JSON file not found at {recorded_login_script}")           
-
+        # Parse recorded login script file(s)
+        script_file = None
+        if recorded_login_script:
+            try:
+                script_file = read_json_file(recorded_login_script)
+            except Exception as e:
+                raise BurpaError("cannot read login script json") from e
+        
         scan_records = []
 
-        authenticated_scans = app_pass and app_user or recorded_login_label and recorded_login_script
+        authenticated_scans = (app_pass and app_user) or \
+                              (recorded_login_label and recorded_login_script)
 
         for target_url in parsed_targets:
             base_urls = [target_url]
@@ -215,8 +217,10 @@ class Burpa:
                 if authenticated_scans:
                 
                     task_id = self._newapi.active_scan(*base_urls, 
-                                                    username=app_user, password=app_pass,
-                                                    label=recorded_login_label, script=script_files,
+                                                    username=app_user, 
+                                                    password=app_pass,
+                                                    label=recorded_login_label, 
+                                                    script=script_file,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)

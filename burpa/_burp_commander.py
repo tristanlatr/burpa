@@ -87,10 +87,14 @@ class BurpCommander(ApiBase):
     def proxy_uri(self) -> str:
         return f"{self.proxy_url}:{self.api_port}{'/' if self.api_key else ''}{self.api_key if self.api_key else ''}/v0.1"
 
-    def active_scan(self, *base_urls: str, username: Optional[str] = None, 
-                    password: Optional[str] = None, label: Optional[str] = None, script: Optional[str] = None, 
+    def active_scan(self, *base_urls: str, 
+                    username: Optional[str] = None, 
+                    password: Optional[str] = None, 
+                    label: Optional[str] = None, 
+                    script: Optional[Dict[str, Any]] = None, 
                     excluded_urls: Optional[List[str]] = None, 
-                    config_names: Optional[List[str]] = None, config_json: Optional[List[str]] = None) -> str:
+                    config_names: Optional[List[str]] = None, 
+                    config_json: Optional[List[str]] = None) -> str:
         """
         Send a URL to Burp to perform active scan, the difference with 
         `BurpRestApiClient.active_scan` is that this method accepts username/password for authenticated scans.
@@ -99,7 +103,7 @@ class BurpCommander(ApiBase):
         ----------
         base_url
             URLs to scan.
-	username
+	    username
             Username for authenticated scan.
         password
             Password for authenticated scan.

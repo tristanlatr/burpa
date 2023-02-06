@@ -25,26 +25,24 @@ def parse_commas_separated_str(string: str) -> List[str]:
             r.extend(row)
     return r
 
+@functools.lru_cache(maxsize=10)
 def read_json_file(file_path: str) -> Dict[str, Any]:
     """
     This function take a file path as input and reads the JSON data from the file.
-    It returns the data as a python dictionary.
+    It returns the data as a python dict.
     """  
     # Open the file in read mode
     with open(file_path, 'r') as file:
-      # Read the JSON data from the file
-      json_data = file.read()
-      
-      # Parse the JSON data
-      try:
-         data = json.dumps(json_data)
-      except json.decoder.JSONDecodeError:
-          print('The JSON data in the file is not valid!')
-          data = {}
-      print(data)
-      
-     # Return the data as a dictionary
-     return data
+        # Read the JSON data from the file
+        data = json.load(file)
+
+        # validate data is the expected type
+        assert isinstance(data, dict), 'expected dictionary structure'
+        assert data, 'expected non empty structure'
+        assert isinstance(next(iter(data.keys())), str), 'expected structure with string key type'
+    
+    # Return the data as a dict
+    return data
           
 def parse_targets(targets: Iterable[str]) -> Iterator[str]:
     for target in targets:
