@@ -3,6 +3,7 @@ from typing import Any, Dict, Iterable, List, Optional
 import attr
 import json
 from string import Template
+import uuid
 
 from ._error import BurpaError
 from ._api_base import ApiBase
@@ -90,8 +91,8 @@ class BurpCommander(ApiBase):
     def active_scan(self, *base_urls: str, 
                     username: Optional[str] = None, 
                     password: Optional[str] = None, 
-                    label: Optional[str] = None, 
-                    script: Optional[Dict[str, Any]] = None, 
+                    # label: Optional[str] = None, 
+                    auth_script: Optional[Dict[str, Any]] = None, 
                     excluded_urls: Optional[List[str]] = None, 
                     config_names: Optional[List[str]] = None, 
                     config_json: Optional[List[str]] = None) -> str:
@@ -107,8 +108,6 @@ class BurpCommander(ApiBase):
             Username for authenticated scan.
         password
             Password for authenticated scan.
-        label
-            Recorded Login Label for authenticated scan.
         script
             Recorded Login Script for authenticated scan.        
         excluded_urls
@@ -160,11 +159,11 @@ class BurpCommander(ApiBase):
                             username=username, password=password,
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)	
                    
-            elif label and script:
+            elif auth_script:
                 #craft authenticated response with recorded login script
-                self._logger.info(f"Initiating authenticated scan with recorded script '{label}'...")
+                self._logger.info(f"Initiating authenticated scan with recorded script...")
                 r = self.request('active_scan_with_auth_script', base_urls=base_urls, include_url=base_urls[-1],
-                            label=label, script=script,
+                            label=str(uuid.uuid4()), script=auth_script,
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)                
                            
 

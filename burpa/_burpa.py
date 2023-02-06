@@ -144,7 +144,8 @@ class Burpa:
 
     def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
                     app_user: str = "", app_pass: str = "",
-                    recorded_login_label: str = "", recorded_login_script: str = "",) -> List[ScanRecord]:
+                    # recorded_login_label: str = "", 
+                    recorded_login_script: str = "",) -> List[ScanRecord]:
         """
         Start a Burp Suite active scan.
         """
@@ -169,17 +170,17 @@ class Burpa:
             config_files_content.append(open(f, 'r', encoding='utf-8').read())
            
         # Parse recorded login script file(s)
-        script_file = None
+        auth_script_file = None
         if recorded_login_script:
             try:
-                script_file = read_json_file(recorded_login_script)
+                auth_script_file = read_json_file(recorded_login_script)
             except Exception as e:
                 raise BurpaError("cannot read login script json") from e
         
         scan_records = []
 
         authenticated_scans = (app_pass and app_user) or \
-                              (recorded_login_label and recorded_login_script)
+                              (recorded_login_script)
 
         for target_url in parsed_targets:
             base_urls = [target_url]
@@ -190,7 +191,7 @@ class Burpa:
                     scan_records.extend(self._start_scan(*history,
                             app_user=app_user,
                             app_pass=app_pass,
-                            recorded_login_label=recorded_login_label,
+                            # recorded_login_label=recorded_login_label,
                             recorded_login_script=recorded_login_script,
                             excluded=excluded, 
                             config=config,
@@ -219,8 +220,8 @@ class Burpa:
                     task_id = self._newapi.active_scan(*base_urls, 
                                                     username=app_user, 
                                                     password=app_pass,
-                                                    label=recorded_login_label, 
-                                                    script=script_file,
+                                                    # label=recorded_login_label, 
+                                                    auth_script=auth_script_file,
                                                     excluded_urls=excluded_urls, 
                                                     config_names=config_names, 
                                                     config_json=config_files_content,)
@@ -288,7 +289,7 @@ class Burpa:
              config: str = "", config_file: str = "",
              app_user: str = "", 
              app_pass: str = "",
-             recorded_login_label: str = "",
+            #  recorded_login_label: str = "",
              recorded_login_script: str = "",             
              issue_severity:Union[str, Tuple[str, ...]]="All", 
              issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> None:
@@ -319,8 +320,6 @@ class Burpa:
             Application username for authenticated scans.
         app_pass: 
             Application password for authenticated scans
-        recorded_login_label:
-            Application recorded login label for authenticated scans.
         recorded_login_script:
             Application recorded login script JSON file for authenticated scans.
         issue_severity:
@@ -340,7 +339,8 @@ class Burpa:
 
         records = self._start_scan(*targets, excluded=excluded, config=config,
                         app_user=app_user, app_pass=app_pass,
-                        recorded_login_label=recorded_login_label, recorded_login_script=recorded_login_script)
+                        # recorded_login_label=recorded_login_label, 
+                        recorded_login_script=recorded_login_script)
         
         self._wait_scan(*records)
 
