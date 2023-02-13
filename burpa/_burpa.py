@@ -614,7 +614,7 @@ def generate_csv(io: TextIO, issues: List[Dict[str, Any]]) -> None:
         else:
             i['references'] = classifications
     
-    fc = csvlib.DictWriter(io, fieldnames=issues[0].keys())
+    fc = csvlib.DictWriter(io, fieldnames=issues[0].keys(), dialect='excel', quoting=csvlib.QUOTE_ALL)
     fc.writeheader()
     fc.writerows(issues)
 
