@@ -637,7 +637,9 @@ def generate_csv(io: TextIO, issues: List[Dict[str, Any]], report_datetime:str) 
         # Strip HTML tags from report issues
         for k in i:
             if k in ('remediationBackground', 'remediationDetail', 'issueDetail', 'issueBackground'):
-                i[k] = strip_tags(i[k])
+                v = i[k]
+                if isinstance(v, str):
+                    i[k] = strip_tags(v)
         
         # Add the report datetime
         i['reportDateTime'] = report_datetime
