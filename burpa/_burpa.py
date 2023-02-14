@@ -38,7 +38,8 @@ import dateutil.parser
 from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
-from ._utils import get_valid_filename, parse_commas_separated_str, ensure_scheme, parse_targets, setup_logger, perform, is_timenow_between
+from ._utils import (get_valid_filename, parse_commas_separated_str, ensure_scheme, 
+                     parse_targets, setup_logger, perform, is_timenow_between, strip_tags)
 from .__version__ import __version__, __author__
 
 ###################################################
@@ -341,12 +342,20 @@ class Burpa:
             elif record.status == "failed":
                 raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
-    def _report(self, target: str, report_type: str, report_output_dir: Optional[str] = None, 
+    def _report(self, target: str, report_type: str, 
+                report_output_dir: Optional[str] = None, 
                 issue_severity:Union[str, Tuple[str, ...]]="All", 
                 issue_confidence:Union[str, Tuple[str, ...]]="All", 
                 csv:bool=False) -> None:
         
         issues = self._api.scan_issues(target)
+        
+        # use the same datetime string for the CSV report and the HTMl report
+        report_file_datetime_string = time.strftime("%Y%m%d-%H%M", time.localtime())
+        
+        if report_output_dir:
+            os.makedirs(report_output_dir, exist_ok=True)
+
         if issues:
 
             self._logger.info(f"Scan issues for {target} :")
@@ -354,19 +363,29 @@ class Burpa:
                 "Issue: {issueName}, Severity: {severity} ({confidence})".format(**issue)
                 for issue in issues
             }
+            
             for issue in uniques_issues:
                 self._logger.info(f"{issue}")
             
-            if report_output_dir:
-                os.makedirs(report_output_dir, exist_ok=True)
+            if (issue_confidence!='All' or issue_severity!='All') and self._api.rest_api_version >= (2,2,0):
+                filename_template = "burp-report-filtered_{}_{}.{}"
+            else:
+                filename_template = "burp-report_{}_{}.{}"
             
-            self._api.scan_report(
-                report_type=report_type,
-                url_prefix=target,
-                report_output_dir=report_output_dir,
-                issue_severity=issue_severity, 
-                issue_confidence=issue_confidence,
-            )
+            # Write the response body (byte array) to file
+            report_file_name = get_valid_filename(filename_template.format(
+                report_file_datetime_string, target, report_type.lower()))
+
+            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), report_file_name)
+            with open(csv_file, 'w', encoding='utf8') as output_file:
+            
+                self._api.write_report(
+                    report_type=report_type,
+                    url_prefix=target,
+                    report_io=output_file,
+                    issue_severity=issue_severity, 
+                    issue_confidence=issue_confidence,
+                )
         
         else:
             self._logger.info(f"No issue could be found for the target {target}")
@@ -374,12 +393,12 @@ class Burpa:
         
         if csv: 
             # Generate a CSV file with issues
-            file_name = get_valid_filename("burp-report-summary_{}_{}.csv".format(
-                time.strftime("%Y%m%d-%H%M%S", time.localtime()), target))
+            csv_file_name = get_valid_filename("burp-report-summary_{}_{}.csv".format(
+                report_file_datetime_string, target))
 
-            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), file_name)
+            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), csv_file_name)
             with open(csv_file, 'w', encoding='utf8') as output_file:
-                generate_csv(output_file, issues)
+                generate_csv(output_file, issues, report_datetime=report_file_datetime_string)
                 self._logger.info(f'Generated CSV file at {csv_file}')
 
     
@@ -596,7 +615,7 @@ class Burpa:
         """
         print(f"burpa version {__version__}")
 
-def generate_csv(io: TextIO, issues: List[Dict[str, Any]]) -> None:
+def generate_csv(io: TextIO, issues: List[Dict[str, Any]], report_datetime:str) -> None:
     if not issues:
         return
     
@@ -607,12 +626,21 @@ def generate_csv(io: TextIO, issues: List[Dict[str, Any]]) -> None:
         # Discard request/response data.
         i.pop('httpMessages')
 
+        # Set the CWE references
         try:
             classifications = jsondata[str(i['issueType'])]
         except KeyError:
             i['references'] = ''
         else:
             i['references'] = classifications
+        
+        # Strip HTML tags from report issues
+        for k in i:
+            if k in ('remediationBackground', 'remediationDetail', 'issueDetail', 'issueBackground'):
+                i[k] = strip_tags(i[k])
+        
+        # Add the report datetime
+        i['reportDateTime'] = report_datetime
     
     fc = csvlib.DictWriter(io, fieldnames=issues[0].keys(), dialect='excel', quoting=csvlib.QUOTE_ALL)
     fc.writeheader()
