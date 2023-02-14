@@ -1,16 +1,12 @@
 from logging import Logger
-import os
-import re
-import tempfile
-import time
-from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, List, Optional, TextIO, Tuple, Union
 import attr
 
 from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
-from ._utils import get_valid_filename, setup_logger, get_version
+from ._utils import setup_logger, get_version
 
 
 @attr.s(auto_attribs=True)
@@ -322,15 +318,14 @@ class BurpRestApiClient(ApiBase):
             else:
                 return None
 
-
-    def scan_report(self, report_type: str, url_prefix: str, 
-                    report_output_dir: Optional[str] = None,
+    def write_report(self, report_type: str, url_prefix: str, report_io: TextIO,
                     issue_severity:Union[str, Tuple[str, ...]]="All", 
-                    issue_confidence:Union[str, Tuple[str, ...]]="All") -> str:
+                    issue_confidence:Union[str, Tuple[str, ...]]="All") -> None:
         """
-        Downloads the scan report with current Scanner issues for
-        URLs matching the specified urlPrefix (HTML/XML). 
+        Write the scan report for URLs matching the specified url_prefix to the given io wrapper.
+        report_type can be HTML/XML. 
         """
+
         # Validate the filters values
         _valid_severities = ('All', 'High', 'Medium', 'Low', 'Information')
         _valid_confidences = ('All', 'Certain', 'Firm', 'Tentative')
@@ -372,23 +367,7 @@ class BurpRestApiClient(ApiBase):
 
         else:
             self._logger.info(f"Downloading HTML/XML report for {url_prefix}")
-            if (issue_confidence!='All' or issue_severity!='All') and self.rest_api_version >= (2,2,0):
-                filename_template = "burp-report-filtered_{}_{}.{}"
-            else:
-                filename_template = "burp-report_{}_{}.{}"
-            
-            # Write the response body (byte array) to file
-            file_name = get_valid_filename(filename_template.format(
-                time.strftime("%Y%m%d-%H%M%S", time.localtime()),
-                url_prefix,
-                report_type.lower()
-                )
-            )
-            file = os.path.join(report_output_dir or tempfile.gettempdir(), file_name)
-            with open(file, 'w', encoding='utf-8') as f:
-                f.write(r.text)
-            self._logger.info(f"Scan report saved to {file}")
-            return file
+            report_io.write(r.text)
 
 
     def burp_stop(self) -> None:

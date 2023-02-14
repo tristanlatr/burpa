@@ -151,6 +151,11 @@ def get_version(s:str) -> Tuple[int, int, int]:
     assert len(intparts)==3
     return tuple(intparts) # type: ignore
 
+_tag = re.compile('<[^<]+?>')
+
+def strip_tags(html:str) -> str:
+    return _tag.sub('', html)
+
 if __name__ == "__main__":
     
     assert get_version("2.2.0") == (2,2,0)
