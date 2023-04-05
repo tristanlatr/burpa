@@ -318,7 +318,7 @@ class Burpa:
         if not targets:
             raise BurpaError("Error: No target(s) specified. ")
 
-        records = self._start_scan(*targets, excluded=excluded, config=config, 
+        records = self._start_scan(*targets, excluded=excluded, config=config, config_file=config_file,
                         app_user=app_user, app_pass=app_pass)
         
         self._wait_scan(*records)
