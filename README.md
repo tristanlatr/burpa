@@ -2,7 +2,7 @@
 
 **This is a fork of [0x4D31/burpa](https://github.com/0x4D31/burpa)**. 
 
-The original repo seemed abandonned, but I would be happy to merge back the changes to upstream version!
+The original repo seemed abandoned, but I would be happy to merge back the changes to upstream version!
 
 # burpa: Burp Automator
 
@@ -21,7 +21,7 @@ It will use the official REST API to launch the scan, and the `burp-rest-api` to
 * Install and launch [burp-rest-api](https://github.com/vmware/burp-rest-api) third party extension. 
 * Enable the Official Burp Suite Professional REST API. Both the extension and the official REST APIs must be enabled.
 
-  - You can do so by laucnhing the `burp-rest-api` with `--headless=false --unpause-spider-and-scanner` options, enable the REST API under `User Options > Misc > REST API`. Export the config files, both project level (under `Project > Project options > Save`) and user level (under `Burp > User options > Save`), and use them to launch the `burp-rest-api` with options `--config-file` and `--user-config-file`. 
+  - You can do so by launching the `burp-rest-api` with `--headless.mode=false --unpause-spider-and-scanner` options, enable the REST API under `User Options > Misc > REST API`. Export the config files, both project level (under `Project > Project options > Save`) and user level (under `Burp > User options > Save`), and use them to launch the `burp-rest-api` with options `--config-file` and `--user-config-file`. 
 
 ## What changed
 
@@ -32,7 +32,7 @@ It will use the official REST API to launch the scan, and the `burp-rest-api` to
 - Add support for interfacing with the Burp Official REST API: This allows to run authenticated scans. 
 - Use [python-fire](https://github.com/google/python-fire) to generate the CLI. 
 - Publish the API documentation. 
-- Can load Burp configuration fron environment variables and automatically read `.env` files in the source directory tree with [python-dotenv](https://github.com/theskumar/python-dotenv). 
+- Can load Burp configuration from environment variables and automatically read `.env` files in the source directory tree with [python-dotenv](https://github.com/theskumar/python-dotenv). 
 
 ### Configuration
 
@@ -147,7 +147,7 @@ burpa [COMMAND]
   --verbose
       Be more verbose, prints complete trace on errors and debug API parameters. 
   --quiet
-      Be less verose, only print on errors.
+      Be less verbose, only print on errors.
   --no-banner
       Do not print burpa banner.
 

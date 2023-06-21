@@ -12,9 +12,9 @@ from datetime import datetime, time
 from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, Tuple
 
 def get_valid_filename(s: str) -> str:
-    '''Return the given string converted to a string that can be used for a clean filename.  Stolen from Django I think'''
+    '''Return the given string converted to a string that can be used for a clean filename. Stolen from Django, I think.'''
     s = str(s).strip().replace(' ', '_')
-    return re.sub(r'(?u)[^-\w.]', '', s)[:100] # Let's cap the filename lenght to 100 chars.
+    return re.sub(r'(?u)[^-\w.]', '', s)[:100] # Let's cap the filename length to 100 chars.
 
 
 def parse_commas_separated_str(string: str) -> List[str]:
@@ -26,8 +26,7 @@ def parse_commas_separated_str(string: str) -> List[str]:
 
 def parse_targets(targets: Iterable[str]) -> Iterator[str]:
     for target in targets:
-        
-        # Check if arg is a URL or special keyowrd
+        # Check if arg is a URL or special keyword
         if target.lower().startswith(('http', 'all')):
             yield target
         else:
@@ -42,11 +41,10 @@ def parse_targets(targets: Iterable[str]) -> Iterator[str]:
                             yield line
                 else:
                     yield target
-            except Exception as e: # any errors that might be raised because of the file reading.
+            except Exception as e: # Any errors that might be raised because of the file reading.
                 raise RuntimeError(f"Cannot read target: '{target}'. Targets should be URLs (starting with http:// or https://) or filepaths to load URLs from or 'all' to load URLs from proxy history.") from e
 
 def ensure_scheme(url: str) -> str:
-    
     if url:
         # Strip URL string
         url = url.strip()
@@ -74,7 +72,6 @@ def setup_logger(
         verb_level = logging.INFO
 
     log = logging.getLogger(name)
-
     log.setLevel(verb_level)
     std = logging.StreamHandler(sys.stdout)
     std.setLevel(verb_level)
@@ -88,12 +85,12 @@ def perform(func: Callable[..., Any], elements: Iterable[Any],
             func_args:Optional[Dict[str, Any]]=None, asynch: bool=False,  
             workers: Optional[int]=None , ) -> List[Any]:
         """
-        Wrapper arround executable and a list of objects.
+        Wrapper around executable and a list of objects.
         Will execute the callable on each object of the list.
         Parameters: 
         
         - `func`: callable stateless function. func is going to be called like `func(item, **func_args)` on all items in data.
-        - `elements`: Perfom the action on the elements in the list.
+        - `elements`: Perform the action on the elements in the list.
         - `func_args`: dict that will be passed by default to func in all calls.
         - `asynch`: execute the task asynchronously
         - `workers`: mandatory if asynch is true.  
@@ -102,9 +99,9 @@ def perform(func: Callable[..., Any], elements: Iterable[Any],
         """
         if not callable(func) :
             raise ValueError('func must be callable')
-        #Setting the arguments on the function
+        # Setting the arguments on the function
         func = functools.partial(func, **(func_args if func_args is not None else {}))
-        #The data returned by function
+        # The data returned by function
         returned=[]
         if asynch == True :
             if isinstance(workers, int) :
@@ -123,7 +120,7 @@ def is_timenow_between(begin_time: time, end_time: time) -> bool:
     check_time: time = datetime.now().time()
     if begin_time < end_time:
         return check_time >= begin_time and check_time <= end_time
-    else: # crosses midnight
+    else: # When the time crosses midnight
         return check_time >= begin_time or check_time <= end_time
 
 def get_version(s:str) -> Tuple[int, int, int]:

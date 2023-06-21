@@ -22,7 +22,6 @@ import tempfile
 import time
 import traceback
 import json
-import pathlib
 import csv as csvlib
 from time import sleep
 from datetime import datetime, timedelta
@@ -92,7 +91,7 @@ class Burpa:
     new_api_key
         Burp Suite Official REST API key. Environment variable: 'BURP_NEW_API_KEY'.
     quiet
-        Be less verose, only print on errors.
+        Be less verbose, only print on errors.
     verbose
         Be more verbose, prints complete trace on errors.
     no_banner
@@ -187,15 +186,15 @@ class Burpa:
 
             else:
                 # Add targets to the project scope
-                # The targets are included in the BurpCommander.active_scan API call BUT 
-                # in orer to activate the project option "Drop all request outside of the scope", 
+                # The targets are included in the BurpCommander.active_scan API call, but 
+                # in order to activate the project option "Drop all request outside of the scope", 
                 # we need to add them preventively to the project scope before launching the scan. 
                 parsed_url = urlparse(target_url)
                 self._api.include(urlunsplit(
                         (parsed_url.scheme, parsed_url.netloc, parsed_url.path, None, None)))
                 
                 # In order to be sure we're correctly scanning the website, we process the URL in order to
-                # add it's parent path if the URL ends with a filename. This makes sure we're not scanning only one file. 
+                # add its parent path if the URL ends with a filename. This makes sure we're not scanning only one file. 
                 path_parts = parsed_url.path.split('/')
                 if os.path.splitext(path_parts[-1])[-1]:
                     new_base_url = urlunsplit(
@@ -217,12 +216,12 @@ class Burpa:
                                                     config_names=config_names,
                                                     config_json=config_files_content,)
                 
-                # create scan record
+                # Create scan record
                 record = ScanRecord(task_id=task_id, 
                             target_url=target_url, 
                             date_time=datetime.now().isoformat(timespec='seconds'))
 
-                # store scan record
+                # Store scan record
                 scan_records.append(record)
                 
         self._logger.info("Scan started")
@@ -350,7 +349,7 @@ class Burpa:
         
         issues = self._api.scan_issues(target)
         
-        # use the same datetime string for the CSV report and the HTMl report
+        # Use the same datetime string for the CSV report and the HTMl report
         report_file_datetime_string = time.strftime("%Y%m%d-%H%M", time.localtime())
         
         if report_output_dir:
@@ -439,7 +438,7 @@ class Burpa:
         Construct a list of the running scans names from the existing Task IDs in the Burp server.
         """
         
-        # start at ID 3 and load all scan statuses until we get a BurpaError. 
+        # Start at ID 3 and load all scan statuses until we get a BurpaError. 
 
         tasks: Dict[str, str] = {}
         current_task_id = 3
@@ -535,7 +534,7 @@ class Burpa:
                 else:
                     raise
             else:
-                self._logger.info(f"Successfuly connected to Burp REST APIs")
+                self._logger.info(f"Successfully connected to Burp REST APIs")
                 break
 
     def schedule(self, *targets: str, 
@@ -619,7 +618,7 @@ def generate_csv(io: TextIO, issues: List[Dict[str, Any]], report_datetime:str) 
     if not issues:
         return
     
-    # Add CWE informaions
+    # Add CWE information
     jsondata = json.loads(importlib_resources.read_text('burpa', 'issue_defs.json'))
 
     for i in issues:
