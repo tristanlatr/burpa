@@ -1,14 +1,13 @@
 from logging import Logger
 from typing import Any, Dict, Iterable, List, Optional
 import attr
-import json
 from string import Template
 
 from ._error import BurpaError
 from ._api_base import ApiBase
 from ._utils import setup_logger
 
-# Ressource: https://laconicwolf.com/2018/08/27/exploring-the-burp-suite-api/
+# Resource: https://laconicwolf.com/2018/08/27/exploring-the-burp-suite-api/
 
 @attr.s(auto_attribs=True)
 class BurpCommander(ApiBase):
@@ -99,7 +98,7 @@ class BurpCommander(ApiBase):
 
         Returns
         -------
-        The scan ID if it was successfuly launched
+        The scan ID if it was successfully launched
         """
 
         def get_exclude_rules(urls: Iterable[str]) -> List[Dict[str, str]]:
@@ -131,14 +130,14 @@ class BurpCommander(ApiBase):
                 exclude_rules = get_exclude_rules(excluded_urls)
             
             if username and password:
-                #craft authenticated response
+                # Craft authenticated response
                 self._logger.info(f"Initiating authenticated scan with user '{username}'...")
                 r = self.request('active_scan_with_auth', base_urls=base_urls, include_url=base_urls[-1],
                             username=username, password=password, 
                             exclude_rules=exclude_rules, scan_configurations=scan_configurations)
 
             else:
-                # craft unauthenticated response
+                # Craft unauthenticated response
                 self._logger.info("Initiating unauthenticated scan...")
                 r = self.request('active_scan', base_urls=base_urls, include_url=base_urls[-1],
                                 exclude_rules=exclude_rules, scan_configurations=scan_configurations)

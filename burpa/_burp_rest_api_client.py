@@ -1,7 +1,6 @@
 from logging import Logger
 from typing import Any, Dict, Iterable, List, Optional, TextIO, Tuple, Union
 import attr
-
 from string import Template
 
 from ._error import BurpaError
@@ -123,7 +122,7 @@ class BurpRestApiClient(ApiBase):
                          None
                          ),
         
-        # try me with 'python3 -m burpa _api request versions - json'
+        # Try me with 'python3 -m burpa _api request versions - json'
         "versions": (  "get", 
                          "/burp/versions",
                          None

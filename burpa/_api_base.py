@@ -71,7 +71,7 @@ class ApiBase:
             Arguments to pass to `requests.request`.
         **kwargs:
             Template substitutions. This can be a string, a dict or a list. 
-            If it's a dict or a list or tuple, it will be automatically serialed as JSON before getting 
+            If it's a dict or a list or tuple, it will be automatically serialized as JSON before getting 
             interpolated with template place holders.
         """
 

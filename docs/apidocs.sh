@@ -1,5 +1,5 @@
 #!/bin/bash
-# This shell script builds the apisdocs for burpa
+# This shell script builds the apidocs for burpa
 
 # Resolve current directory path. Code from https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself/246128#246128
 # Resolve $SOURCE until the file is no longer a symlink
