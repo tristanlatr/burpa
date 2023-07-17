@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa._api_base.ApiBase</title>
-    <meta name="generator" content="pydoctor 22.9.1"> 
+    <meta name="generator" content="pydoctor 23.4.1"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -304,13 +304,12 @@
         </div>
 
         <div class="extrasDocstring">
-          <p><code><span class="py-keyword">class</span> <span class="py-defname">ApiBase</span>: <a href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L9" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="burpa.BurpCommander.html" class="internal-link">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html" class="internal-link">burpa.BurpRestApiClient</a></code></p>
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">ApiBase</span>: <a href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L9" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="burpa.BurpCommander.html" class="internal-link">burpa.BurpCommander</a></code>, <code><a href="burpa.BurpRestApiClient.html" class="internal-link">burpa.BurpRestApiClient</a></code></p>
           <p><a href="classIndex.html#burpa._api_base.ApiBase">View In Hierarchy</a></p>
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Base class for API wrapper classes that works by storing the API calls in templates.</p>
-</div>
+          <div><p>Base class for API wrapper classes that works by storing the API calls in templates.</p></div>
         </div>
 
         <div id="splitTables">
@@ -366,8 +365,9 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">request</span>(self, request, requestargs=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kwargs):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L63">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">request</span><span class="function-signature">(self, request: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, requestargs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kwargs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code>) -&gt; <code>requests.Response</code></span>:
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L63">
       
       (source)
     </a>
@@ -380,7 +380,7 @@
   <div class="docstring functionBody">
     
     <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Name keyword corresponding to the request name in <code><a href="#PARAMS" class="internal-link" title="burpa._api_base.ApiBase.PARAMS">PARAMS</a></code> mapping.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">requestargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code></td><td class="fieldArgDesc">Arguments to pass to <code>requests.request</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code></td><td class="fieldArgDesc">Template substitutions. This can be a string, a dict or a list.
-If it's a dict or a list or tuple, it will be automatically serialed as JSON before getting
+If it's a dict or a list or tuple, it will be automatically serialized as JSON before getting
 interpolated with template place holders.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseconstant">
@@ -395,7 +395,7 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   <div class="functionHeader">
     
     <span class="py-defname">PARAMS</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/string.html#string.Template" class="intersphinx-link">Template</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/string.html#string.Template" class="intersphinx-link">Template</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]]]</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L14">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L14">
       
       (source)
     </a>
@@ -422,7 +422,7 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   <div class="functionHeader">
     @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
     <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L18">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L18">
       
       (source)
     </a>
@@ -448,8 +448,9 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_api_request</span>(self, http_method, url, data=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, requestargs=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L22">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_api_request</span><span class="function-signature">(self, http_method: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, data: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, requestargs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code>requests.Response</code></span>:
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L22">
       
       (source)
     </a>
@@ -461,7 +462,7 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   </div>
   <div class="docstring functionBody">
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">http<wbr></wbr>_method:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">requestargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>requests.Response</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -474,8 +475,9 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_serialize_request_kwargs</span>(self, kwargs):
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L49">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_serialize_request_kwargs</span><span class="function-signature">(self, kwargs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]]</code>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>:
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L49">
       
       (source)
     </a>
@@ -487,7 +489,7 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   </div>
   <div class="docstring functionBody">
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p></div>
   </div>
 </div><div class="baseclassvariable private">
   
@@ -501,7 +503,7 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   <div class="functionHeader">
     
     <span class="py-defname">_logger</span>: <code><a href="https://docs.python.org/3/library/logging.html#logging.Logger" class="intersphinx-link">logging.Logger</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/347d20f67b70e6b5880e3597fc7d120581bd4f2a/burpa/_api_base.py#L16">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/b0689aea4e1e311bfcd8eeb27561c366811e3c18/burpa/_api_base.py#L16">
       
       (source)
     </a>
@@ -528,7 +530,7 @@ interpolated with template place holders.</td></tr><tr class="fieldStart"><td cl
   <div class="container">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.8</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.9.1 at 2023-04-05 13:10:16.
+    23.4.1 at 2023-07-17 19:40:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -394,6 +394,15 @@ table .private {
     margin-bottom: 6px;
 }
 
+/* Use a slightly more compact presentation for signatures */
+.function-signature {
+    word-spacing: -5px;
+}
+
+.function-signature code {
+    padding: 2px 1px;
+}
+
 /*
 - Links to class/function/etc names are nested like this:
     <code><a>label</a></code>

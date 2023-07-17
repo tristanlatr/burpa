@@ -14,6 +14,7 @@
 // - query: string
 // - indexJSONData: dict
 // - defaultFields: list of strings
+// - autoWildcard: boolean
 let _lunrWorkerCode = `
 
 // The lunr.js code will be inserted here.
@@ -28,6 +29,9 @@ onmessage = (message) => {
     if (!message.data.defaultFields) {
         throw new Error('No default fields provided.');
     }
+    if (!message.data.hasOwnProperty('autoWildcard')){
+        throw new Error('No value for auto wildcard provided.');
+    }
     // Create index
     let index = lunr.Index.load(message.data.indexJSONData);
     
@@ -37,6 +41,7 @@ onmessage = (message) => {
         // to remove the field 'kind' from the clause since this it's only useful when specifically requested.
         var parser = new lunr.QueryParser(message.data.query, _query)
         parser.parse()
+        var hasTraillingWildcard = false;
         _query.clauses.forEach(clause => {
             if (clause.fields == _query.allFields){
                 // we change the query fields when they are applicable to all fields
@@ -44,8 +49,32 @@ onmessage = (message) => {
                 // which should not be matched by default.
                 clause.fields = message.data.defaultFields;
             }
-            // TODO: If fuzzy match is greater than 20 throw an error.
+            // clause.wildcard is actually always NONE due to https://github.com/olivernn/lunr.js/issues/495
+            // But this works...
+            if (clause.term.slice(-1) == '*'){
+                // we want to avoid the auto wildcard system only if a trailling wildcard is already added
+                // not if a leading wildcard exists
+                hasTraillingWildcard = true
+            }
         });
+        // Auto wilcard feature, see issue https://github.com/twisted/pydoctor/issues/648
+        var new_clauses = [];
+        if ((message.data.autoWildcard == true) && (hasTraillingWildcard == false)){
+            _query.clauses.forEach(clause => {
+                // Setting clause.wildcard is useless.
+                // But this works...
+                let new_clause = {...clause}
+                new_clause.term = new_clause.term + '*'
+                clause.boost = 2
+                new_clause.boost = 0
+                new_clauses.push(new_clause)
+            });
+        }
+        new_clauses.forEach(clause => {
+            _query.clauses.push(clause)
+        });
+        console.log('Parsed query:')
+        console.dir(_query.clauses)
     }
 
     // Launch the search
@@ -145,8 +174,9 @@ function _getWorkerPromise(lunJsSourceCode){ // -> Promise of a fresh worker to 
  * @param lunrJsURL: URL pointing to a copy of lunr.js.
  * @param searchDelay: Number of miliseconds to wait before actually launching the query. This is useful to set for "search as you type" kind of search box
  *                     because it let a chance to users to continue typing without triggering useless searches (because previous search is aborted on launching a new one).
+ * @param autoWildcard: Whether to automatically append wildcards to all query clauses when no wildcard is already specified. boolean.
  */
-function lunrSearch(query, indexURL, defaultFields, lunrJsURL, searchDelay){
+function lunrSearch(query, indexURL, defaultFields, lunrJsURL, searchDelay, autoWildcard){
     // Abort ongoing search
     abortSearch();
 
@@ -189,7 +219,8 @@ function lunrSearch(query, indexURL, defaultFields, lunrJsURL, searchDelay){
             let _msgData = {
                 'query': query,
                 'indexJSONData': lunrIndexData,
-                'defaultFields': defaultFields
+                'defaultFields': defaultFields,
+                'autoWildcard': autoWildcard, 
             }
             
             if (!_aborted){
