@@ -142,7 +142,7 @@ class Burpa:
                             api_key=new_api_key or None,
                             logger=setup_logger('BurpCommander', verbose=verbose, quiet=quiet))
         
-        self._logger.info(f"Running Burp Suite version {'.'.join(self._api.burp_version)}")
+        self._logger.info(f"Running Burp Suite version {'.'.join(str(v) for v in self._api.burp_version)}")
 
     def _start_scan(self, *targets: str, excluded: str = "", config: str = "", config_file: str = "",
             app_user: str = "", app_pass: str = "",) -> List[ScanRecord]:
