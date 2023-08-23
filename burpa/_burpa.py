@@ -109,6 +109,8 @@ class Burpa:
         
         self._logger = setup_logger('Burpa', verbose=verbose or bool(os.getenv("BURPA_DEBUG")), quiet=quiet)
 
+        self.report_file_name = None
+
         if not quiet and not no_banner:
             print(ASCII)
         
@@ -374,10 +376,10 @@ class Burpa:
                 filename_template = "burp-report_{}_{}.{}"
             
             # Write the response body (byte array) to file
-            report_file_name = get_valid_filename(filename_template.format(
+            self.report_file_name = get_valid_filename(filename_template.format(
                 report_file_datetime_string, target, report_type.lower()))
 
-            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), report_file_name)
+            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), self.report_file_name)
             with open(csv_file, 'w', encoding='utf8') as output_file:
             
                 self._api.write_report(
