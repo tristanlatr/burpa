@@ -62,6 +62,7 @@ class ScanRecord:
     date_time: str 
     status: Optional[str] = None
     metrics: Dict[str, Any] = attr.ib(factory=dict)
+    report_file_name: Optional[List] = attr.ib(factory=list)
 
     @property
     def name(self) -> str:
@@ -108,8 +109,6 @@ class Burpa:
                 no_banner: bool = False):
         
         self._logger = setup_logger('Burpa', verbose=verbose or bool(os.getenv("BURPA_DEBUG")), quiet=quiet)
-
-        self.report_file_name = None
 
         if not quiet and not no_banner:
             print(ASCII)
@@ -278,7 +277,7 @@ class Burpa:
              app_user: str = "", 
              app_pass: str = "", 
              issue_severity:Union[str, Tuple[str, ...]]="All", 
-             issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> None:
+             issue_confidence:Union[str, Tuple[str, ...]]="All", csv:bool=False) -> List[ScanRecord]:
         """
         Launch an active scan, wait until the end and report the results.
 
@@ -328,16 +327,15 @@ class Burpa:
 
         self._scan_metrics(*records)
 
-        # Download the scan issues/reports
-        if report_type.lower() != 'none':
-            self.report(*(r.target_url for r in records), report_type=report_type,
-                    report_output_dir=report_output_dir, 
-                    issue_severity=issue_severity, 
-                    issue_confidence=issue_confidence, 
-                    csv=csv, )
-
         for record in records:
-            
+            # Download the scan issues/reports
+            if report_type.lower() != 'none':
+                record.report_file_name = self.report(record.target_url, report_type=report_type,
+                        report_output_dir=report_output_dir, 
+                        issue_severity=issue_severity, 
+                        issue_confidence=issue_confidence, 
+                        csv=csv, )
+                        
             # Raise error if a scan failed
             caption = record.metrics['crawl_and_audit_caption']
             if record.status == "paused":
@@ -345,12 +343,15 @@ class Burpa:
             elif record.status == "failed":
                 raise BurpaError(f"Scan failed - {record.target_url} : {caption}")
 
+        return records
+
     def _report(self, target: str, report_type: str, 
                 report_output_dir: Optional[str] = None, 
                 issue_severity:Union[str, Tuple[str, ...]]="All", 
                 issue_confidence:Union[str, Tuple[str, ...]]="All", 
-                csv:bool=False) -> None:
-        
+                csv:bool=False) -> List:
+
+        report_path_list = []
         issues = self._api.scan_issues(target)
         
         # Use the same datetime string for the CSV report and the HTMl report
@@ -376,10 +377,11 @@ class Burpa:
                 filename_template = "burp-report_{}_{}.{}"
             
             # Write the response body (byte array) to file
-            self.report_file_name = get_valid_filename(filename_template.format(
+            report_file_name = get_valid_filename(filename_template.format(
                 report_file_datetime_string, target, report_type.lower()))
 
-            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), self.report_file_name)
+            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), report_file_name)
+            report_path_list.append(csv_file)
             with open(csv_file, 'w', encoding='utf8') as output_file:
             
                 self._api.write_report(
@@ -400,25 +402,31 @@ class Burpa:
                 report_file_datetime_string, target))
 
             csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), csv_file_name)
+            report_path_list.append(csv_file)
+
             with open(csv_file, 'w', encoding='utf8') as output_file:
                 generate_csv(output_file, issues, report_datetime=report_file_datetime_string)
                 self._logger.info(f'Generated CSV file at {csv_file}')
 
+        return report_path_list
     
     def report(self, *targets: str, report_type: str = "HTML", 
                report_output_dir: str = "", 
                issue_severity: Union[str, Tuple[str, ...]]="All", 
                issue_confidence: Union[str, Tuple[str, ...]]="All", 
-               csv: bool=False) -> None:
+               csv: bool=False) -> List:
         """
         Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
         """
+        file_names = []
+
         self._test()
         for target in targets:
-            self._report(target, report_type, report_output_dir, issue_severity=issue_severity, 
+            file_names += self._report(target, report_type, report_output_dir, issue_severity=issue_severity, 
                 issue_confidence=issue_confidence, csv=csv)
 
+        return file_names
     
     def proxy_listen_all_interfaces(self, proxy_port: str) -> None:
         """
