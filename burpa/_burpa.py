@@ -327,6 +327,7 @@ class Burpa:
 
         self._scan_metrics(*records)
 
+        reportError = None
         for record in records:
             # Download the scan issues/reports
             if report_type.lower() != 'none':
@@ -335,14 +336,18 @@ class Burpa:
                         issue_severity=issue_severity, 
                         issue_confidence=issue_confidence, 
                         csv=csv, )
-                        
-        # Raise error if a scan failed
-        caption = record.metrics['crawl_and_audit_caption']
-        if record.status == "paused":
-            raise BurpaError(f"Scan aborted - {record.target_url} : {caption}", records= records)
-        elif record.status == "failed":
-            raise BurpaError(f"Scan failed - {record.target_url} : {caption}", records= records)
 
+
+            # Raise error if a scan failed
+            caption = record.metrics['crawl_and_audit_caption']
+            if record.status == "paused":
+               reportError = f"Scan aborted - {record.target_url} : {caption}"
+            elif record.status == "failed":
+                reportError = f"Scan failed - {record.target_url} : {caption}"
+
+        if reportError:
+            raise BurpaError(reportError, records= records)
+        
         return records
 
     def _report(self, target: str, report_type: str, 
