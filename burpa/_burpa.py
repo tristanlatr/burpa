@@ -349,7 +349,7 @@ class Burpa:
                 report_output_dir: Optional[str] = None, 
                 issue_severity:Union[str, Tuple[str, ...]]="All", 
                 issue_confidence:Union[str, Tuple[str, ...]]="All", 
-                csv:bool=False) -> List:
+                csv:bool=False) -> List[str]:
 
         report_path_list = []
         issues = self._api.scan_issues(target)
