@@ -336,12 +336,12 @@ class Burpa:
                         issue_confidence=issue_confidence, 
                         csv=csv, )
                         
-            # Raise error if a scan failed
-            caption = record.metrics['crawl_and_audit_caption']
-            if record.status == "paused":
-                raise BurpaError(f"Scan aborted - {record.target_url} : {caption}", records= records)
-            elif record.status == "failed":
-                raise BurpaError(f"Scan failed - {record.target_url} : {caption}", records= records)
+        # Raise error if a scan failed
+        caption = record.metrics['crawl_and_audit_caption']
+        if record.status == "paused":
+            raise BurpaError(f"Scan aborted - {record.target_url} : {caption}", records= records)
+        elif record.status == "failed":
+            raise BurpaError(f"Scan failed - {record.target_url} : {caption}", records= records)
 
         return records
 
