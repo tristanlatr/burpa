@@ -414,7 +414,7 @@ class Burpa:
                report_output_dir: str = "", 
                issue_severity: Union[str, Tuple[str, ...]]="All", 
                issue_confidence: Union[str, Tuple[str, ...]]="All", 
-               csv: bool=False) -> List:
+               csv: bool=False) -> List[str]:
         """
         Generate the reports for the specified targets URLs.
         If targets is 'all', generate a report that contains all issues for all targets.  
