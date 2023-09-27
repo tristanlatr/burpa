@@ -55,14 +55,14 @@ ASCII = r"""            __
 @attr.s(auto_attribs=True)
 class ScanRecord:
     """
-    Temporary record represents a running scan.
+    Model a scan, running or finished.
     """
-    task_id: str 
+    task_id: str
     target_url: str 
     date_time: str 
     status: Optional[str] = None
     metrics: Dict[str, Any] = attr.ib(factory=dict)
-    report_file_name: Optional[List] = attr.ib(factory=list)
+    report_files: Optional[List[str]] = None
 
     @property
     def name(self) -> str:
@@ -313,6 +313,11 @@ class Burpa:
             Multiple values are also accepted if they are comma-separated.
         csv:
             Whether to generate a CSV summary with all issues.
+        
+        Returns
+        -------
+        list of ScanRecord
+            list of scan records
         """
 
         self._test()
@@ -331,12 +336,11 @@ class Burpa:
         for record in records:
             # Download the scan issues/reports
             if report_type.lower() != 'none':
-                record.report_file_name = self.report(record.target_url, report_type=report_type,
+                record.report_files = self.report(record.target_url, report_type=report_type,
                         report_output_dir=report_output_dir, 
                         issue_severity=issue_severity, 
                         issue_confidence=issue_confidence, 
                         csv=csv, )
-
 
             # Raise error if a scan failed
             caption = record.metrics['crawl_and_audit_caption']
@@ -346,21 +350,20 @@ class Burpa:
                 reportError = f"Scan failed - {record.target_url} : {caption}"
 
         if reportError:
-            raise BurpaError(reportError, records= records)
+            raise BurpaError(reportError, records=records)
         
         return records
 
-    def _report(self, target: str, report_type: str, 
-                report_output_dir: Optional[str] = None, 
+    def _report(self, target: str, 
+                report_type: str, 
+                timestamp: str,
+                report_output_dir: str, 
                 issue_severity:Union[str, Tuple[str, ...]]="All", 
                 issue_confidence:Union[str, Tuple[str, ...]]="All", 
                 csv:bool=False) -> List[str]:
 
-        report_path_list = []
+        file_names: List[str] = []
         issues = self._api.scan_issues(target)
-        
-        # Use the same datetime string for the CSV report and the HTMl report
-        report_file_datetime_string = time.strftime("%Y%m%d-%H%M", time.localtime())
         
         if report_output_dir:
             os.makedirs(report_output_dir, exist_ok=True)
@@ -382,12 +385,12 @@ class Burpa:
                 filename_template = "burp-report_{}_{}.{}"
             
             # Write the response body (byte array) to file
-            report_file_name = get_valid_filename(filename_template.format(
-                report_file_datetime_string, target, report_type.lower()))
+            report_files = get_valid_filename(filename_template.format(
+                timestamp, target, report_type.lower()))
 
-            csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), report_file_name)
-            report_path_list.append(csv_file)
-            with open(csv_file, 'w', encoding='utf8') as output_file:
+            report_file = os.path.join(report_output_dir or tempfile.gettempdir(), report_files)
+            file_names.append(report_file)
+            with open(report_file, 'w', encoding='utf8') as output_file:
             
                 self._api.write_report(
                     report_type=report_type,
@@ -399,21 +402,21 @@ class Burpa:
         
         else:
             self._logger.info(f"No issue could be found for the target {target}")
-            issues = []
+            return []
         
         if csv: 
             # Generate a CSV file with issues
             csv_file_name = get_valid_filename("burp-report-summary_{}_{}.csv".format(
-                report_file_datetime_string, target))
+                timestamp, target))
 
             csv_file = os.path.join(report_output_dir or tempfile.gettempdir(), csv_file_name)
-            report_path_list.append(csv_file)
+            file_names.append(csv_file)
 
             with open(csv_file, 'w', encoding='utf8') as output_file:
-                generate_csv(output_file, issues, report_datetime=report_file_datetime_string)
+                generate_csv(output_file, issues, report_datetime=timestamp)
                 self._logger.info(f'Generated CSV file at {csv_file}')
 
-        return report_path_list
+        return file_names
     
     def report(self, *targets: str, report_type: str = "HTML", 
                report_output_dir: str = "", 
@@ -422,14 +425,46 @@ class Burpa:
                csv: bool=False) -> List[str]:
         """
         Generate the reports for the specified targets URLs.
-        If targets is 'all', generate a report that contains all issues for all targets.  
+        If targets is 'all', generate reports that contains all issues for all targets.
+        
+        Args
+        ----
+        targets: 
+            Target URL(s) or filename to load target URL(s) from.
+            Use 'all' keyword to search in the proxy history and 
+            load target URLs from there. 
+        report_type:
+            Burp scan report type (default: HTML). 
+            Use 'none' to skip reporting.
+        report_output_dir:
+            Directory to store the reports. 
+            Store report in temp directory if empty.
+        issue_severity:
+            Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information. 
+            Multiple values are also accepted if they are comma-separated.
+        issue_confidence:
+            Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative. 
+            Multiple values are also accepted if they are comma-separated.
+        csv:
+            Whether to generate a CSV summary with all issues.
+        
+        Returns
+        -------
+        list of str
+            list of generated report files
         """
-        file_names = []
-
         self._test()
+
+        file_names = []
+        # Use the same datetime string for the CSV report and the HTMl report
+        timestamp = time.strftime("%Y%m%d-%H%M", time.localtime())
+
         for target in targets:
-            file_names += self._report(target, report_type, report_output_dir, issue_severity=issue_severity, 
-                issue_confidence=issue_confidence, csv=csv)
+            file_names += self._report(target, report_type, timestamp=timestamp, 
+                                       report_output_dir=report_output_dir, 
+                                       issue_severity=issue_severity, 
+                                       issue_confidence=issue_confidence, 
+                                       csv=csv)
 
         return file_names
     
