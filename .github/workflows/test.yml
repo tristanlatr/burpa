@@ -2,9 +2,9 @@ name: test
 
 on:
   push:
-    branches: '*'
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -29,5 +29,8 @@ jobs:
         python -m pip install wheel tox
         python setup.py install
 
-    - name: Run tests
-      run: tox -p all
+    - name: Run mypy
+      run: tox -e mypy
+
+    - name: Run pytype
+      run: tox -e pytype
