@@ -29,5 +29,8 @@ jobs:
         python -m pip install wheel tox
         python setup.py install
 
-    - name: Run tests
-      run: tox -p all
+    - name: Run mypy
+      run: tox -p mypy
+      
+    - name: Run pytype
+      run: tox -p pytype
