@@ -30,7 +30,7 @@ jobs:
         python setup.py install
 
     - name: Run mypy
-      run: tox -p mypy
-      
+      run: tox -e mypy
+
     - name: Run pytype
-      run: tox -p pytype
+      run: tox -e pytype
