@@ -1127,6 +1127,11 @@ pre.constant-value              { padding: .5em; }
 #childList a:target ~ .functionBody{
     box-shadow: -2px -8px 0px 13px rgb(253 255 223);
 }
+/* in class hierarchy */
+#summaryTree a:target ~ div {
+    background-color: rgb(253, 255, 223);
+    box-shadow: 0px 0px 0px 7px rgb(253, 255, 223);
+}
 
 /* deprecations uses a orange text */
 .rst-deprecated > .rst-versionmodified{

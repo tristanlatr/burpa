@@ -6,7 +6,7 @@
   <head>
     
     <title>All Documents</title>
-    <meta name="generator" content="pydoctor 23.4.1"> 
+    <meta name="generator" content="pydoctor 23.9.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -27,7 +27,7 @@
       
       <div class="navlinks">
         <span class="navbar-brand">
-          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.9</a> <a href="index.html">API Documentation</a>
+          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.10</a> <a href="index.html">API Documentation</a>
         </span>
 
         <a href="moduleIndex.html">
@@ -371,7 +371,7 @@
             <div class="type">Class</div>
             <div class="kind">Class</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Temporary record represents a running scan.</div>
+            <div class="summary">Model a scan, running or finished.</div>
           </li><li id="burpa._burpa.ScanRecord.task_id">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.task<wbr></wbr>_id</div>
@@ -408,6 +408,14 @@
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.metrics</div>
             <div class="url">burpa._burpa.ScanRecord.html#metrics</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa._burpa.ScanRecord.report_files">
+            
+            <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.report<wbr></wbr>_files</div>
+            <div class="url">burpa._burpa.ScanRecord.html#report_files</div>
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
@@ -531,7 +539,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Generate the reports for the specified targets URLs. If targets is 'all', generate a report that contains all issues for all targets.</div>
+            <div class="summary">Generate the reports for the specified targets URLs. If targets is 'all', generate reports that contains all issues for all targets.</div>
           </li><li id="burpa.Burpa.proxy_listen_all_interfaces">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.proxy<wbr></wbr>_listen<wbr></wbr>_all<wbr></wbr>_interfaces</div>
@@ -612,6 +620,22 @@
             <div class="kind">Exception</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">Exception raised when there is an error in a burpa command.</div>
+          </li><li id="burpa.BurpaError.__init__">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>Error<wbr></wbr>.__init__</div>
+            <div class="url">burpa.BurpaError.html#__init__</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="burpa.BurpaError.records">
+            
+            <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>Error<wbr></wbr>.records</div>
+            <div class="url">burpa.BurpaError.html#records</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Instance Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">If the burp scan ended in a failed state, this attribute will old a list of scan records. They can still contain some valuable informations.</div>
           </li><li id="burpa.BurpRestApiClient">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client</div>

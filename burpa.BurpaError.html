@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa.BurpaError</title>
-    <meta name="generator" content="pydoctor 23.4.1"> 
+    <meta name="generator" content="pydoctor 23.9.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -31,7 +31,7 @@
       
       <div class="navlinks">
         <span class="navbar-brand">
-          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.9</a> <a href="index.html">API Documentation</a>
+          <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.10</a> <a href="index.html">API Documentation</a>
         </span>
 
         <a href="moduleIndex.html">
@@ -154,14 +154,40 @@
         
         
 
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
         
-         
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="burpa.BurpaError.__init__">__init__</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
 
         
          
 
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
         
-         
+        
+        
+
+        
+            <div class="itemName"><code><a href="#records" class="internal-link" title="burpa.BurpaError.records">records</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
 
         
          
@@ -351,7 +377,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">BurpaError</span>(<a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a>): <a href="https://github.com/tristanlatr/burpa/tree/5960c286a9112d1547796a00af2a30922ead64b4/burpa/_error.py#L1" class="sourceLink">(source)</a></code></p>
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">BurpaError</span>(<a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a>): <a href="https://github.com/tristanlatr/burpa/tree/45e58eec61761a92efe7dbd05ddc413b74fbaf81/burpa/_error.py#L6" class="sourceLink">(source)</a></code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="burpa.BurpaError.__init__">BurpaError(msg, records)</a></code></p>
           <p><a href="classIndex.html#burpa.BurpaError">View In Hierarchy</a></p>
         </div>
 
@@ -360,14 +386,83 @@
         </div>
 
         <div id="splitTables">
-          
+          <table class="children sortable" id="id10">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="burpa.BurpaError.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#records" class="internal-link" title="burpa.BurpaError.records">records</a></code></td>
+    <td>If the burp scan ended in a failed state, this attribute will old a list of scan records. They can still contain some valuable informations.</td>
+  </tr>
+</table>
           
 
             
         </div>
 
         <div id="childList">
-          
+          <div class="basemethod">
+  
+  
+  <a name="burpa.BurpaError.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span><span class="function-signature">(self, msg: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, records: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>)</span>:
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/45e58eec61761a92efe7dbd05ddc413b74fbaf81/burpa/_error.py#L10">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#__init__" title="burpa.BurpaError.__init__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="burpa.BurpaError.records">
+    
+  </a>
+  <a name="records">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">records</span> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/45e58eec61761a92efe7dbd05ddc413b74fbaf81/burpa/_error.py#L12">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#records" title="burpa.BurpaError.records">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>If the burp scan ended in a failed state, this attribute will old
+a list of scan records. They can still contain some valuable informations.</p></div>
+    
+  </div>
+</div>
         </div>
       
       </div>
@@ -377,9 +472,9 @@
 
   
   <div class="container">
-    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.9</a>,
+    <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.10</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.4.1 at 2023-08-01 15:34:02.
+    23.9.0 at 2023-09-27 17:41:57.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
