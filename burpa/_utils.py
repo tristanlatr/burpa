@@ -124,7 +124,7 @@ def is_timenow_between(begin_time: time, end_time: time) -> bool:
     else: # When the time crosses midnight
         return check_time >= begin_time or check_time <= end_time
 
-def get_version(s:str) -> Tuple[int, int, int]:
+def get_version(s:str) -> Tuple[int, ...]:
     """
     Parse a version string like <major>.<minor>.<micro> into a tuple of ints.
     """
@@ -135,18 +135,18 @@ def get_version(s:str) -> Tuple[int, int, int]:
         try:
             v = int(p)
         except:
-            v = 0
+            if intparts:
+                v = 0
+            else:
+                continue
         intparts.append(v)
     
 
     if 3-len(intparts)>0:
         for _ in range(3-len(intparts)):
             intparts.append(0)
-    elif len(intparts)>3:
-        for _ in range(len(intparts)-3):
-            intparts.pop(0)
     
-    assert len(intparts)==3
+
     return tuple(intparts) # type: ignore
 
 _tag = re.compile('<[^<]+?>')
@@ -185,5 +185,6 @@ if __name__ == "__main__":
     assert get_version("2.2.0") == (2,2,0)
     assert get_version("2") == (2,0,0)
     assert get_version("Burp Suite Professional.2022.6.1") == (2022,6,1)
+    assert get_version("Burp Suite Professional.2022.6.1.1") == (2022,6,1,1)
     assert get_version("Burp Suite Professional.2022.thing.1") == (2022,0,1)
-    assert get_version("0.2022.6.1") == (2022,6,1)
+    assert get_version("0.2022.6.1") == (0, 2022,6,1)

@@ -134,7 +134,7 @@ class BurpRestApiClient(ApiBase):
         return f"{self.proxy_url}:{self.api_port}"
 
     @property
-    def rest_api_version(self) -> Tuple[int,int,int]:
+    def rest_api_version(self) -> Tuple[int,...]:
         """The version of the burp-rest-api Extension"""
         try:
             r = self.request('versions')
@@ -144,7 +144,7 @@ class BurpRestApiClient(ApiBase):
             return get_version(r.json()['extensionVersion'])
     
     @property
-    def burp_version(self) -> Tuple[int,int,int]:
+    def burp_version(self) -> Tuple[int,...]:
         """The version of Burp"""
         try:
             r = self.request('versions')
