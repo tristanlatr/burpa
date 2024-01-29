@@ -9,7 +9,8 @@ import functools
 import sys
 import concurrent.futures
 from datetime import datetime, time
-from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, Tuple
+from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, TextIO, Tuple
+from importlib_resources import files
 
 def get_valid_filename(s: str) -> str:
     '''Return the given string converted to a string that can be used for a clean filename. Stolen from Django, I think.'''
@@ -128,7 +129,7 @@ def get_version(s:str) -> Tuple[int, ...]:
     Parse a version string like <major>.<minor>.<micro> into a tuple of ints.
     """
     parts = s.strip().split('.')
-    intparts = []
+    intparts: 'list[int]' = []
     
     for p in parts:
         try:
@@ -152,6 +153,32 @@ _tag = re.compile('<[^<]+?>')
 
 def strip_tags(html:str) -> str:
     return _tag.sub('', html)
+
+def open_text(
+    package: str,
+    resource: str,
+    encoding: str = 'utf-8',
+    errors: str = 'strict',
+) -> TextIO:
+    """Return a file-like object opened for text reading of the resource."""
+    return (files(package) / resource).open( # type:ignore
+        'r', encoding=encoding, errors=errors
+    )
+
+
+def read_text(
+    package: str,
+    resource: str,
+    encoding: str = 'utf-8',
+    errors: str = 'strict',
+) -> str:
+    """Return the decoded string of the resource.
+
+    The decoding-related arguments have the same semantics as those of
+    bytes.decode().
+    """
+    with open_text(package, resource, encoding, errors) as fp:
+        return fp.read()
 
 if __name__ == "__main__":
     
