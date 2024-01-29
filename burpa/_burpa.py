@@ -38,7 +38,7 @@ from ._burp_rest_api_client import BurpRestApiClient
 from ._burp_commander import BurpCommander
 from ._error import BurpaError
 from ._utils import (get_valid_filename, parse_commas_separated_str, ensure_scheme, 
-                     parse_targets, setup_logger, perform, is_timenow_between, strip_tags)
+                     parse_targets, setup_logger, perform, is_timenow_between, strip_tags, read_text)
 from .__version__ import __version__, __author__
 
 ###################################################
@@ -671,7 +671,7 @@ def generate_csv(io: TextIO, issues: List[Dict[str, Any]], report_datetime:str) 
         return
     
     # Add CWE information
-    jsondata = json.loads(importlib_resources.read_text('burpa', 'issue_defs.json'))
+    jsondata = json.loads(read_text('burpa', 'issue_defs.json'))
 
     for i in issues:
         # Discard request/response data.
