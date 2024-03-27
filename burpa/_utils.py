@@ -9,7 +9,8 @@ import functools
 import sys
 import concurrent.futures
 from datetime import datetime, time
-from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, Tuple
+from typing import Any, Callable, Dict, Iterable, Iterator, List, Optional, TextIO, Tuple
+from importlib_resources import files
 
 def get_valid_filename(s: str) -> str:
     '''Return the given string converted to a string that can be used for a clean filename. Stolen from Django, I think.'''
@@ -123,29 +124,29 @@ def is_timenow_between(begin_time: time, end_time: time) -> bool:
     else: # When the time crosses midnight
         return check_time >= begin_time or check_time <= end_time
 
-def get_version(s:str) -> Tuple[int, int, int]:
+def get_version(s:str) -> Tuple[int, ...]:
     """
     Parse a version string like <major>.<minor>.<micro> into a tuple of ints.
     """
     parts = s.strip().split('.')
-    intparts = []
+    intparts: 'list[int]' = []
     
     for p in parts:
         try:
             v = int(p)
         except:
-            v = 0
+            if intparts:
+                v = 0
+            else:
+                continue
         intparts.append(v)
     
 
     if 3-len(intparts)>0:
         for _ in range(3-len(intparts)):
             intparts.append(0)
-    elif len(intparts)>3:
-        for _ in range(len(intparts)-3):
-            intparts.pop(0)
     
-    assert len(intparts)==3
+
     return tuple(intparts) # type: ignore
 
 _tag = re.compile('<[^<]+?>')
@@ -153,10 +154,37 @@ _tag = re.compile('<[^<]+?>')
 def strip_tags(html:str) -> str:
     return _tag.sub('', html)
 
+def open_text(
+    package: str,
+    resource: str,
+    encoding: str = 'utf-8',
+    errors: str = 'strict',
+) -> TextIO:
+    """Return a file-like object opened for text reading of the resource."""
+    return (files(package) / resource).open( # type:ignore
+        'r', encoding=encoding, errors=errors
+    )
+
+
+def read_text(
+    package: str,
+    resource: str,
+    encoding: str = 'utf-8',
+    errors: str = 'strict',
+) -> str:
+    """Return the decoded string of the resource.
+
+    The decoding-related arguments have the same semantics as those of
+    bytes.decode().
+    """
+    with open_text(package, resource, encoding, errors) as fp:
+        return fp.read()
+
 if __name__ == "__main__":
     
     assert get_version("2.2.0") == (2,2,0)
     assert get_version("2") == (2,0,0)
     assert get_version("Burp Suite Professional.2022.6.1") == (2022,6,1)
+    assert get_version("Burp Suite Professional.2022.6.1.1") == (2022,6,1,1)
     assert get_version("Burp Suite Professional.2022.thing.1") == (2022,0,1)
-    assert get_version("0.2022.6.1") == (2022,6,1)
+    assert get_version("0.2022.6.1") == (0, 2022,6,1)
