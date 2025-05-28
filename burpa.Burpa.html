@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa.Burpa</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -547,7 +515,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L76" class="sourceLink">(source)</a></code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="burpa.Burpa.__init__">Burpa(api_url, api_port, new_api_url, new_api_port, ...)</a></code></p>
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">Burpa</span>: <a href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L76" class="sourceLink">(source)</a></code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="burpa.Burpa.__init__">Burpa(api_url, api_port, new_api_url, new_api_port, ...)</a></code></p>
           <p><a href="classIndex.html#burpa.Burpa">View In Hierarchy</a></p>
         </div>
 
@@ -563,7 +531,7 @@
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="burpa.Burpa.__init__">__init__</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -608,7 +576,7 @@
     
     <td>Method</td>
     <td><code><a href="#_report" class="internal-link" title="burpa.Burpa._report">_report</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -618,7 +586,7 @@
     
     <td>Method</td>
     <td><code><a href="#_scheduled_scan" class="internal-link" title="burpa.Burpa._scheduled_scan">_scheduled<wbr></wbr>_scan</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -628,12 +596,12 @@
     
     <td>Method</td>
     <td><code><a href="#_stop" class="internal-link" title="burpa.Burpa._stop">_stop</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
     <td><code><a href="#_test" class="internal-link" title="burpa.Burpa._test">_test</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -643,17 +611,17 @@
     
     <td>Instance Variable</td>
     <td><code><a href="#_api" class="internal-link" title="burpa.Burpa._api">_api</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="#_logger" class="internal-link" title="burpa.Burpa._logger">_logger</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="#_newapi" class="internal-link" title="burpa.Burpa._newapi">_newapi</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
@@ -674,8 +642,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">__init__</span><span class="function-signature">(self, api_url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, api_port: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">8090</span><span class="rst-variable-quote">'</span>, new_api_url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, new_api_port: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">1337</span><span class="rst-variable-quote">'</span>, new_api_key: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, verbose: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, quiet: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, no_banner: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L102">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__init__</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">api_url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">api_port: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">8090</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">new_api_url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">new_api_port: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">1337</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">new_api_key: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">verbose: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, </span><span class="rst-sig-param">quiet: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, </span><span class="rst-sig-param">no_banner: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L102">
       
       (source)
     </a>
@@ -701,8 +669,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">proxy_listen_all_interfaces</span><span class="function-signature">(self, proxy_port: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L469">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">proxy_listen_all_interfaces</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">proxy_port: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L469">
       
       (source)
     </a>
@@ -732,8 +700,8 @@ if necessary.</p>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">report</span><span class="function-signature">(self, *targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, issue_severity: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L419">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">report</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">issue_severity: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">issue_confidence: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L419">
       
       (source)
     </a>
@@ -750,9 +718,9 @@ If targets is 'all', generate reports that contains all issues for all targets.<
 Use 'all' keyword to search in the proxy history and
 load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report<wbr></wbr>_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Burp scan report type (default: HTML).
 Use 'none' to skip reporting.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report<wbr></wbr>_output<wbr></wbr>_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Directory to store the reports.
-Store report in temp directory if empty.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_severity:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc">Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information.
-Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_confidence:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc">Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative.
-Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">csv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Whether to generate a CSV summary with all issues.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">list of generated report files</td></tr></table></div>
+Store report in temp directory if empty.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_severity:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc">Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information.
+Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_confidence:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc">Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative.
+Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">csv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Whether to generate a CSV summary with all issues.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">list of generated report files</td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -766,8 +734,8 @@ Multiple values are also accepted if they are comma-separated.</td></tr><tr><td 
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">scan</span><span class="function-signature">(self, *targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, excluded: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config_file: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, issue_severity: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L272">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">scan</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">excluded: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">config: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">config_file: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">app_user: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">app_pass: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">issue_severity: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">issue_confidence: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr>ScanRecord]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L272">
       
       (source)
     </a>
@@ -785,9 +753,9 @@ Multiple values are also accepted if they are comma-separated.</td></tr><tr><td 
 Use 'all' keyword to search in the proxy history and
 load target URLs from there.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report<wbr></wbr>_type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Burp scan report type (default: HTML).
 Use 'none' to skip reporting.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">report<wbr></wbr>_output<wbr></wbr>_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Directory to store the reports.
-Store report in temp directory if empty.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Commas separated values of the URLs to exclude from the scope of the scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) names to apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config<wbr></wbr>_file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) JSON file to read and apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app<wbr></wbr>_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Application username for authenticated scans.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app<wbr></wbr>_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Application password for authenticated scans</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_severity:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc">Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information.
-Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_confidence:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc">Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative.
-Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">csv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Whether to generate a CSV summary with all issues.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a></code></td><td class="fieldArgDesc">list of scan records</td></tr></table></div>
+Store report in temp directory if empty.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Commas separated values of the URLs to exclude from the scope of the scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) names to apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config<wbr></wbr>_file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Commas separated values of the scan configuration(s) JSON file to read and apply.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app<wbr></wbr>_user:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Application username for authenticated scans.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app<wbr></wbr>_pass:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Application password for authenticated scans</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_severity:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc">Severity of the scan issues to be included in the report. Acceptable values are All, High, Medium, Low and Information.
+Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_confidence:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc">Confidence of the scan issues to be included in the report. Acceptable values are All, Certain, Firm and Tentative.
+Multiple values are also accepted if they are comma-separated.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">csv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Whether to generate a CSV summary with all issues.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a></code></td><td class="fieldArgDesc">list of scan records</td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -801,8 +769,8 @@ Multiple values are also accepted if they are comma-separated.</td></tr><tr><td 
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">schedule</span><span class="function-signature">(self, *targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, excluded: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, begin_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">22:00</span><span class="rst-variable-quote">'</span>, end_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">05:00</span><span class="rst-variable-quote">'</span>, workers: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> = 1, issue_severity: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L591">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">schedule</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">HTML</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">excluded: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">config: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">app_user: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">app_pass: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">begin_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">22:00</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">end_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">05:00</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">workers: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> = 1, </span><span class="rst-sig-param">issue_severity: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">issue_confidence: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L591">
       
       (source)
     </a>
@@ -824,7 +792,7 @@ Multiple values are also accepted if they are comma-separated.</td></tr><tr><td 
 </dl>
 </td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">end<wbr></wbr>_time:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">At what time to end the scans.
 Running scans will finish after the end time.
-(Default "05:00")</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">workers:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">How many asynchronous scans to launch.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_severity:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_confidence:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">csv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+(Default "05:00")</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">workers:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">How many asynchronous scans to launch.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_severity:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">issue<wbr></wbr>_confidence:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">csv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -838,8 +806,8 @@ Running scans will finish after the end time.
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">stop</span><span class="function-signature">(self, wait: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>, force: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L526">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">stop</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">wait: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">force: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L526">
       
       (source)
     </a>
@@ -868,8 +836,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">test</span><span class="function-signature">(self, wait: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L566">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">test</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">wait: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">0</span><span class="rst-variable-quote">'</span></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L566">
       
       (source)
     </a>
@@ -895,8 +863,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">version</span><span class="function-signature">(self)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L662">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">version</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L662">
       
       (source)
     </a>
@@ -922,8 +890,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_get_running_scans</span><span class="function-signature">(self) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L486">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_get_running_scans</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L486">
       
       (source)
     </a>
@@ -949,8 +917,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_report</span><span class="function-signature">(self, target: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, timestamp: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, issue_severity: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, issue_confidence: <code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L355">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_report</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">target: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">report_type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">timestamp: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">report_output_dir: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">issue_severity: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">issue_confidence: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">All</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">csv: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L355">
       
       (source)
     </a>
@@ -976,8 +944,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_scan_metrics</span><span class="function-signature">(self, *records: <code><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a></code>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L262">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_scan_metrics</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*records: <code>ScanRecord</code></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L262">
       
       (source)
     </a>
@@ -1003,8 +971,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_scheduled_scan</span><span class="function-signature">(self, target: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, begin_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, end_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, **kwargs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L647">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_scheduled_scan</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">target: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">begin_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">end_time: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">**kwargs: <code>Any</code></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L647">
       
       (source)
     </a>
@@ -1030,8 +998,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_start_scan</span><span class="function-signature">(self, *targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, excluded: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, config_file: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_user: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, app_pass: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L146">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_start_scan</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*targets: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">excluded: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">config: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">config_file: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">app_user: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">app_pass: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr>ScanRecord]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L146">
       
       (source)
     </a>
@@ -1057,8 +1025,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_stop</span><span class="function-signature">(self)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L513">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_stop</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L513">
       
       (source)
     </a>
@@ -1084,8 +1052,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_test</span><span class="function-signature">(self)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L562">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_test</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L562">
       
       (source)
     </a>
@@ -1111,8 +1079,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_wait_scan</span><span class="function-signature">(self, *records: <code><a href="burpa._burpa.ScanRecord.html" class="internal-link" title="burpa._burpa.ScanRecord">ScanRecord</a></code>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L232">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_wait_scan</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*records: <code>ScanRecord</code></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L232">
       
       (source)
     </a>
@@ -1137,8 +1105,8 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">_api</span>: <code>BurpRestApiClient</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L131">
+    <span class="py-defname">_api</span>: <code><a href="burpa.BurpRestApiClient.html" class="internal-link" title="burpa.BurpRestApiClient">BurpRestApiClient</a></code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L131">
       
       (source)
     </a>
@@ -1165,7 +1133,7 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-defname">_logger</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L111">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L111">
       
       (source)
     </a>
@@ -1192,7 +1160,7 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
   <div class="functionHeader">
     
     <span class="py-defname">_newapi</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L134">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L134">
       
       (source)
     </a>
@@ -1216,10 +1184,10 @@ until all the running scans ends.</td></tr><tr><td class="fieldArgContainer"><sp
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.12</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2024-03-27 13:53:32.
+    25.4.0 at 2025-05-28 16:11:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

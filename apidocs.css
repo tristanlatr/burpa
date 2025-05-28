@@ -5,11 +5,25 @@ body {
     overflow-y: scroll;
 }
 
-.container-fluid{
-    max-width: 1380px;
+.container-fluid {
+    max-width: 1400px;
     width: 100%;
     flex: auto;
+    margin-left: 0;
 }
+
+/* For laptop displays */
+@media only screen and (max-width: 1850px) {
+    .container-fluid {
+        max-width: 1350px;
+    }
+}
+@media only screen and (max-width: 1750px) {
+    .container-fluid {
+        max-width: 1250px;
+    }
+}
+
 
 nav.navbar {
     width:100%;
@@ -46,7 +60,6 @@ nav.navbar .navbar-header {
     margin-bottom: 3px;
     border-bottom: 0;
     box-shadow: 0 0 8px 8px #fff;
-    z-index: 99;
 }
 
 .navbar-brand {
@@ -178,7 +191,7 @@ ul ul ul ul ul ul ul {
     white-space: pre;
 }
 
-.undocumented {
+.undocumented, .rst-undocumented {
     font-style: italic;
     color: #9e9e9e;
 }
@@ -215,6 +228,7 @@ ul ul ul ul ul ul ul {
 .fieldTable {
     width: 100%;
     border: 0;
+    overflow: hidden;
 }
 
 /* Arg name */
@@ -230,30 +244,56 @@ ul ul ul ul ul ul ul {
 
 .fieldTable tr:not(.fieldStart) td:first-child,
 .valueTable tr:not(.fieldStart) td:first-child{
-    padding: 3px 4px 3px 10px;
+    padding: 2px 4px 2px 15px;
+}
+
+/* Little bit of margin in between two field table */
+.fieldTable:has(+ .fieldTable){
+    margin-bottom: 10px;
+}
+
+.fieldTable tr td.fieldArgDesc > *:nth-child(1){
+    padding-top: 0; /* So it's actually aligned vertically */
+    margin-top: 0;
 }
 
 .fieldTable tr td {
     padding: 2px;
+    vertical-align: top;
 }
 
+/* Add border to separate parameter rows */
+.fieldTable tr:not(:last-of-type):has(.fieldArgContainer):has(+ tr:not(.fieldStart)) {
+    /* This is a way to add a margin in between table rows */
+    border-bottom: 5px solid;
+    border-color: transparent;
+}
+
+.fieldTable tr:has(.fieldArgContainer):nth-child(odd) {
+    background-color: rgba(215, 215, 215, 0.15);
+}
 
 /* Argument name + type column table  */
 .fieldTable tr td.fieldArgContainer {
-    width: 325px;
+    max-width: 400px;
     word-break: break-word;
+}
+
+.fieldTable tr td.fieldArgDesc {
+    max-width: 600px;
 }
 
 /* parameters names in parameters table */
 .fieldTable tr td.fieldArgContainer > .fieldArg {
-    display: inline;
+    float: left;
+    margin-left: -5px;
 }
 
 /* parameters types (in parameters table) */
-.fieldTable tr td.fieldArgContainer > code {
+.fieldTable tr td.fieldArgContainer > code, .fieldTable tr td.fieldArgContainer > .rst-literal {
     /* we don't want word break for the types because we already add <wbr> tags inside the type HTML, and that should suffice. */
     word-break: normal;
-    display: inline-flex;
+    display: inline;
     flex-wrap: wrap;
 }
 
@@ -292,6 +332,11 @@ ul ul ul ul ul ul ul {
         width: auto;
     }
 
+    /* Argument name + type column table  */
+    .fieldTable tr td.fieldArgContainer {
+        width: 33%;
+    }
+
 }
 
 @media only screen and (max-width: 820px) {
@@ -306,13 +351,6 @@ ul ul ul ul ul ul ul {
     #splitTables > table tr td:nth-child(2) {
         width: 160px;
     }
-    /* Argument name + type column table  */
-    .fieldTable tr td.fieldArgContainer {
-        width: 170px;
-    } 
-    .fieldTable {
-        table-layout: fixed;
-    }
 }
 
 @media only screen and (max-width: 450px) {
@@ -320,13 +358,9 @@ ul ul ul ul ul ul ul {
     #splitTables > table tr td:nth-child(2) {
         width: 100px;
     }
-    /* Argument name + type column table  */
-    .fieldTable tr td.fieldArgContainer {
-        width: 125px;
-    }
 }
 
-table .package {
+table .package, table .namespacepackage {
     background-color: #fff3e0;
 }
 
@@ -388,7 +422,7 @@ table .private {
     margin-top: 3px;
 }
 
-.functionBody > .undocumented {
+.functionBody > .undocumented, .functionBody > .rst-undocumented {
 
     margin-top: 6px;
     margin-bottom: 6px;
@@ -399,8 +433,28 @@ table .private {
     word-spacing: -5px;
 }
 
-.function-signature code {
-    padding: 2px 1px;
+.rst-sig-param .rst-undocumented {
+    /* self or cls params */
+    font-size: 93%;
+}
+
+/* When focuse, present each parameter onto a new line */
+#childList a:target ~ .functionHeader .function-signature.long-signature .rst-sig-param, 
+#childList a:target ~ .functionHeader .function-signature.long-signature .rst-sig-symbol {
+    display: block;
+    margin-left: 1.5em;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+/* Except the 'self' or 'cls' params, which are rendered on the same line as the function def */
+#childList a:target ~ .functionHeader .function-signature.long-signature .rst-sig-param:has(.rst-undocumented) {
+    display: initial;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#childList > div .functionHeader {
+    word-break: break-word;
 }
 
 /*
@@ -409,11 +463,11 @@ table .private {
   
 - 'functionHeader' is used for lines like `def func():` and `var =`
 */
-code, .literal, .pre, #childList > div .functionHeader,
+code, .rst-literal, .pre, #childList > div .functionHeader,
 #splitTables > table tr td:nth-child(2), .fieldArg {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-code, #childList > div .functionHeader, .fieldArg {
+code, .rst-literal, #childList > div .functionHeader, .fieldArg {
     color: #222222;
 }
 
@@ -451,11 +505,13 @@ blockquote {
 /*
 This defines the code style, it's black on light gray.
 It also overwrite the default values inherited from bootstrap min
+<code> and class="rst-literal" are closely equivalent
 */
-code, .literal {
+code, .rst-literal {
     padding:2px 4px;
     background-color: #f4f4f4;
-    border-radius:4px
+    border-radius:4px;
+    font-size: 90%;
 }
 
 
@@ -579,20 +635,20 @@ div.rst-admonition {
     border-radius: 4px;
 }
 
-div.warning, div.attention, div.danger, div.error, div.caution {
+div.rst-warning, div.rst-attention, div.rst-danger, div.rst-error, div.rst-caution {
     background-color: #ffcf9cb0;
     border: 1px solid #ffbbaa;
 }
 
-div.danger p.rst-admonition-title, div.error p.rst-admonition-title, div.caution p.rst-admonition-title {
+div.rst-danger p.rst-admonition-title, div.rst-error p.rst-admonition-title, div.rst-caution p.rst-admonition-title {
     color: #b94a48;
 }
 
-div.tip p.rst-admonition-title, div.hint p.rst-admonition-title, div.important p.rst-admonition-title{
+div.rst-tip p.rst-admonition-title, div.rst-hint p.rst-admonition-title, div.rst-important p.rst-admonition-title{
     color: #3a87ad;
 }
 
-div.tip, div.hint, div.important {
+div.rst-tip, div.rst-hint, div.rst-important {
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
@@ -1049,19 +1105,15 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     padding: 5px 0 0 8px;
 }
 
-.search-help-hidden #search-help-box{
-    display: none!important;
-}
-
-#search-help-button{
+#apidocs-help-button{
     background-color: #e6e6e6;
 }
 
-.search-help-hidden #search-help-button{
+.search-help-hidden #apidocs-help-button{
     background-color: rgb(255, 255, 255);
 }
 
-.search-help-hidden #search-help-button:hover {
+.search-help-hidden #apidocs-help-button:hover {
     background-color: #e6e6e6;
 }
 
@@ -1119,18 +1171,21 @@ pre.constant-value              { padding: .5em; }
 
 /* highlight the targeted item with "#" */
 #childList a:target ~ .functionHeader, #childList a:target ~ .functionBody{
-    background-color: rgb(253, 255, 223);
+    background-color: rgba(253, 255, 223, 0.9);
 }
 #childList a:target ~ .functionHeader{
-    box-shadow: 0px 0px 0px 10px rgb(253, 255, 223);
+    box-shadow: 0px 0px 0px 10px rgba(253, 255, 223, 0.9);
 }
 #childList a:target ~ .functionBody{
     box-shadow: -2px -8px 0px 13px rgb(253 255 223);
 }
 /* in class hierarchy */
 #summaryTree a:target ~ div {
-    background-color: rgb(253, 255, 223);
-    box-shadow: 0px 0px 0px 7px rgb(253, 255, 223);
+    background-color: rgba(253, 255, 223, 0.9);
+    box-shadow: 0px 0px 0px 7px rgba(253, 255, 223, 0.9);
+}
+#summaryTree div {
+    display: inline-table;
 }
 
 /* deprecations uses a orange text */

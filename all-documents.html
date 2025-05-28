@@ -6,7 +6,7 @@
   <head>
     
     <title>All Documents</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
   <body>
     
@@ -48,7 +49,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -72,39 +73,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -115,8 +83,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -139,7 +107,7 @@
             <div class="type">Package</div>
             <div class="kind">Package</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Welcome to the <tt class="rst-docutils literal">burpa</tt> API documentation!</div>
+            <div class="summary">Welcome to the <tt class="rst-docutils rst-literal">burpa</tt> API documentation!</div>
           </li><li id="burpa.__main__">
             
             <div class="fullName">burpa<wbr></wbr>.__main__</div>
@@ -147,7 +115,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.__version__">
             
             <div class="fullName">burpa<wbr></wbr>.__version__</div>
@@ -155,7 +123,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._api_base">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base</div>
@@ -163,7 +131,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">No module docstring; 1/1 class documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No module docstring; 1/1 class documented</span></div>
           </li><li id="burpa._burp_commander">
             
             <div class="fullName">burpa<wbr></wbr>._burp<wbr></wbr>_commander</div>
@@ -171,7 +139,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burp_rest_api_client">
             
             <div class="fullName">burpa<wbr></wbr>._burp<wbr></wbr>_rest<wbr></wbr>_api<wbr></wbr>_client</div>
@@ -179,7 +147,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa">
             
             <div class="fullName">burpa<wbr></wbr>._burpa</div>
@@ -187,7 +155,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">No module docstring; 0/2 constant, 0/2 function, 1/1 class documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No module docstring; 0/2 constant, 0/2 function, 1/1 class documented</span></div>
           </li><li id="burpa._error">
             
             <div class="fullName">burpa<wbr></wbr>._error</div>
@@ -195,7 +163,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils">
             
             <div class="fullName">burpa<wbr></wbr>._utils</div>
@@ -203,7 +171,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">No module docstring; 0/1 variable, 5/11 functions documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No module docstring; 0/1 variable, 5/11 functions documented</span></div>
           </li><li id="burpa._api_base.ApiBase">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base</div>
@@ -219,7 +187,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._api_base.ApiBase._logger">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>._logger</div>
@@ -227,7 +195,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._api_base.ApiBase.proxy_uri">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>.proxy<wbr></wbr>_uri</div>
@@ -235,7 +203,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._api_base.ApiBase._api_request">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>._api<wbr></wbr>_request</div>
@@ -243,7 +211,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._api_base.ApiBase._serialize_request_kwargs">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>._serialize<wbr></wbr>_request<wbr></wbr>_kwargs</div>
@@ -251,7 +219,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._api_base.ApiBase.request">
             
             <div class="fullName">burpa<wbr></wbr>._api<wbr></wbr>_base<wbr></wbr>.<wbr></wbr>Api<wbr></wbr>Base<wbr></wbr>.request</div>
@@ -259,7 +227,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No summary</span></div>
+            <div class="summary"><span class="rst-undocumented">No summary</span></div>
           </li><li id="burpa._utils.get_valid_filename">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.get<wbr></wbr>_valid<wbr></wbr>_filename</div>
@@ -275,7 +243,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.parse_targets">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.parse<wbr></wbr>_targets</div>
@@ -283,7 +251,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.ensure_scheme">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.ensure<wbr></wbr>_scheme</div>
@@ -291,7 +259,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.setup_logger">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.setup<wbr></wbr>_logger</div>
@@ -299,7 +267,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.perform">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.perform</div>
@@ -315,7 +283,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.get_version">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.get<wbr></wbr>_version</div>
@@ -331,7 +299,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.strip_tags">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.strip<wbr></wbr>_tags</div>
@@ -339,7 +307,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._utils.open_text">
             
             <div class="fullName">burpa<wbr></wbr>._utils<wbr></wbr>.open<wbr></wbr>_text</div>
@@ -363,7 +331,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.__version__.__version__">
             
             <div class="fullName">burpa<wbr></wbr>.__version__<wbr></wbr>.__version__</div>
@@ -371,7 +339,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ASCII">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.ASCII</div>
@@ -379,7 +347,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record</div>
@@ -395,7 +363,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord.target_url">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.target<wbr></wbr>_url</div>
@@ -403,7 +371,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord.date_time">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.date<wbr></wbr>_time</div>
@@ -411,7 +379,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord.status">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.status</div>
@@ -419,7 +387,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord.metrics">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.metrics</div>
@@ -427,7 +395,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord.report_files">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.report<wbr></wbr>_files</div>
@@ -435,7 +403,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.ScanRecord.name">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.<wbr></wbr>Scan<wbr></wbr>Record<wbr></wbr>.name</div>
@@ -451,7 +419,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.generate_csv">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.generate<wbr></wbr>_csv</div>
@@ -459,7 +427,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa._burpa.main">
             
             <div class="fullName">burpa<wbr></wbr>._burpa<wbr></wbr>.main</div>
@@ -467,7 +435,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa</div>
@@ -483,7 +451,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa._logger">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._logger</div>
@@ -491,7 +459,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa._api">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._api</div>
@@ -499,7 +467,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa._newapi">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._newapi</div>
@@ -507,7 +475,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa._start_scan">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>._start<wbr></wbr>_scan</div>
@@ -547,7 +515,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa.report">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.report</div>
@@ -579,7 +547,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa.stop">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.stop</div>
@@ -595,7 +563,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa.test">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.test</div>
@@ -619,7 +587,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.Burpa.version">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>.version</div>
@@ -643,7 +611,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpaError.records">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burpa<wbr></wbr>Error<wbr></wbr>.records</div>
@@ -659,7 +627,7 @@
             <div class="type">Class</div>
             <div class="kind">Class</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Interface for the third party extension <a class="rst-reference external" href="https://github.com/vmware/burp-rest-api" target="_top">burp-rest-api</a>.</div>
+            <div class="summary">Interface for the third party extension <a class="rst-external rst-reference" href="https://github.com/vmware/burp-rest-api" target="_top">burp-rest-api</a>.</div>
           </li><li id="burpa.BurpRestApiClient.proxy_url">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.proxy<wbr></wbr>_url</div>
@@ -667,7 +635,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpRestApiClient.api_port">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.api<wbr></wbr>_port</div>
@@ -675,7 +643,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpRestApiClient._logger">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>._logger</div>
@@ -683,7 +651,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpRestApiClient.PARAMS">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.PARAMS</div>
@@ -691,7 +659,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpRestApiClient.proxy_uri">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.proxy<wbr></wbr>_uri</div>
@@ -699,7 +667,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpRestApiClient.rest_api_version">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Rest<wbr></wbr>Api<wbr></wbr>Client<wbr></wbr>.rest<wbr></wbr>_api<wbr></wbr>_version</div>
@@ -819,7 +787,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No summary</span></div>
+            <div class="summary"><span class="rst-undocumented">No summary</span></div>
           </li><li id="burpa.BurpCommander">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander</div>
@@ -827,7 +795,7 @@
             <div class="type">Class</div>
             <div class="kind">Class</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Interface for the Burp Suite Official REST API, based on ruby code <a class="rst-reference external" href="https://github.com/pentestgeek/burpcommander" target="_top">burpcommander</a>.</div>
+            <div class="summary">Interface for the Burp Suite Official REST API, based on ruby code <a class="rst-external rst-reference" href="https://github.com/pentestgeek/burpcommander" target="_top">burpcommander</a>.</div>
           </li><li id="burpa.BurpCommander.proxy_url">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.proxy<wbr></wbr>_url</div>
@@ -835,7 +803,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpCommander.api_port">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.api<wbr></wbr>_port</div>
@@ -843,7 +811,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpCommander.api_key">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.api<wbr></wbr>_key</div>
@@ -851,7 +819,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpCommander._logger">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>._logger</div>
@@ -859,7 +827,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpCommander.PARAMS">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.PARAMS</div>
@@ -867,7 +835,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpCommander.proxy_uri">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.proxy<wbr></wbr>_uri</div>
@@ -875,7 +843,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="burpa.BurpCommander.active_scan">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.active<wbr></wbr>_scan</div>
@@ -891,7 +859,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No summary</span></div>
+            <div class="summary"><span class="rst-undocumented">No summary</span></div>
           </li><li id="burpa.BurpCommander.scan_details">
             
             <div class="fullName">burpa<wbr></wbr>.<wbr></wbr>Burp<wbr></wbr>Commander<wbr></wbr>.scan<wbr></wbr>_details</div>

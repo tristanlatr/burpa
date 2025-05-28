@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa._burpa</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -410,7 +378,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -431,22 +399,22 @@
     
     <td>Function</td>
     <td><code><a href="#generate_csv" class="internal-link" title="burpa._burpa.generate_csv">generate<wbr></wbr>_csv</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#main" class="internal-link" title="burpa._burpa.main">main</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="constant">
     
     <td>Constant</td>
     <td><code><a href="#ASCII" class="internal-link" title="burpa._burpa.ASCII">ASCII</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="constant">
     
     <td>Constant</td>
     <td><code><a href="#SCAN_STATUS_FINISHED" class="internal-link" title="burpa._burpa.SCAN_STATUS_FINISHED">SCAN<wbr></wbr>_STATUS<wbr></wbr>_FINISHED</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
@@ -467,8 +435,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">generate_csv</span><span class="function-signature">(io: <code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code>, issues: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code>, report_datetime: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L668">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">generate_csv</span><span class="function-signature">(<span class="rst-sig-param">io: <code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code>, </span><span class="rst-sig-param">issues: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code>, </span><span class="rst-sig-param">report_datetime: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L668">
       
       (source)
     </a>
@@ -494,8 +462,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">main</span><span class="function-signature">()</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L701">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">main</span><span class="function-signature">():</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L701">
       
       (source)
     </a>
@@ -521,7 +489,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">ASCII</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L46">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L46">
       
       (source)
     </a>
@@ -541,7 +509,7 @@
 <span class="rst-variable-string">        /_.___/\\__,_/_/  / .___/\\__,_/  </span>
 <span class="rst-variable-string">                        /_/             </span>
 <span class="rst-variable-string">         burpa version %s </span>
-<span class="rst-variable-string"></span><span class="rst-variable-quote">'''</span>%<a href="burpa.__version__.html#__version__" class="internal-link" title="burpa.__version__.__version__">__version__</a></code></pre></td></tr></table>
+<span class="rst-variable-string"></span><span class="rst-variable-quote">'''</span> % <a href="burpa.__version__.html#__version__" class="internal-link" title="burpa.__version__.__version__">__version__</a></code></pre></td></tr></table>
   </div>
 </div><div class="baseconstant">
   
@@ -555,7 +523,7 @@
   <div class="functionHeader">
     
     <span class="py-defname">SCAN_STATUS_FINISHED</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burpa.py#L74">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burpa.py#L74">
       
       (source)
     </a>
@@ -579,10 +547,10 @@
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.12</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2024-03-27 13:53:32.
+    25.4.0 at 2025-05-28 16:11:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa._utils</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -477,7 +445,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -493,7 +461,7 @@
     
     <td>Function</td>
     <td><code><a href="#ensure_scheme" class="internal-link" title="burpa._utils.ensure_scheme">ensure<wbr></wbr>_scheme</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -508,7 +476,7 @@
     
     <td>Function</td>
     <td><code><a href="#is_timenow_between" class="internal-link" title="burpa._utils.is_timenow_between">is<wbr></wbr>_timenow<wbr></wbr>_between</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -518,12 +486,12 @@
     
     <td>Function</td>
     <td><code><a href="#parse_commas_separated_str" class="internal-link" title="burpa._utils.parse_commas_separated_str">parse<wbr></wbr>_commas<wbr></wbr>_separated<wbr></wbr>_str</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#parse_targets" class="internal-link" title="burpa._utils.parse_targets">parse<wbr></wbr>_targets</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -538,17 +506,17 @@
     
     <td>Function</td>
     <td><code><a href="#setup_logger" class="internal-link" title="burpa._utils.setup_logger">setup<wbr></wbr>_logger</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#strip_tags" class="internal-link" title="burpa._utils.strip_tags">strip<wbr></wbr>_tags</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="variable private">
     
     <td>Variable</td>
     <td><code><a href="#_tag" class="internal-link" title="burpa._utils._tag">_tag</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
@@ -569,8 +537,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">ensure_scheme</span><span class="function-signature">(url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L48">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">ensure_scheme</span><span class="function-signature">(<span class="rst-sig-param">url: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L48">
       
       (source)
     </a>
@@ -596,8 +564,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">get_valid_filename</span><span class="function-signature">(s: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L15">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">get_valid_filename</span><span class="function-signature">(<span class="rst-sig-param">s: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L15">
       
       (source)
     </a>
@@ -623,8 +591,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">get_version</span><span class="function-signature">(s: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L127">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">get_version</span><span class="function-signature">(<span class="rst-sig-param">s: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L127">
       
       (source)
     </a>
@@ -650,8 +618,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">is_timenow_between</span><span class="function-signature">(begin_time: <code><a href="https://docs.python.org/3/library/datetime.html#datetime.time" class="intersphinx-link">time</a></code>, end_time: <code><a href="https://docs.python.org/3/library/datetime.html#datetime.time" class="intersphinx-link">time</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L120">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">is_timenow_between</span><span class="function-signature">(<span class="rst-sig-param">begin_time: <code><a href="https://docs.python.org/3/library/datetime.html#datetime.time" class="intersphinx-link">time</a></code>, </span><span class="rst-sig-param">end_time: <code><a href="https://docs.python.org/3/library/datetime.html#datetime.time" class="intersphinx-link">time</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L120">
       
       (source)
     </a>
@@ -677,8 +645,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">open_text</span><span class="function-signature">(package: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, resource: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, encoding: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">utf-8</span><span class="rst-variable-quote">'</span>, errors: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">strict</span><span class="rst-variable-quote">'</span>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L157">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">open_text</span><span class="function-signature long-signature">(<span class="rst-sig-param">package: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">resource: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">encoding: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">utf-8</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">errors: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">strict</span><span class="rst-variable-quote">'</span></span>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L157">
       
       (source)
     </a>
@@ -704,8 +672,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">parse_commas_separated_str</span><span class="function-signature">(string: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L21">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">parse_commas_separated_str</span><span class="function-signature">(<span class="rst-sig-param">string: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L21">
       
       (source)
     </a>
@@ -731,8 +699,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">parse_targets</span><span class="function-signature">(targets: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L28">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">parse_targets</span><span class="function-signature">(<span class="rst-sig-param">targets: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></span>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L28">
       
       (source)
     </a>
@@ -758,8 +726,8 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">perform</span><span class="function-signature">(func: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code>, elements: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code>, func_args: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, asynch: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, workers: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L85">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">perform</span><span class="function-signature long-signature">(<span class="rst-sig-param">func: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code>, </span><span class="rst-sig-param">elements: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code>, </span><span class="rst-sig-param">func_args: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, </span><span class="rst-sig-param">asynch: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, </span><span class="rst-sig-param">workers: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L85">
       
       (source)
     </a>
@@ -796,8 +764,8 @@ Parameters:</p>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">read_text</span><span class="function-signature">(package: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, resource: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, encoding: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">utf-8</span><span class="rst-variable-quote">'</span>, errors: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">strict</span><span class="rst-variable-quote">'</span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L169">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">read_text</span><span class="function-signature long-signature">(<span class="rst-sig-param">package: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">resource: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">encoding: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">utf-8</span><span class="rst-variable-quote">'</span>, </span><span class="rst-sig-param">errors: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> = <span class="rst-variable-quote">'</span><span class="rst-variable-string">strict</span><span class="rst-variable-quote">'</span></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L169">
       
       (source)
     </a>
@@ -826,8 +794,8 @@ bytes.decode().</p>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">setup_logger</span><span class="function-signature">(name: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, verbose: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, quiet: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="https://docs.python.org/3/library/logging.html#logging.Logger" class="intersphinx-link">logging.Logger</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L59">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">setup_logger</span><span class="function-signature">(<span class="rst-sig-param">name: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">verbose: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, </span><span class="rst-sig-param">quiet: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></span>) -&gt; <code><a href="https://docs.python.org/3/library/logging.html#logging.Logger" class="intersphinx-link">logging.Logger</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L59">
       
       (source)
     </a>
@@ -853,8 +821,8 @@ bytes.decode().</p>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">strip_tags</span><span class="function-signature">(html: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L154">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">strip_tags</span><span class="function-signature">(<span class="rst-sig-param">html: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L154">
       
       (source)
     </a>
@@ -880,7 +848,7 @@ bytes.decode().</p>
   <div class="functionHeader">
     
     <span class="py-defname">_tag</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_utils.py#L152">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_utils.py#L152">
       
       (source)
     </a>
@@ -904,10 +872,10 @@ bytes.decode().</p>
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.12</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2024-03-27 13:53:32.
+    25.4.0 at 2025-05-28 16:11:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

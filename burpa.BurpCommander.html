@@ -7,7 +7,7 @@
   <head>
     
     <title>burpa.BurpCommander</title>
-    <meta name="generator" content="pydoctor 23.9.1"> 
+    <meta name="generator" content="pydoctor 25.4.0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -500,13 +468,13 @@
         </div>
 
         <div class="extrasDocstring">
-          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">BurpCommander</span>(<a href="burpa._api_base.ApiBase.html" class="internal-link" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L12" class="sourceLink">(source)</a></code></p>
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">BurpCommander</span>(<a href="burpa._api_base.ApiBase.html" class="internal-link" title="burpa._api_base.ApiBase">ApiBase</a>): <a href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L12" class="sourceLink">(source)</a></code></p>
           <p><a href="classIndex.html#burpa.BurpCommander">View In Hierarchy</a></p>
         </div>
 
         <div class="moduleDocstring">
           <div><p>Interface for the Burp Suite Official REST API,
-based on ruby code <a class="rst-reference external" href="https://github.com/pentestgeek/burpcommander" target="_top">burpcommander</a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy<wbr></wbr>_url</span></td><td class="fieldArgDesc"></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api<wbr></wbr>_port</span></td><td class="fieldArgDesc">Defaults to 1337</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api<wbr></wbr>_key</span></td><td class="fieldArgDesc"></td></tr></table></div>
+based on ruby code <a class="rst-external rst-reference" href="https://github.com/pentestgeek/burpcommander" target="_top">burpcommander</a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">proxy<wbr></wbr>_url</span></td><td class="fieldArgDesc"></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api<wbr></wbr>_port</span></td><td class="fieldArgDesc">Defaults to 1337</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">api<wbr></wbr>_key</span></td><td class="fieldArgDesc"></td></tr></table></div>
         </div>
 
         <div id="splitTables">
@@ -537,37 +505,37 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
     
     <td>Method</td>
     <td><code><a href="#verify_uri" class="internal-link" title="burpa.BurpCommander.verify_uri">verify<wbr></wbr>_uri</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td><span class="rst-undocumented">No summary</span></td>
   </tr><tr class="constant">
     
     <td>Constant</td>
     <td><code><a href="#PARAMS" class="internal-link" title="burpa.BurpCommander.PARAMS">PARAMS</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="#api_key" class="internal-link" title="burpa.BurpCommander.api_key">api<wbr></wbr>_key</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="#api_port" class="internal-link" title="burpa.BurpCommander.api_port">api<wbr></wbr>_port</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="#proxy_url" class="internal-link" title="burpa.BurpCommander.proxy_url">proxy<wbr></wbr>_url</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#proxy_uri" class="internal-link" title="burpa.BurpCommander.proxy_uri">proxy<wbr></wbr>_uri</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
     <td><code><a href="#_logger" class="internal-link" title="burpa.BurpCommander._logger">_logger</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
@@ -581,17 +549,17 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
     
     <td>Method</td>
     <td><code><a href="burpa._api_base.ApiBase.html#request" class="internal-link" title="burpa._api_base.ApiBase.request">request</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td><span class="rst-undocumented">No summary</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
     <td><code><a href="burpa._api_base.ApiBase.html#_api_request" class="internal-link" title="burpa._api_base.ApiBase._api_request">_api<wbr></wbr>_request</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
     <td><code><a href="burpa._api_base.ApiBase.html#_serialize_request_kwargs" class="internal-link" title="burpa._api_base.ApiBase._serialize_request_kwargs">_serialize<wbr></wbr>_request<wbr></wbr>_kwargs</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
             
@@ -612,8 +580,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">active_scan</span><span class="function-signature">(self, *base_urls: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, username: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, password: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, excluded_urls: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, config_names: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, config_json: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L77">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">active_scan</span><span class="function-signature long-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">*base_urls: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, </span><span class="rst-sig-param">username: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, </span><span class="rst-sig-param">password: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, </span><span class="rst-sig-param">excluded_urls: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, </span><span class="rst-sig-param">config_names: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, </span><span class="rst-sig-param">config_json: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L77">
       
       (source)
     </a>
@@ -626,7 +594,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="docstring functionBody">
     
     <div><p>Send a URL to Burp to perform active scan, the difference with
-<code><a href="burpa.BurpRestApiClient.html#active_scan" class="internal-link" title="burpa.BurpRestApiClient.active_scan">BurpRestApiClient.active_scan</a></code> is that this method accepts username/password for authenticated scans.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*base<wbr></wbr>_urls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">username:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Username for authenticated scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">password:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Password for authenticated scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded<wbr></wbr>_urls:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc">List of urls to exclude from the scope.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config<wbr></wbr>_names:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc">Apply list of configuration names.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config<wbr></wbr>_json:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc">Apply list of JSON string of configurations exported from Burp.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base<wbr></wbr>_url</span></td><td class="fieldArgDesc">URLs to scan.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The scan ID if it was successfully launched</td></tr></table></div>
+<code><a href="burpa.BurpRestApiClient.html#active_scan" class="internal-link" title="burpa.BurpRestApiClient.active_scan">BurpRestApiClient.active_scan</a></code> is that this method accepts username/password for authenticated scans.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*base<wbr></wbr>_urls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">username:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc">Username for authenticated scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">password:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc">Password for authenticated scan.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excluded<wbr></wbr>_urls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc">List of urls to exclude from the scope.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config<wbr></wbr>_names:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc">Apply list of configuration names.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">config<wbr></wbr>_json:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>] | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc">Apply list of JSON string of configurations exported from Burp.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base<wbr></wbr>_url</span></td><td class="fieldArgDesc">URLs to scan.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The scan ID if it was successfully launched</td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -640,8 +608,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">scan_details</span><span class="function-signature">(self, task_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L169">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">scan_details</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">task_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr>Any]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L169">
       
       (source)
     </a>
@@ -667,8 +635,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">scan_metrics</span><span class="function-signature">(self, task_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L186">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">scan_metrics</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">task_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr>Any]</code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L186">
       
       (source)
     </a>
@@ -694,8 +662,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">scan_status</span><span class="function-signature">(self, task_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L179">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">scan_status</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">task_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>:</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L179">
       
       (source)
     </a>
@@ -721,8 +689,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">verify_uri</span><span class="function-signature">(self)</span>:
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L157">
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">verify_uri</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L157">
       
       (source)
     </a>
@@ -748,7 +716,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">PARAMS</span> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L30">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L30">
       
       (source)
     </a>
@@ -805,7 +773,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">api_key</span>: <code>Optional[<a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L23">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L27">
       
       (source)
     </a>
@@ -832,7 +800,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">api_port</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L21">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L26">
       
       (source)
     </a>
@@ -859,7 +827,7 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   <div class="functionHeader">
     
     <span class="py-defname">proxy_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L19">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L25">
       
       (source)
     </a>
@@ -884,9 +852,9 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
     
   </a>
   <div class="functionHeader">
-    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <div><span class="decorator">@<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br /></span></div>
     <span class="py-defname">proxy_uri</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L73">
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L73">
       
       (source)
     </a>
@@ -912,8 +880,8 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">_logger</span>: <code><a href="https://docs.python.org/3/library/logging.html#logging.Logger" class="intersphinx-link">Logger</a></code> =
-    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/8752ef06d64d20aa9065f606e2e51e13efec80bb/burpa/_burp_commander.py#L28">
+    <span class="py-defname">_logger</span>: <code>Logger</code> =
+    <a class="sourceLink" href="https://github.com/tristanlatr/burpa/tree/0.3.12/burpa/_burp_commander.py#L28">
       
       (source)
     </a>
@@ -937,10 +905,10 @@ based on ruby code <a class="rst-reference external" href="https://github.com/pe
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/tristanlatr/burpa" class="projecthome">burpa: Burp Automator 0.3.12</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2024-03-27 13:53:32.
+    25.4.0 at 2025-05-28 16:11:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
