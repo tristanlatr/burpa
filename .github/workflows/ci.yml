@@ -28,7 +28,7 @@ jobs:
           
       - name: Install burpa
         run: |
-          python -m pip install wheel tox
+          python -m pip install -U setuptools wheel tox
           python setup.py install
 
       - name: Run mypy
@@ -77,7 +77,7 @@ jobs:
         
         - name: Install build dependencies
           run: |
-            python -m pip install --upgrade pip setuptools wheel
+            python -m pip install -U setuptools wheel
 
         - name: Build
           run: |
