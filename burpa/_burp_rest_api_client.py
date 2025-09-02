@@ -118,6 +118,11 @@ class BurpRestApiClient(ApiBase):
                          ),
         
         "docs": (  "get", 
+                         "/v3/api-docs",
+                         None
+                         ),
+
+        "docs_legacy": (  "get", 
                          "/v2/api-docs",
                          None
                          ),
@@ -399,8 +404,13 @@ class BurpRestApiClient(ApiBase):
         BurpaError
             If cannot connect to burp-rest-api extension URI.
         """
+        if self.rest_api_version > (2,3,2):
+            endpoint = 'docs'
+        else:
+            endpoint = 'docs_legacy'
+        
         try:
-            self.request('docs')
+            self.request(endpoint)
 
         except BurpaError as e:
             raise BurpaError(f"Cannot connect to Burp Suite: {e}") from e
