@@ -404,7 +404,7 @@ class BurpRestApiClient(ApiBase):
         BurpaError
             If cannot connect to burp-rest-api extension URI.
         """
-        if self.rest_api_version > (2,3,2):
+        if self.rest_api_version >= (2,3,2):
             endpoint = 'docs'
         else:
             endpoint = 'docs_legacy'
