@@ -284,7 +284,7 @@ class BurpRestApiClient(ApiBase):
             raise BurpaError(f"Error adding {base_url} to the scan queue: {e}") from e
 
 
-    def scan_status(self) -> int:
+    def scan_status(self) -> Optional[int]:
         """
         Get the percentage completed for the scan queue items
         """
@@ -295,8 +295,7 @@ class BurpRestApiClient(ApiBase):
 
         else:
             resp = r.json()
-            assert isinstance(resp['scanPercentage'], int)
-            return resp['scanPercentage']
+            return resp.get('scanPercentage')
 
 
     def scan_issues(self, url_prefix: str) -> Optional[List[Dict[str, Any]]]:
